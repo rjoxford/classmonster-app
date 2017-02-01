@@ -1,0 +1,30 @@
+
+.qp-options {
+    @extend .col-md-12;
+    clear: both;
+}
+
+.qp-image {
+    max-height: 40vh;
+}
+
+.qp-answer {
+    width: 48%;
+    border: 1%;
+    height: 10vh;
+    // clear: both;
+    display: inline-block;
+}
+
+.option-red {
+    background-color: $red2;
+}
+.option-amber {
+    background-color: $amber2;
+}
+.option-green {
+    background-color: $green1;
+}
+.option-blue {
+    background-color: $blue2;
+}

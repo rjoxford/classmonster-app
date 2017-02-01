@@ -1,0 +1,122 @@
+<form class="form-horizontal col-sm-offset-2 col-sm-8 row">
+
+    {{!--        Length      --}}
+    <div class="form-group col-sm-12 row">
+        <h4 class="col-sm-3 control-h4">Length of Question</h4>
+        <div class="col-sm-9">
+            {{form-button-single title='Instant'}}
+            {{form-button-single title='Short'}}
+            {{form-button-single title='Medium'}}
+            {{form-button-single title='Long'}}
+        </div>
+    </div>
+
+    {{!--        Difficulty      --}}
+    <div class="form-group col-sm-12 row">
+        <h4 class="col-sm-3 control-h4">Challenge Level</h4>
+        <div class="col-sm-9">
+            {{form-button-single title="Structured" color="red"}}
+            {{form-button-single title="Standard" color="amber"}}
+            {{form-button-single title="Problem" color="green"}}
+        </div>
+    </div>
+
+    {{!--        QuestionText      --}}
+    <div class="form-group col-sm-12 row">
+        <h4 class="control-h4 col-sm-3">Question</h4>
+        <div class="col-sm-9">
+            {{textarea class="form-control" placeholder='Your wonderful question here' rows=3 value=question.questionText}}
+        </div>
+    </div>
+
+    {{!--        Picture      --}}
+    <div class="form-group col-sm-12">
+        <h4 class="col-sm-3">Supporting picture or diagram</h4>
+        <div class="col-sm-9">
+            <div class="width100">
+                {{form-switch value=hasPicture}}
+            </div>
+            {{#if hasPicture}}
+            <div class="width100">
+                {{file-uploader class='form-control'}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+    {{!--        Advice      --}}
+    <div class="form-group col-sm-12">
+        <h4 class="col-sm-3">Advice for completion</h4>
+        <div class="col-sm-9">
+            <div class="width100">
+                {{form-switch value=question.hasAdvice}}
+            </div>
+            {{#if question.hasAdvice}}
+            <div class="width100">
+                {{input class="form-control" value=question.advice placeholder='Hints, tips, or web addresses to suppport successful completion'}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+    {{!--        Correct Answer      --}}
+    <div class="form-group col-sm-12">
+        <h4 for="answer" class="control-h4 col-sm-3">Correct Answer</h4>
+        <div class="col-sm-9">
+            {{input class="form-control" value=question.answer placeholder='The correct answer'}}
+        </div>
+    </div>
+
+    {{!--        Multiple Choice      --}}
+    <div class="form-group col-sm-12">
+        <h4 class="col-sm-3">Add multiple choice answers?</h4>
+        <div class="col-sm-9">
+            <div class="width100">
+                {{form-switch value=question.hasMulti}}
+            </div>
+            {{#if question.hasMulti}}
+            <div class="width100">
+                <div class="col-md-8">
+                    {{!-- Starts on incorrect2, with correct answer being answer1 --}}
+                    {{input id='answer2' class="form-control" value=question.answer2 placeholder='Incorrect answer'}}
+                </div>
+                {{form-button-single title='+' selected=hasMulti3}}
+                {{#if hasMulti3}}
+                    <div class="col-md-8">
+                        {{input id='answer3' class="form-control" value=question.answer3 placeholder='Incorrect answer'}}
+                    </div>
+                    {{form-button-single title='+' selected=hasMulti4}}
+                    {{#if hasMulti4}}
+                        <div class="col-md-8">
+                            {{input id='answer4' class="form-control" value=question.answer4 placeholder='Incorrect answer'}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+    {{!--        Submission Controls      --}}
+    <div class="col-sm-offset-3">
+        <button type="submit" class="btn btn-success" {{action "togViewPreview"}}>Submit</button>
+        <button class="btn btn-danger" {{action "cancel"}}>Cancel</button>
+    </div>
+
+    {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+    {{/if}}
+
+</form>
+
+{{!--        Preview Component      --}}
+{{#if viewPreview}}
+    {{#modal-basic}}
+    <h1>Preview</h1>
+    <div class="question-preview-modal-wrapper">
+        {{question-preview question=question}}
+    </div>
+        <button type="submit" class="btn btn-success" {{action "submit"}}>Submit</button>
+        <button class="btn btn-danger" {{action "cancelPreview"}}>Cancel</button>
+    {{/modal-basic}}
+{{/if}}

@@ -1,0 +1,32 @@
+<form class="col-md-12" {{action "save" on="submit" }}>
+    <h2>Add a New Student</h2>
+
+    {{#forms/form-row label="Forename"}}
+        <div class="col-md-6">
+            {{input class="form-control" value=student.forename}}
+        </div>
+    {{/forms/form-row}}
+    {{#forms/form-row label="Surname"}}
+        <div class="">
+            {{input class="form-control" value=student.surname}}
+        </div>
+    {{/forms/form-row}}
+    {{#forms/form-row label="Email Address"}}
+        {{input class="form-control" value=student.email}}
+    {{/forms/form-row}}
+    {{#forms/form-row label="Parent/Guardian Name"}}
+        {{input class="form-control" value=student.guardian}}
+    {{/forms/form-row}}
+    {{#forms/form-row label="SEN"}}
+        {{input class="form-control" value=student.sen}}
+    {{/forms/form-row}}
+    {{#forms/form-row label="Free School Meals"}}
+        {{input class="form-control" value=student.fsm}}
+    {{/forms/form-row}}
+
+</form>
+<button class="btn btn-success" {{action "save" }}>Save</button>
+<button class="btn btn-warning" {{action "clear" }}>Clear All</button>
+<button class="btn btn-danger" {{action "cancel" }}>Cancel</button>
+
+{{yield}}

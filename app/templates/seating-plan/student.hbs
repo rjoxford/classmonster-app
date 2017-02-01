@@ -1,0 +1,42 @@
+
+{{#draggable-item class='seatparent' content=student.name}}
+
+        {{#if student.onField}}
+<div class="seat onField" >
+
+    <div class="seatName" >{{student.name}} Score: {{score}}</div>
+    <div class="seatUI" >
+
+        {{#if sp.viewSNAP}}
+        <div class="smileyBox seatUIapp red" {{action 'toggleScore' student}} >
+            {{#if snapRed}}<img class="smiley smileyRed" src="images/rsmiley.png"  />{{/if}}
+            {{#if snapAmber}}<img class="smiley smileyAmber" src="images/asmiley.png"  />{{/if}}
+            {{#if snapGreen}}<img class="smiley smileyGreen" src="images/gsmiley.png" />{{/if}}
+        </div>{{/if}}
+
+        {{#if sp.viewLevels}}
+        <div class="levelsBox seatUIapp" >
+            <div class="text1" >
+                SNAP
+                <span class="text2">5a</span>
+            </div>
+            <div class="text1">
+                Level
+                <span class="text2">5b</span>
+            </div>
+            <div class="text1">
+                Target
+                <span class="text2">6c</span>
+            </div>
+        </div>{{/if}}
+
+    </div>
+</div>
+
+        {{else}}
+<div class="seat offField">`
+    <div class="benchView">{{student.name}}</div>
+</div>
+        {{/if}}
+
+    {{/draggable-item}}

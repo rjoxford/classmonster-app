@@ -1,0 +1,19 @@
+<div class="invisible-overlay" {{action "togObjectiveSelecting" }}></div>
+<div id="objective-selector" {{action "togObjectiveSelecting" }}>
+    <h1>Objectives</h1>
+    <table class="table">
+        <tr>
+            <th>Level</th>
+            <th>Branch</th>
+            <th>Objective</th>
+        </tr>
+        {{#each unitObjectives as |objective|}}
+        <tr {{action "selectObjective" objective}}>
+            <td>5a</td>
+            <td>{{objective.branch}}</td>
+            <td>{{objective.name}}</td>
+        </tr>
+        {{/each}}
+        
+    </table>
+</div>

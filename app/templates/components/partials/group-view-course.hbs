@@ -1,0 +1,41 @@
+<div class="col-sm-offset-2 col-sm-8">
+    <h1>Currently Studying:</h1>
+    {{#forms/form-row label="Subject"}}
+        <img class="form-icon" src="/assets/icons/maths.svg">
+        {{#button-with-modal text="Change" addClass="btn-default"}}
+            {{#owl-carousel}}
+                {{icon-subject icon="chemistry" title="Chemistry"}}
+                {{icon-subject icon="physics" title="Physics"}}
+                {{icon-subject icon="biology" title="Biology"}}
+                {{icon-subject icon="geography" title="Geography"}}
+                {{icon-subject icon="design" title="Design Technology"}}
+                {{icon-subject icon="art" title="Art"}}
+                {{icon-subject icon="history" title="History"}}
+                {{icon-subject icon="pe" title="PE"}}
+                {{icon-subject icon="media" title="Media"}}
+                {{icon-subject icon="critical" title="Critical Thinking"}}
+                {{icon-subject icon="re" title="RE"}}
+                {{icon-subject icon="maths" title="Maths"}}
+            {{/owl-carousel}}
+        {{/button-with-modal}}
+    {{/forms/form-row}}
+    {{#forms/form-row label="Scheme"}}
+            <strong>{{model.currentScheme.name}}</strong>
+            {{#button-with-modal text="Change" addClass="btn btn-default"}}
+                <button type="button" class="btn btn-primary">My School Schemes</button>
+                <button type="button" class="btn btn-primary">Public Schemes</button>
+                {{#each allSchemes as |scheme|}}
+                    <h2>{{scheme.name}}</h2>
+                {{/each}}
+            {{/button-with-modal}}
+    {{/forms/form-row}}
+
+    {{#forms/form-row label="Unit"}}
+            <strong>{{model.currentUnit.name}}</strong>
+        {{#button-with-modal text="Change" addClass="btn btn-default" showCancel=true}}
+            {{#each model.currentScheme.units as |unit|}}
+                <h2>{{unit.name}}</h2>
+            {{/each}}
+        {{/button-with-modal}}
+    {{/forms/form-row}}
+</div>

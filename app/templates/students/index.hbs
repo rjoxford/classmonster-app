@@ -1,0 +1,24 @@
+<h1 class="script">Students</h1>
+
+
+<table class="table table-hover">
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Target</th>
+        <th colspan="2">Level</th>
+        <th colspan="2">snapLevel</th>
+    </tr>
+</thead>
+<tbody>
+    {{#each model as |student|}}
+    <tr>
+        <td>{{#link-to 'students.student' student}}{{student.name}}{{/link-to}}</td>
+        <td>6a</td>
+        <td>5a</td><td>-3</td>
+        <td>6c</td><td>-2</td>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+

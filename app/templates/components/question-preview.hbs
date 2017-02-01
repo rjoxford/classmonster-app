@@ -1,0 +1,32 @@
+    <h4>{{question.questionText}}</h4>
+
+    {{#if showAdvice}}<p><strong>Advice</strong>   {{question.advice}} </p>{{/if}}
+
+    {{#if showMulti}}
+    <div class="">
+        <button class="multi-answer-1">{{question.answer}}</button>
+        {{#if question.answer2}}<button class="multi-answer-2">{{question.answer2}}</button>{{/if}}
+        {{#if question.answer3}}<button class="multi-answer-3">{{question.answer3}}</button>{{/if}}
+        {{#if question.answer4}}<button class="multi-answer-4">{{question.answer4}}</button>{{/if}}
+    </div>
+    {{/if}}
+
+    {{#if showAnswer}}<p><strong>Answer</strong>   {{question.answer}} </p>{{/if}}
+
+    <div class="question-tags">
+
+        <div class="questiontag-difficulty">
+            <button class="btn btn-primary">Easy!</button>
+        </div>
+        <div class="questiontag-length">
+            <button class="btn btn-primary">Short</button>
+        </div>
+
+        {{#if question.hasMulti}}
+            <button class="btn btn-warning" {{action "togShowMulti"}}>Multiple Choice</button>
+        {{/if}}
+        {{#if question.hasAdvice}}
+            <button class="btn btn-default" {{action "togShowAdvice"}}>Advice</button>
+        {{/if}}
+        <button class="btn btn-success" {{action "togShowAnswer"}}>Answer</button>
+    </div>

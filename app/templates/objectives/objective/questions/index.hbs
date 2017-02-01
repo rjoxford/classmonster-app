@@ -1,0 +1,12 @@
+<h3>Create a new question!</h3>
+{{#link-to 'objectives.objective.questions.new'}} <button class="btn btn-success">Create!</button> {{/link-to}}
+
+<h3> There are {{model.questions.length}} questions for this objective:</h3>
+
+{{#each model.questions as |question|}}
+<div class="question-preview-modal-wrapper">
+    {{question-preview question=question}}
+    {{#link-to 'objectives.objective.questions.question.edit' question}}<button class="btn btn-default">Edit</button>{{/link-to}}
+</div>
+
+{{/each}}

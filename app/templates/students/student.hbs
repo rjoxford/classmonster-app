@@ -1,0 +1,18 @@
+<h1 class="script">
+{{model.name}} {{model.id}}
+</h1>
+
+
+{{#if showLevel3}}
+    <h2>Level 3</h2>
+    <h5>Level 3 showing here!</h5>
+{{else}}
+    <div {{action 'togShowLevel3' }}>
+        <h2>Level 3</h2>
+    </div>
+{{/if}}
+
+
+<h2>Level 4</h2>
+
+<h2>Level 5</h2>

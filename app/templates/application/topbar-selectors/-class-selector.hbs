@@ -1,0 +1,15 @@
+<div class="invisible-overlay" {{action "togClassSelecting" }}></div>
+<div id="class-selector" {{action "togClassSelecting" }}>
+    {{#each allClasses as |group|}}
+    <div class="class-select-box" {{action "selectClass" group}}>
+        <img src="assets/images/classes/kids1.png" />
+        <h4 class="script">{{group.name}}</h4>
+        <button {{action "viewClass" group}}>View</button>
+    </div>
+    {{/each}}
+
+    {{#link-to 'groups'}}
+    <div class="class-select-box">
+        <h4>View All</h4>
+    </div>{{/link-to}}
+</div>

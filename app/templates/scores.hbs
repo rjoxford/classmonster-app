@@ -1,0 +1,25 @@
+<h1 class="script">Scores</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Score Id</th>
+            <th>Objective ID</th>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model as |score|}}
+        <tr>
+            <td>{{score.id}}</td>
+            <td>{{score.objective.id}}</td>
+            <td>{{score.student.id}}</td>
+            <td>{{score.student.name}}</td>
+            <td>{{score.score}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+

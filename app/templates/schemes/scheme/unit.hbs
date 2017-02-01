@@ -1,0 +1,87 @@
+{{#bread-crumb link='schemes.scheme'}}{{model.name}}{{/bread-crumb}}
+
+<h1>{{model.name}}</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Objectives</th>
+            <th>Level</th>
+            <th>Grade</th>
+            {{#if isDeleting}}
+            <th>Remove</th>{{/if}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.objectives as |objective|}}
+        <tr>
+            <td>{{#link-to 'objectives.objective' objective}}{{objective.name}}{{/link-to}}</td>
+            <td>6</td>
+            <td></td>
+            {{#if isRemoving}}
+            <td><button class="btn btn-danger" {{action "removeObjective" }}>Remove</button></td>{{/if}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<div class="width100">
+    <button class="btn btn-success" {{action "togIsAdding" }}>Add Objective</button>
+    <button class="btn btn-warning" {{action "togIsRemoving" }}>Remove Objectives</button>
+</div>
+{{#if isAdding}}
+<div class="width100">
+    <div>
+        <h3>Branch</h3>
+        {{#x-select value=bob action="selectBranch"}}
+        {{#x-option value=fred}}Algebra{{/x-option}}
+        {{#x-option value=bob}}Number{{/x-option}}
+        {{#x-option value=bob}}Shape{{/x-option}}
+        {{#x-option value=bob}}Data{{/x-option}}
+        {{/x-select}}
+    </div>
+    <div>
+        <h3>Area</h3>
+        {{#x-select value=bob action="selectArea"}}
+        {{#x-option value=fred}}Fred Flintstone{{/x-option}}
+        {{#x-option value=bob}}Bob Newhart{{/x-option}}
+        {{/x-select}}
+    </div>
+    <div>
+        <h3>Topic</h3>
+        {{#x-select value=topic action="selectTopic"}}
+        {{#x-option value=fred}}Fred Flintstone{{/x-option}}
+        {{#x-option value=bob}}Bob Newhart{{/x-option}}
+        {{/x-select}}
+    </div>
+
+</div>
+
+<div class="width100">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Branch</th>
+                <th>Area</th>
+                <th>Topic</th>
+                <th>Objective</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each objectivesFiltered as |objective|}}
+            <tr>
+                <td>{{objective.id}}</td>
+                <td>{{objective.branch}}</td>
+                <td>{{objective.area}}</td>
+                <td>{{objective.topic}}</td>
+                <td>{{objective.name}}</td>
+                <td><button class="btn btn-primary" {{action "addObjective" model objective }}>Add</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{/if}}
+
+
+{{outlet}}

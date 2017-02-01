@@ -1,0 +1,332 @@
+/*.......................................................................................................................
+
+................................................        General Theme          ...............................................*/
+
+/* Element Styles */
+body {
+    position: relative;
+    background-color: #fff;
+    color: $blue5;
+    text-align: center;
+    border-radius: 8px;
+    // TODO improve strategy for making selected views printable, eg seating plan
+    // @media print {
+    //     display: none;
+    // }
+}
+
+
+/* Styling Classes */
+.script {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.logo {
+    margin-right:5%;
+    float: left;
+}
+@media (max-width: 700px) {
+    .logo {
+        display: none;
+    }
+}
+
+.logo-image {
+    height: 40px;
+}
+
+.width100 {
+    width: 100%;
+}
+// .left {
+//     text-align: left;
+// }
+
+h3 {
+    text-align: left;
+}
+
+.shadow {
+    border-top: 2px solid;
+    border-right: 5px solid;
+    border-bottom: 5px solid;
+    border-left: 2px solid;
+    border-radius: 14px;
+    border-color: $blue2;
+}
+
+.curved {
+    border-radius: 10px;
+}
+
+
+
+.centered-axis-xy {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+/*.......................................................................................................................
+
+................................................        Printing          ...............................................*/
+#topbar, .sidebar {
+    @media print {
+        display: none;
+    }
+}
+
+
+/*.......................................................................................................................
+
+................................................        App          ...............................................*/
+#application {
+    position: absolute;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#app {
+    padding-top: 60px;
+    width: 100%;
+    min-height: 100vh;
+    // TODO Should height be part of "app" or "app-limited-width", and should I rename one "container?"
+    top: 70px;
+    left: 70px;
+    float: left;
+    text-align: center;
+    @media print {
+        display: block;
+    }
+}
+
+// #appgrid {
+//     width: 100%;
+//     height: 650px;
+//     text-align: left;
+//     float: left;
+//     clear: both;
+//     border-bottom: solid;
+//     border-color: #a589e0;
+//     border-radius: 10px;
+//     border-width: 4px;
+// }
+
+.app-limitedwidth {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 30px 30px 30px;
+}
+
+@media (min-width: 1400px) {
+    .app-limitedwidth {
+        width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+
+
+/*.......................................................................................................................
+
+................................................        Base CSS for extending          ...............................................*/
+
+.base-border {
+    border-style: solid;
+    border-color: $blue2;
+    border-width: 3px;
+    border-radius: 8px;
+}
+
+
+
+
+/*.......................................................................................................................
+
+................................................        RAG!          ...............................................*/
+.rag-score {
+    float: none;
+    width: 50%;
+    max-width: 40px;
+    border-radius: 6px;
+}
+
+.rag-score-red {
+    @extend .rag-score;
+    background-color: $red1;
+    color: $red1;
+}
+.rag-score-amber {
+    @extend .rag-score;
+    background-color: $amber1;
+    color: $amber1;
+}
+.rag-score-green {
+    @extend .rag-score;
+    background-color: $green1;
+    color: $green1;
+}
+.rag-score-blue {
+    @extend .rag-score;
+    background-color: $blue2;
+    color: $blue2;
+}
+
+.colour-bar1 {
+    background: linear-gradient(to right, $red1, $amber1, $green1);
+    border-radius: 6px;
+    width: 100px;
+}
+
+
+/*.......................................................................................................................
+
+................................................        Images          ...............................................*/
+
+.gridpic1 {
+    height: 30px;
+    width: 30px;
+    background-image: url("../images/svg/icon2.svg");
+}
+
+
+
+
+/*.......................................................................................................................
+
+................................................        Create/Edit Question Component          ...............................................*/
+
+
+.left-hand-60 {
+    @extend .col-md-8;
+    // width: 60%;
+    // position: absolute;
+    // overflow-y: scroll;
+}
+
+.right-hand-40 {
+    @extend .col-md-4;
+    // width: 40%;
+    // left: 60%;
+    // position: sticky;
+    // overflow-y: scroll;
+}
+
+.home-subject-container {
+    @extend .col-md-12;
+    background-color: grey;
+}
+
+
+
+
+/*.......................................................................................................................
+
+................................................        Create/Edit Question Component          ...............................................*/
+
+
+.questionPreview {
+
+    margin-top: 50px;
+}
+
+.question-preview {
+    margin: 10px;
+    padding-bottom: 10px;
+    left: 0;
+    text-align: left;
+    // h1, h2, h3, h4, h5, p {
+    //     float: left;
+    //     width: 100%;
+    // }
+}
+
+.question-tags {
+    div {
+        display: inline-block;
+    }
+}
+
+.question-tags {
+    display: inline-block;
+}
+
+.question-preview-modal-wrapper {
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    display: inline-block;
+    float: none;
+    clear: both;
+    @extend .base-border;
+}
+
+/*.......................................................................................................................
+
+................................................        Multiple Choice          ...............................................*/
+
+
+
+.multi-answers {
+    margin-top: 30px;
+}
+
+.multi-answer {
+    @extend .btn;
+    min-height: 40px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.multi-answer-1 {
+    @extend .multi-answer;
+    background-color: $red1;
+}
+
+.multi-answer-2 {
+    @extend .multi-answer;
+    background-color: $amber2;
+}
+.multi-answer-3 {
+    @extend .multi-answer;
+    background-color: $green2;
+}
+.multi-answer-4 {
+    @extend .multi-answer;
+    background-color: $blue2;
+}
+
+
+
+
+/*.......................................................................................................................
+
+................................................        Objectives          ...............................................*/
+
+#filters {
+    width: 100%;
+}
+
+.filter-set {
+    width: 100%;
+}
+
+.filter-button {
+
+}
+
+.filter-button-active {
+    // @extend .filter-button;
+    background-color: $blue2;
+}
+
+.button-innerdiv {
+    width: 100%;
+}

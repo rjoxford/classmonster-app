@@ -1,0 +1,63 @@
+{{#bread-crumb link='groups.group.seating-plan' model=model}}Seating Plan{{/bread-crumb}}
+
+{{!-- Options --}}
+<div id="seating-options">
+
+    {{!-- Title --}}
+    <h1 id="seating-title">{{model.name}}</h1>
+
+    {{!-- Top level menu --}}
+    <div id="seating-menu1">
+        {{#tab-set}}
+            {{tab-single title="Score" deselector=deselector action=(action 'ShowSNAP') selected=true }}
+            {{tab-single title="Levels" deselector=deselector action=(action 'ShowLevels')}}
+            {{tab-single title="Behaviour" deselector=deselector action=(action 'ShowBehaviour')}}
+            {{tab-single title="Plans" deselector=deselector action=(action 'ShowPlans')}}
+        {{/tab-set}}
+
+        <img id="save-icon" src="/assets/images/save256.png" />
+    </div>
+
+    {{!-- Secondary level menu --}}
+    <div id="seating-menu2">
+        {{#if viewSNAP}}
+        <span>Objective: </span>
+        {{#x-select value=objective action="alert"}}
+            {{#each model.currentUnit.objectives as |objective|}}
+            {{#x-option value=objective}}{{objective.name}}{{/x-option}}
+            {{/each}}
+        {{/x-select}}
+        {{/if}}
+        {{#if viewPlans}}
+            <span>Plan: </span>
+            {{#x-select value=plan}}
+                {{#x-option value=1}}1{{/x-option}}
+                {{#x-option value=2}}2{{/x-option}}
+                {{#x-option value=3}}3{{/x-option}}
+                {{#x-option value=4}}4{{/x-option}}
+                {{#x-option value=5}}5{{/x-option}}
+            {{/x-select}}
+        {{/if}}
+    </div>
+
+</div>
+
+{{!-- Seating UI Area --}}
+<div id="seating-area">
+
+    {{!-- Seats position over a grid --}}
+    {{#each gridarray as |gridunit|}}
+    {{seat/grid-unit dropped="dropAction" idNumber=gridunit.id droppable=gridunit.droppable}}
+    {{/each}}
+
+    {{!-- Each student's seat. The parent component is the seatbox. Seatbox contains the student's
+    name and a seatboxUI, containing components for the different functionalities. --}}
+    {{!-- TODO consolidate the many parameters being passed into the component with a seatobject --}}
+    {{#each model.students as |student|}}
+    {{seat/seat-box student=student plan=plan objective=objective
+    viewSNAP=viewSNAP viewLevels=viewLevels viewBehaviour=viewBehaviour }}
+    {{/each}}
+
+    {{!-- TODO - is this outlet required? --}}
+    {{outlet}}
+</div>

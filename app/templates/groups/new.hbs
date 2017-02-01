@@ -1,0 +1,15 @@
+<h1>Add a new Class</h1>
+
+
+<div class="col-md-12">
+
+<form class="form-horizontal col-md-offset-2 col-md-8" {{action "save" on="submit" }}>
+
+    {{#forms/form-row label="Class Name"}}
+        {{input class="form-control" placeholder='Name' value=groupName}}
+    {{/forms/form-row}}
+
+</form>
+</div>
+<button class="btn btn-success" type="button" name="button" {{action "save"}}>Create</button>
+<button class="btn btn-danger" type="button" {{action "cancel"}}>Cancel</button>

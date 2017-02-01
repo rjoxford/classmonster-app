@@ -1,0 +1,96 @@
+{{#bread-crumb link='groups.group.students' model=model}}Students{{/bread-crumb}}
+
+
+<h1>{{model.name}}</h1>
+
+{{!-- Controls for changing the students in the class TODO - reformat this --}}
+{{#if viewL1Controls}}
+<div class="row">
+    <div {{action "showImportStudents"}}>
+        Import Students
+        <span>Upload a spreadsheet</span>
+
+    </div>
+
+    <div {{action "showTransfer"}}>
+        {{#button-link-large title="Transfer a student" picture="kids1.png"}}
+        <span>Add a student from another class</span>
+        {{/button-link-large}}
+    </div>
+
+    <div {{action "showAddNewStudent"}}>
+        {{#button-link-large title="Add a new student" picture="kids1.png"}}
+            <span>Add a new student to this class</span>
+        {{/button-link-large}}
+    </div>
+
+    <div {{action "showRemoveStudent"}}>
+        {{#button-link-large title="Remove a student" picture="kids1.png"}}
+        <span>Remove a student from this class and place in holding</span>
+        {{/button-link-large}}
+    </div>
+</div>
+
+{{/if}}
+
+{{!-- View form for adding a single new student --}}
+{{#if viewAddNewStudent}}
+    {{forms/new-student student=studentFO save=(action "addNewStudent") cancel=(action "cancelAddNewStudent") }}
+{{/if}}
+
+{{!-- View component for transferring students between school's classes --}}
+{{#if viewTransfer}}
+    {{forms/transfer-student cancel=(action "cancelTransfer") }}
+{{/if}}
+
+
+{{!-- Viewing component for importing multiple students via spreadsheet --}}
+{{#if viewImportStudents}}
+    {{forms/import-students cancel=(action "cancelImportStudents")}}
+{{/if}}
+
+{{!-- View controls for removing a student from the class --}}
+{{#if viewRemoveStudent}}
+<div class="row">
+    <button type="button" class="btn btn-large btn-warning" {{action "cancelRemoveStudent"}}>Cancel</button>
+</div>
+{{/if}}
+
+{{!-- Viewing list of students with student details --}}
+{{#if viewStudents}}
+    <h1>Students</h1>
+    <div class="col-md-12">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    {{#if viewRemoveStudent}}<th>Remove</th>{{/if}}
+                    <th>Name</th>
+                    <th>SEN</th>
+                    <th>FSM</th>
+                    <th>Student Email</th>
+                    <th>Parent/Guardian Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each model.students as |student|}}
+                <tr>
+                    {{#if viewRemoveStudent}}
+                        <th>
+                            {{#button-with-confirmation text="X" addClass="btn-danger" submitConfirm=(action "removeStudent" student) }}
+                            Are you sure you wish to remove this student from the class?
+                            {{/button-with-confirmation}}
+
+                        </th>
+                    {{/if}}
+                    <td>{{#link-to 'students.student' student}}{{student.name}}{{/link-to}}</td>
+                    <td>Yes</td>
+                    <td>No</td>
+                    <td>{{student.name}}@stteilos.com</td>
+                    <td>dad@aol.com</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/if}}

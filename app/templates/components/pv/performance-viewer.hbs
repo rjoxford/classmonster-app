@@ -1,0 +1,28 @@
+<h1>Performance Viewer</h1>
+
+{{!-- Tabs to choose where to look for performance --}}
+{{#tab-set}}
+    {{tab-single title="Level/Grade" }}
+    {{tab-single title="Area" }}
+    {{tab-single title="Scheme" }}
+{{/tab-set}}
+
+{{!-- First level of filters eg Grade, --}}
+{{#each criteria as criterion}}
+    {{pv/filter1}}
+{{/each}}
+
+{{!-- Second level of filters --}}
+{{#each criteria as criterion}}
+    {{pv/filter1}}
+{{/each}}
+
+{{!-- List of objectives in that range, with the model's score --}}
+{{#each objective as objective}}
+    {{!-- A view/component to view the performance against the objective --}}
+{{/each}}
+
+
+
+
+{{yield}}

@@ -1,0 +1,23 @@
+<h1>{{model.name}}</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Objective</th>
+            <th>RAG</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.objectives as |objective|}}
+        <tr>
+            <td>{{objective.id}}</td>
+            <td>{{#link-to 'groups.group.gradebook.unit.objective' objective}}{{objective.name}}{{/link-to}}</td>
+            <td>{{colour-bar1 red=10 amber=40 green=50}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<h3>Tools</h3>
+<button class="btn btn-primary">Create a Tracking Sheet</button>
+<button class="btn btn-primary">Edit in Seating Plan</button>

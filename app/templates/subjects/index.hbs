@@ -1,0 +1,14 @@
+<h2>Ember subjects Route</h2>
+
+<h2>Subjects listed below: </h2>
+
+{{#each model as |subject|}}
+
+{{#link-to 'subjects.subject' subject}}
+{{#button-link-large title=subject.name picture="icons/maths.svg"}}
+{{/button-link-large}}
+{{/link-to}}
+
+{{/each}}
+
+{{outlet}}

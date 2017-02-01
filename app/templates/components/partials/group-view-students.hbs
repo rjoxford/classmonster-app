@@ -1,0 +1,24 @@
+<div class="width100">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Forename</th>
+                <th>Surname</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each model.students as |student|}}
+            <tr>
+                <td>{{student.name}}</td>
+                <td>Oxford</td>
+                <td>M</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+{{#link-to 'groups.group.students' }}<button class="btn btn-primary">More</button>{{/link-to}}

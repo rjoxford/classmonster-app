@@ -1,0 +1,14 @@
+<h1>{{model.name}} Subject Route</h1>
+
+{{#tab-set}}
+    {{tab-single title=model.name deselector=deselector}}
+    {{tab-single title="Public Schemes" deselector=deselector}}
+    {{tab-single title="My Schemes" deselector=deselector}}
+    {{tab-single title="Overview" deselector=deselector}}
+{{/tab-set}}
+
+{{#each model.schemes as |scheme|}}
+    <h3>{{scheme.name}}</h3>
+{{/each}}
+
+{{outlet}}

@@ -1,0 +1,10 @@
+<button class="btn {{addClass}}" {{action "launchConfirmDialog"}}>{{text}}</button>
+{{#if confirmShown}}
+    {{#modal-basic}}
+        {{yield}}
+        <div class="row">
+            <button class="btn btn-warning confirm-submit" {{action "submitConfirm"}}>OK</button>
+            <button class="btn btn-danger confirm-cancel" {{action "cancelConfirm"}}>Cancel</button>
+        </div>
+    {{/modal-basic}}
+{{/if}}

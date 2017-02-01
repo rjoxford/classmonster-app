@@ -1,0 +1,62 @@
+<div class="container">
+
+
+<div class="left-hand-60">
+    {{!-- Title --}}
+    <h1>{{model.name}}</h1>
+
+    <div class="">
+    {{!-- Search, and filter for chosen objectives --}}
+
+        {{!-- Search by keyword --}}
+        <div class="form-group">
+            {{input class="" placeholder="Search by keyword..."}}
+            <button class="btn btn-default" type="button">Search</button>
+        </div>
+
+        <h3>Filters</h3>
+        {{!-- Filter by Grade/Level --}}
+        {{#x-select value=grade label="Check"}}
+            {{#x-option value="algebra"}}Level 1 / Grade G{{/x-option}}
+            {{#x-option value="objective"}}Level 2 / Grade F{{/x-option}}
+            {{#x-option value="probability"}}Probability{{/x-option}}
+            {{#x-option value="shape"}}Shape{{/x-option}}
+        {{/x-select}}
+
+
+        {{!-- Filter by classification --}}
+
+        {{!-- Branch --}}
+        {{#x-select value=branch}}
+            {{#x-option value="algebra"}}Algebra{{/x-option}}
+            {{#x-option value="objective"}}Number{{/x-option}}
+            {{#x-option value="probability"}}Probability{{/x-option}}
+            {{#x-option value="Shape"}}Shape{{/x-option}}
+        {{/x-select}}
+    </div>
+
+    <div class="scheme-objective-sector">
+        {{!-- Set of draggable, filtered objectives --}}
+        {{#each objectives as |objective|}}
+            {{scheme-editor/draggable-objective objective=objective}}
+        {{/each}}
+    </div>
+
+
+</div>
+
+
+<div class="scheme-units-sector right-hand-40">
+
+    {{!-- Droppable set of units --}}
+    {{#each model.units as |unit|}}
+    <div class="scheme-unit" droppable="true">
+        <h4>{{unit.name}}</h4>
+    </div>
+    {{/each}}
+
+    {{!-- Control to add a new unit --}}
+    <button {{action "addNewUnit"}} type="button" class="btn btn-primary">Add New Unit</button>
+</div>
+
+</div>

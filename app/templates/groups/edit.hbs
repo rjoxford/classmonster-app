@@ -1,0 +1,24 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Edit</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model as |group|}}
+        <tr>
+            <td>{{#link-to 'groups.group' group}}{{group.name}}{{/link-to}}</td>
+            <td><button class="btn btn-default btn-sm">Edit</button></td>
+            <td><button class="btn btn-default btn-sm" {{action "delete" group}}>Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{#link-to 'groups.new'}}<button class="btn btn-default">New Class</button>{{/link-to}}
+
+{{#link-to 'groups'}}<button class="btn btn-default">Done Editing</button>{{/link-to}}
+
+{{outlet}}

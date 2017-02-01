@@ -1,0 +1,772 @@
+
+@import 'bootstrap';
+
+/*.......................................................................................................................
+
+................................................        General          ...............................................*/
+ 
+/* Color Theme  */
+$blue1: #BDEEFF;
+$blue2: #8CC5F7;
+$blue3: #66A4D9;
+$blue4: #364EB5;
+$blue5: #253F94;
+
+/* RAG Colors*/
+$red1: #ff0000;
+$amber1: #ff6600;
+$green1: #00e600;
+
+
+
+/* Element Styles */
+
+body {
+    position: relative;
+    background-color: rgba(0,0,0,0.1);
+    color: $blue5;
+    text-align: center;
+    border-radius: 8px;
+    @media print {
+        display: none;
+    }
+}
+
+div {
+    float: left;
+}
+
+
+/* Styling Classes */
+.script {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.floLeft {
+    float: left;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.logo {
+    margin-right:5%;
+}
+
+.logo-image {
+    height: 40px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.width100 {
+    width: 100%;
+}
+
+h3 {
+    text-align: left;
+}
+
+/*.......................................................................................................................
+
+................................................        Base CSS for extending          ...............................................*/
+
+.base-border {
+    border-style: solid;
+    border-color: $blue3;
+    border-width: 3px;
+    border-radius: 8px;
+}
+
+
+
+/*.......................................................................................................................
+
+................................................        Components          ...............................................*/
+
+.box-standard {
+    @extend .base-border;
+    border-width: 2px;
+    border-bottom-width: 4px;
+    background-color: white;
+    margin: 5px;
+    width: 98%;
+    max-width: 98%;
+}
+
+.box-exp {
+    @extend .box-standard;
+}
+
+
+
+.box-1-topper-div {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        background-color: $blue3;
+        color: white;
+        width: 100%;
+        h2 {
+            color: white;
+        }
+        a {
+            color: white;
+        }
+}
+
+.button-1 {
+    @extend .base-border;
+    background-color: white;
+    min-width: 10%;
+    width: 10%;
+    margin: 0.5%;
+    padding: 0.5%;
+}
+
+/*.modal-basic {
+    width: 100%;
+    top: 0;
+    left: 0;
+}*/
+
+.invisible-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 9990;
+    top: 0;
+    left: 0;
+}
+
+.modal-contents {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    background-color: white;
+    z-index: 9991;
+    .carousel {
+        width: 60%;
+        margin-left: 20%;
+        .item {
+            width: inherit;
+        }
+    }
+}
+
+
+
+
+/*For the embedded Powerpoints
+.ppt-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+.ppt-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}*/
+
+
+.x-select {
+    @extend .form-control;
+    display: inline;
+    width: auto;
+}
+
+
+/*.......................................................................................................................
+
+................................................        RAG!          ...............................................*/
+.rag-score {
+    float: none;
+    width: 50%;
+    border-radius: 6px;
+}
+
+.rag-score-red {
+    @extend .rag-score;
+    background-color: $red1;
+    color: $red1;
+}
+.rag-score-amber {
+    @extend .rag-score;
+    background-color: $amber1;
+    color: $amber1;
+}
+.rag-score-green {
+    @extend .rag-score;
+    background-color: $green1;
+    color: $green1;
+}
+.rag-score-blue {
+    @extend .rag-score;
+    background-color: $blue2;
+    color: $blue2;
+}
+
+.colour-bar1 {
+    background: linear-gradient(to right, red,orange,green);
+    border-radius: 6px;
+    width: 100px;
+}
+
+
+
+/*.......................................................................................................................
+
+................................................        App          ...............................................*/
+#application {
+    position: absolute;
+    width: 100%;
+}
+
+#app {
+    margin: 70px 3% 0 3%;
+    width: 94%;
+    top: 70px;
+    left: 70px;
+    float: left;
+    text-align: center;
+    @media print {
+        display: block;   
+    }
+}
+
+#appgrid {
+    width: 100%;
+    height: 650px;
+    text-align: left;
+    float: left;
+    clear: both;
+    border-bottom: solid;
+    border-color: #a589e0;
+    border-radius: 10px;
+    border-width: 4px;
+}
+
+.app-limitedwidth {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 30px 30px 30px;
+    display: inline-block;
+    float: none;
+}
+
+@media (min-width: 1400px) {
+    .app-limitedwidth {
+        width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+
+
+/*.......................................................................................................................
+
+................................................        Control Menus...............................................*/
+
+.controls-level1 {
+    float: initial;
+}
+
+
+
+/*.......................................................................................................................
+
+................................................        Bootstrap Overides          ...............................................*/
+
+.panel-body {
+    text-align: center;
+}
+
+table {
+    text-align: left;
+    vertical-align: middle;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    vertical-align:middle;
+}
+
+
+.breadcrumb {
+  background-color: none;
+  border-radius: 4px;
+  font-size: larger;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  a {
+    color: $blue5;
+    }
+}
+.breadcrumb > li {
+  display: inline-block;
+}
+.breadcrumb > li + li:before {
+  padding: 0 5px;
+  color: none;
+  content: "/\00a0";
+}
+.breadcrumb:hover {
+
+}
+.breadcrumb a:hover {
+  color: $blue2;
+}
+
+@media (max-width: 800px) {
+    .breadcrumb {
+        visibility: hidden;
+    }
+}
+
+
+.box-100 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        padding-left: 0px;
+        padding-right: 0px;
+}
+
+/*.......................................................................................................................
+
+................................................        Navbars          ...............................................*/
+
+
+/************************          Topbar        ********************/
+
+#topbar, #sidebar {
+    background-color: $blue2;
+    position: absolute;
+}
+
+#topbar {
+    clear: both;
+    margin: 0 0 20px 0;
+    min-height: 60px;
+    width: 100%;
+    position: fixed;
+    float: left;
+    z-index: 9999;
+}
+
+    #topbar ul {
+        display: inline;
+        list-style-type: none;
+        margin-top: 15px;
+    }
+
+#logindiv  {
+    float: right;
+    margin-right: 8%;
+    margin-top: 10px;
+}
+
+.hamburger {
+    background-color: $blue2;
+    height: 60px;
+    width: 60px;
+    p {
+        margin: 0px 0px 5px 0px;
+    }
+    .hamburger-line {
+        height: 7px;
+        margin-top: 10px;
+        background-color: $blue5;
+        width: 60%;
+        margin-left: 20%;
+        border-radius: 6px;
+    }
+}
+
+.hamburger-active {
+    background-color: $blue5;
+    height: 60px;
+    width: 60px;
+    .hamburger-line {
+        height: 7px;
+        margin-top: 10px;
+        background-color: #fff;
+        width: 80%;
+        margin-left: 10%;
+        border-radius: 6px;
+    }
+}
+
+
+
+
+li {
+    float: left;
+    margin: 10px;
+}
+
+
+.selectors {
+    position: relative;
+    height: 100%;
+    width: 60%;
+}
+    .selectors div {
+         height: 100%;
+    }
+
+.topbar-button {
+    padding: 10px;
+    background-color: $blue1;
+    position: relative;
+    display: inline;
+    margin-right: 4%;
+}
+
+
+
+#class-selector {
+    @extend .base-border;
+    background-color: white;
+    top: 100px;
+    left: 10%;
+    width: 80%;
+    position: absolute;
+    z-index: 11;
+}
+
+.class-select-box {
+    width: 21%;
+    min-height: 25%;
+    margin: 2%;
+    padding: 5px;
+    @extend .base-border;
+    background-color: white;
+}
+     :hover {
+        border-color: #40ddfa;
+    }
+    .class-select-box img {
+        width: 60%;
+        margin: 5%
+    }
+    .class-select-box button {
+        float: right;
+    }
+
+
+
+.inv {
+    visibility: hidden;
+}
+
+#pathbar {
+    text-align: left;
+}
+
+@media (max-width: 800px) {
+    #pathbar {
+        display: none;
+    }
+}
+
+
+/************************          Sidebar        ********************/
+
+#sidebar {
+    height: 100%;
+    width: 80px;
+    position: fixed;
+    padding: 0;
+    z-index: 9998;
+}
+
+    #sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 60px;
+    }
+
+    #sidebar li {
+        float: left;
+        left: 0;
+    }
+
+
+
+
+
+/************************          Logo        ********************/
+.logo-blue {
+    color: $blue3;
+}
+
+.logo-red {
+    color: #fc3333;
+}
+
+.logo-amber {
+    color: #ffb215;
+}
+
+.logo-green {
+    color: #21ed45;
+}
+
+.logo-text {
+    font-size: 40px;
+}
+
+
+
+
+
+/*.......................................................................................................................
+
+................................................        Seating Plan          ...............................................*/
+
+
+/************************          Menu        ********************/
+#seating-options {
+    width: 100%;
+}
+
+#seating-title {
+    width: 20%;
+    margin-bottom: 30px;
+    float: left;
+}
+
+#seating-menu1 {
+    width: 80%;
+    margin-top: 10px;
+}
+#seating-menu2 {
+    width: 70%;
+    margin-top: 10px;
+    .x-select {
+        width: 60%;
+    }
+}
+
+
+#save-icon {
+    float: right;
+    width: 4%;
+}
+
+
+/************************          Bench/Field        ********************/
+#seating-area {
+    width: 100%;
+    min-height: 660px;
+}
+
+.field {
+    width: 10%;
+    height: 30px;
+    min-height: 10%;
+    background-color: #f17171;
+}
+
+#bencharea {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 10px;
+    @extend .base-border;
+    background-color: white;
+}
+
+.bench {
+    width: 100%;
+    height: 100px;
+    background-color: #90d0f6;
+}
+
+
+/************************          Grid        ********************/
+.gridunit {
+    width: 5%;
+    min-height: 4%;
+    height: 4%;
+    background-color: white;
+    border-style: solid;
+    border-color: whitesmoke;
+    border-width: 1px;
+    border-radius: 5px;
+    float: left;
+    clear: none;
+}
+
+.draggableDropzone {
+
+}
+
+
+    .text1 {
+        width: 100%;
+        float: left;
+        margin-top: 2px;
+        font-size: smaller;
+    }
+
+    .text2 {
+        float: right;
+        padding: 0px 3px 0 3px;
+        margin-right: 10%;
+        background-color: red;
+        border-radius: 5px;
+    }
+
+.offField {
+    margin: 4px;
+}
+
+.benchView {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+/*.......................................................................................................................
+
+................................................        Seating         ...............................................*/
+
+/************************          Seatbox        ********************/
+.seatbox {
+    width: 9%;
+    height: 12%;
+    background-color: $blue3;
+    color: white;
+    float: left;
+    clear: none;
+    @extend .base-border;
+
+    div{
+           float: none;
+    }
+}
+
+    .seatName {
+        text-align: center;
+        font-size-adjust: 1;
+        font-size: 12px;
+        font-weight: 700;
+        width: 100%;
+    }
+
+    .seatUI {
+        width: 92%;
+        margin: 0px 4% 1px 4%;
+        padding: 0 0 1px 0;
+    }
+
+
+/************************          Seat - SNAP        ********************/
+    .smileyBox {
+        width: 100%;
+        @extend .base-border;
+        background-color: white;
+    } 
+    .smileyBox img {
+            width: 50px;
+            height: 50px;
+            margin: 1px 25% 1px 25%;
+        }
+
+    .smileyBox .red {
+        background-color: #fa3f3f;
+        border-color: #cb2d2d;
+    }
+    .smileyBox .amber {
+        background-color: #fbd042;
+        border-color: #d9ad1d;
+    }
+    .smileyBox .green {
+        background-color: #43a344;
+        border-color: #328633;
+    }
+
+/************************          Seat - Behaviour       ********************/
+.thumb {
+    width: 30%;
+}
+
+
+.thumbup {
+    @extend .thumb;
+}
+
+.thumbdn {
+    @extend .thumb;
+}
+
+.behaviour-score-box {
+    margin-left: 4%;
+    margin-right: 4%;
+    width: 22%;
+}
+
+
+/************************          Seat Levels        ********************/
+
+
+
+
+
+
+
+/*.......................................................................................................................
+
+................................................        Units          ...............................................*/
+
+
+
+
+/*.......................................................................................................................
+
+................................................        Objectives          ...............................................*/
+
+#filters {
+    width: 100%;
+}
+
+.filter-set {
+    width: 100%;
+}
+
+.filter-button {
+    @extend .button-1;
+}
+
+.filter-button-active {
+    @extend .filter-button;
+    background-color: $blue2;
+}
+
+.button-innerdiv {
+    width: 100%;
+}
+
+
+
+
+/*.......................................................................................................................
+
+................................................        Images          ...............................................*/
+
+.gridpic1 {
+    height: 30px;
+    width: 30px;
+    background-image: url("../images/svg/icon2.svg");
+}
+
+
+
+
+

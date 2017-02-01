@@ -1,0 +1,309 @@
+
+/*.......................................................................................................................
+
+................................................        Navbars          ...............................................*/
+
+
+/************************          Topbar        ********************/
+
+#topbar {
+    background-color: $blue2;
+    position: absolute;
+}
+
+#topbar {
+    clear: both;
+    margin: 0 0 20px 0;
+    min-height: 60px;
+    width: 100%;
+    position: fixed;
+    float: left;
+    z-index: 9999;
+}
+
+    #topbar ul {
+        display: inline;
+        list-style-type: none;
+        margin-top: 15px;
+    }
+
+
+/************************          Login        ********************/
+.logindiv-wrapper  {
+    float: right;
+    margin-right: 20px;
+    // margin-top: 10px;
+}
+
+.logindiv {
+    @extend .breadcrumb;
+    // margin-top: 5px;
+    margin-left: 5px;
+    float: right;
+    // background-color: #f5f5f5;
+    // border-radius: 5px;
+    // padding: 5px;
+}
+@media (max-width: 700px) {
+    .logindiv {
+        display: none;
+    }
+}
+
+.logindiv-active {
+    @extend .logindiv;
+    color: white;
+    background-color: $blue4;
+}
+
+.icon-user {
+    height: 50px;
+    margin-top: 5px;
+}
+
+/************************          Hamburger        ********************/
+
+.hamburger {
+    float: left;
+    background-color: $blue2;
+    height: 60px;
+    width: 60px;
+    // margin-top: 4px;
+    p {
+        margin: 0px 0px 5px 0px;
+    }
+    .hamburger-line {
+        height: 7px;
+        margin-top: 7px;
+        background-color: $blue5;
+        width: 80%;
+        margin-left: 10%;
+        border-radius: 6px;
+    }
+}
+
+.hamburger-active {
+    @extend .hamburger;
+    background-color: $blue5;
+    .hamburger-line {
+        @extend .hamburger-line;
+        background-color: #fff;
+    }
+}
+
+
+li {
+    float: left;
+    margin: 10px;
+}
+
+
+.selectors {
+    position: relative;
+    height: 100%;
+    width: 60%;
+}
+    .selectors div {
+         height: 100%;
+    }
+
+.topbar-button {
+    padding: 10px;
+    background-color: $blue1;
+    position: relative;
+    display: inline;
+    margin-right: 4%;
+}
+
+/************************          Quick Class Selector        ********************/
+
+#class-selector {
+    @extend .base-border;
+    background-color: white;
+    top: 100px;
+    left: 10%;
+    width: 80%;
+    position: absolute;
+    z-index: 11;
+}
+
+.class-select-box {
+    width: 300px;
+    min-height: 100px;
+    max-height: 200px;
+    margin: 10px;
+    padding: 5px;
+    @extend .base-border;
+    background-color: white;
+}
+
+    .class-select-box img {
+        max-height: 100px;
+    }
+    .class-select-box button {
+        float: right;
+    }
+
+
+
+.inv {
+    visibility: hidden;
+}
+
+/************************          Breadcrumb        ********************/
+
+.breadcrumb {
+  float: left;
+  background-color: none;
+  border-radius: 4px;
+  font-size: larger;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  a {
+    color: $blue5;
+    }
+}
+.breadcrumb > li {
+  display: inline-block;
+}
+.breadcrumb > li + li:before {
+  padding: 0 5px;
+  color: none;
+  content: "/\00a0";
+}
+.breadcrumb:hover {
+
+}
+.breadcrumb a:hover {
+  color: $blue2;
+}
+
+@media (max-width: 800px) {
+    .breadcrumb {
+        visibility: hidden;
+    }
+}
+
+#pathbar {
+    text-align: left;
+}
+
+@media (max-width: 800px) {
+    #pathbar {
+        display: none;
+    }
+}
+
+
+
+
+/************************          Sidebar        ********************/
+
+.sidebar {
+    height: 100%;
+    width: 100%;
+    background-color: $blue2;
+    position: fixed;
+    padding: 0;
+    z-index: 9997;
+}
+@media (min-width: 600px) {
+    .sidebar {
+        max-width: 300px;
+    }
+}
+
+.sidebar-left {
+    @extend .sidebar;
+}
+.sidebar-right {
+    @extend .sidebar;
+    position: fixed;
+    right: 0px;
+}
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 80px;
+    }
+
+    .sidebar li {
+        float: left;
+        left: 0;
+    }
+
+.sidebar-button {
+    margin-left: 5%;
+    width: 90%;
+    border-style: solid;
+    border-color: $blue3;
+    border-radius: 6px;
+    color: $blue5;
+    background-color: white;
+    min-height: 80px;
+    a {
+        color: $blue5;
+    }
+}
+.sidebar-button:hover {
+    border-color: $blue4;
+}
+
+
+
+
+/************************          Logo        ********************/
+.logo-blue {
+    color: $blue3;
+}
+
+.logo-red {
+    color: $red3;
+}
+
+.logo-amber {
+    color: $amber3;
+}
+
+.logo-green {
+    color: $green2;
+}
+
+.logo-text {
+    font-size: 40px;
+}
+
+
+/************************          Tabs        ********************/
+
+
+.tab-set {
+    border-bottom-style: solid;
+    border-bottom-color: $blue5;
+    width: auto;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.tab-single {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 0px;
+    &:hover {
+        border-top-style: solid;
+        padding-top: 7px;
+        border-top-color: $blue5;
+        background-color: $blue2;
+        color: white;
+    }
+    &.selected {
+        border-top-style: solid;
+        padding-top: 7px;
+        border-top-color: $blue5;
+        background-color: $blue3;
+        color: white;
+    }
+}

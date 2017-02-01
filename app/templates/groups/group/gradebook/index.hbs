@@ -1,0 +1,91 @@
+<h1>{{model.name}} Class Gradebook</h1>
+
+<div class="controls-level1">
+    <button class="btn btn-primary" {{action "togViewOverview"}} >Overview</button>
+    <button class="btn btn-primary" {{action "togViewUnits" }}>Units</button>
+    <button class="btn btn-primary" {{action "togViewStudents" }}>Students</button>
+</div>
+
+{{#if viewOverview}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Branch</th>
+            <th>Levels</th>
+            <th>Progress</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Number</td>
+            <td>6a</td>
+            <td>6a</td>
+        </tr>
+        <tr>
+            <td>Algebra</td>
+            <td>6a</td>
+            <td>6a</td>
+        </tr>
+        <tr>
+            <td>Shape</td>
+            <td>6a</td>
+            <td>6a</td>
+        </tr>
+        <tr>
+            <td>Data</td>
+            <td>6a</td>
+            <td>6a</td>
+        </tr>
+    </tbody>
+</table>
+{{/if}}
+
+
+{{#if viewUnits}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Unit</th>
+            <th>Levels</th>
+            <th>Progress</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.currentScheme.units as |unit|}}
+        <tr>
+            <td>{{#link-to 'groups.group.gradebook.unit' unit}}{{unit.name}}{{/link-to}}</td>
+            <td>5a, 6b, 6a</td>
+            <td>{{colour-bar1}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}
+
+{{#if viewStudents}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Level</th>
+            <th>SNAP Level</th>
+            <th>Progress</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.students as |student|}}
+        <tr>
+            <td>{{#link-to 'groups.group.gradebook.student' student}}{{student.name}}{{/link-to}}</td>
+            <td>5a</td>
+            <td>6c</td>
+            <td>{{colour-bar1}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}
+
+
+{{#box-exp title="Visuals"}}
+<h4>View some graphs...</h4>
+{{/box-exp}}

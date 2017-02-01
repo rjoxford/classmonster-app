@@ -1,0 +1,31 @@
+{{!-- TODO - wormholing not neccessary if absolute positioning? --}}
+{{#ember-wormhole to="application"}}
+
+    {{!-- Overlay, and if click overlay cancels modal --}}
+    {{#if collapsable}}
+        <div class="invisible-overlay" {{action "cancel"}} ></div>
+    {{else}}
+        <div class="invisible-overlay"></div>
+    {{/if}}
+
+    {{!-- Modal --}}
+    <div class="modal-basic shadow">
+        {{!-- Cancel Button --}}
+        <div {{action "cancel"}} class="">
+            <button  type="button" class="close" aria-label="Close">
+                <span  aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        {{!-- Modal Contents --}}
+        <div class="modal-contents">
+            {{yield}}
+
+            {{!-- Confirm / Cancel buttons --}}
+            <div class="row">
+                <button {{action "cancel"}} class="btn btn-danger" type="button">Cancel</button>
+                <button {{action "submit"}} class="btn btn-success" type="button">OK</button>
+            </div>
+         </div>
+    </div>
+{{/ember-wormhole}}

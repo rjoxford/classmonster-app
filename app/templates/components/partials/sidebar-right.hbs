@@ -1,0 +1,11 @@
+<div class="sidebar sidebar-right animated slideInRight">
+    <ul id="sprimarylist">
+        {{#link-to 'users.user.profile'}}<li class="sidebar-button">My Profile</li>{{/link-to}}
+        <h3>My Resources</h3>
+        {{#link-to 'questions'}}<li class="sidebar-button">Questions</li>{{/link-to}}
+        {{#link-to 'schemes'}}<li class="sidebar-button">Schemes</li>{{/link-to}}
+        {{#link-to 'groups'}}<li class="sidebar-button">Classes</li>{{/link-to}}
+    </ul>
+</div>
+
+{{invisible-overlay onclickaction=(action "onclickaction")}}

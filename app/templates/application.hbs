@@ -1,5 +1,76 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<div id="application" class="container-fluid">
 
-{{outlet}}
+    <div id="topbar">
+        <div id="hamburger" class="hamburger{{if isLeftBar "-active"}}" {{action 'togIsLeftBar' }}>
+            <p class="hamburger-line"></p>
+            <p class="hamburger-line"></p>
+            <p class="hamburger-line"></p>
+        </div>
+
+
+        <div class="logo">
+            {{#link-to 'index'}}
+            {{partial "application/logo"}}{{/link-to}}
+        </div>
+
+        <div id="pathbar" class="breadcrumb">
+            {{#bread-crumb  link='application' first=true}}Home{{/bread-crumb}}
+        </div>
+
+
+        <div class="logindiv-wrapper" {{action "togIsRightBar"}}>
+
+            {{!-- <div> --}}
+                {{!-- {{#if session.isAuthenticated}}
+                <h3>You are currently logged as: {{session.data.authenticated.profile.email}}</h3>
+                <a href="#" {{action 'logout' }}>Logout</a>
+                {{/if}}
+            </div>
+
+            {{#if session.isAuthenticated}}
+            <img class="logo-image" src="/assets/icons/letter-icons/r.png" />
+            <span>Mr Oxford</span>
+            <span>435 Points</span>
+            {{else}}
+            {{#link-to 'login'}}<button class="btn btn-default">Login</button>{{/link-to}}
+            {{#link-to 'register'}}<button class="btn btn-default">Sign Up</button>{{/link-to}}
+            {{/if}} --}}
+
+            <div class="logindiv{{if isRightBar "-active"}}">
+                <span>Mr Oxford  </span>
+                <span>435 Points</span>
+            </div>
+            <img class="icon-user" src="/assets/icons/letters/r.png" />
+        </div>
+
+
+    </div>
+
+    {{!-- LeftBar contains quick access to some of the more-used tools. --}}
+    {{#if isLeftBar}}
+        {{partials/sidebar-left onclickaction=(action "togIsLeftBar") activeClass=activeClass}}
+    {{/if}}
+
+    {{!-- RightBar contains quick access to some of the user tools. --}}
+    {{#if isRightBar}}
+        {{partials/sidebar-right onclickaction=(action "togIsRightBar")}}
+    {{/if}}
+
+    {{!-- Most content to fit into a limited width container, but some content, like seating plan to be wormholed out to full size app --}}
+    <div id="app">
+        <div class="app-limitedwidth">
+            {{outlet}}
+        </div>
+    </div>
+
+    {{#if classSelecting}}
+    {{partial "application/topbar-selectors/class-selector"}}
+    {{/if}}
+
+    {{#if unitSelecting}}
+    {{partial "application/topbar-selectors/unit-selector"}}
+    {{/if}}
+
+
+
+</div>

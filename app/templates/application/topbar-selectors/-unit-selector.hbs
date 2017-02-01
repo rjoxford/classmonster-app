@@ -1,0 +1,15 @@
+<div class="invisible-overlay" {{action "togUnitSelecting" }}></div>
+<div id="class-selector" {{action "togUnitSelecting" }}>
+    {{#each allUnits as |unit|}}
+    <div class="class-select-box" {{action "selectUnit" unit}}>
+        <img src="/assets/images/classes/kids1.png" />
+        <h4 class="script">{{unit.name}}</h4>
+        <button {{action "viewUnit" unit}}>View</button>
+    </div>
+    {{/each}}
+
+    {{#link-to 'units'}}
+    <div class="class-select-box">
+        <h4>View All</h4>
+    </div>{{/link-to}}
+</div>

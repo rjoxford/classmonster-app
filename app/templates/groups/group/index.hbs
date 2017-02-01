@@ -1,0 +1,29 @@
+<h1>{{model.name}}</h1>
+
+{{#tab-set}}
+    {{tab-single title="General" action=(action "togViewGeneral") deselector=deselector}}
+    {{tab-single title="Course" selected=true action=(action "togViewCourse") deselector=deselector}}
+    {{tab-single title="Tools" action=(action "togViewAssessment") deselector=deselector}}
+    {{tab-single title="Students" action=(action "togViewStudents") deselector=deselector}}
+    {{tab-single title="Priorities" action=(action "togViewPriorities") deselector=deselector}}
+{{/tab-set}}
+
+{{#if viewGeneral}}
+    {{partials/group-view-general}}
+{{/if}}
+
+{{#if viewCourse}}
+    {{partials/group-view-course model=model store=store}}
+{{/if}}
+
+{{#if viewAssessment}}
+    {{partials/group-view-assessment model=model}}
+{{/if}}
+
+{{#if viewStudents}}
+    {{partials/group-view-students model=model}}
+{{/if}}
+
+{{#if viewPriorities}}
+    {{partials/group-view-priorities}}
+{{/if}}

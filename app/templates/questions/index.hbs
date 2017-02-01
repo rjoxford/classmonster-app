@@ -1,0 +1,8 @@
+<h1>Questions Route</h1>
+
+
+{{#link-to 'questions.new'}}<button>Create a new Question</button>{{/link-to}}
+
+{{#each model as |question|}}
+<h3>{{question.answer}}</h3>
+{{/each}}

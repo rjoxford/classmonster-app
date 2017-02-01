@@ -1,0 +1,17 @@
+{{!-- Student's name only. TODO maximum characters. Create a new computed property to compute an 8(?) char max name --}}
+<div class="seatName">
+    {{student.name}}
+</div>
+
+{{!-- SeatUI provides the interactivity for the seatcomponent --}}
+<div class="seatUI">
+    {{#if viewSNAP}}
+        {{seat/seat-snap score=1 save=(action 'save') }}
+    {{/if}}
+    {{#if viewBehaviour}}
+        {{seat/seat-behaviour bscore=student.bscore }}
+    {{/if}}
+    {{#if viewLevels}}
+        {{seat/seat-levels}}
+    {{/if}}
+</div>

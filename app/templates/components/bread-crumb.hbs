@@ -1,0 +1,11 @@
+{{#ember-wormhole to='pathbar'}}
+
+{{#if model}}
+    <span> {{#unless first}}>{{/unless}} {{#link-to link model}}{{yield}}{{/link-to}}</span>
+{{else}}
+    <span> {{#unless first}}>{{/unless}} {{#link-to link}}{{yield}}{{/link-to}}</span>
+{{/if}}
+
+
+{{/ember-wormhole}}
+{{!-- TODO Set the model that this takes and make it an optional argument --}}
