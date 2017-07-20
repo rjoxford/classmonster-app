@@ -2,10 +2,10 @@
 
     <div class="row">
         {{!-- Prerequisite Objectives --}}
-        <div class="col-6">
+        <div class="col-sm">
             {{#link-to 'objectives.objective.prerequisites'}}
             <div class="card">
-                <img class="card-img-top img-thumbnail" src="/assets/images/lesson1.png" alt="">
+                <img class="card-img-top img-thumbnail" src="/assets/images/prereq.jpg" alt="">
                 <div class="card-block">
                     <h4 class="card-title">Prerequisites</h4>
                     <p>View the objectives that should be consolidated before studying this.</p>
@@ -15,7 +15,7 @@
         </div>
 
         {{!-- Community Lesson --}}
-        <div class="col-6">
+        <div class="col-sm">
             {{#link-to 'objectives.objective.community-lesson'}}
             <div class="card">
                 <img class="card-img-top img-thumbnail" src="/assets/images/lesson1.png" alt="">
@@ -29,10 +29,10 @@
 
 
         {{!-- Resources --}}
-        <div class="col-6">
+        <div class="col-sm">
             {{#link-to 'objectives.objective.resources'}}
             <div class="card">
-                <img class="card-img-top img-thumbnail" src="/assets/images/lesson1.png" alt="">
+                <img class="card-img-top img-thumbnail" src="/assets/images/resources.jpg" alt="">
                 <div class="card-block">
                     <h4 class="card-title">Resources</h4>
                     <p>Find, use and develop resoures matched to this objective</p>
@@ -41,22 +41,34 @@
             {{/link-to}}
         </div>
 
-        {{!-- {{#button-link-large title="Resources"  picture="kids1"}}
-            Some info about this link
-        {{/button-link-large}}
-        {{/link-to}} --}}
 
         {{!-- Questions --}}
-        <div class="col-6">
+        <div class="col-sm">
             {{#link-to 'objectives.objective.questions'}}
             <div class="card">
-                <img class="card-img-top img-thumbnail" src="/assets/images/lesson1.png" alt="">
+                <img class="card-img-top img-thumbnail" src="/assets/images/questions.jpg" alt="">
                 <div class="card-block">
                     <h4 class="card-title">Questions</h4>
                     <p>Add some questions for this objective</p>
                 </div>
             </div>
         {{/link-to}}
+        </div>
+
+    </div>
+</div>
+
+{{!-- A preview of Discussion page for teaching this objective. Teachers can share ideas, reflect on good practice --}}
+<div class="card">
+    <div class="card-block">
+        <h4 class="card-title">Discussion</h4>
+        <div class="card-block">
+            <div class="col-3">
+                @rjoxford
+            </div>
+            <div class="col-9">
+                I've just tried this resource from... its great... check it out...
+            </div>
         </div>
 
     </div>

@@ -2,12 +2,23 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend(Ember.Evented, {
 
-    //  Dependencies
-    //Depracated
-    //needs: ['application'],
+
+    //  Properties
+    viewSNAP        :   true,
+    viewLevels      : false,
+    viewBehaviour   : false,
+    viewPlans       : false,
+
+    //Method hides all the views allowing a single view to be set to true
+    hideallviews(){
+        this.set('viewSNAP', false);
+        this.set('viewLevels', false);
+        this.set('viewBehaviour', false);
+        this.set('viewPlans', false);
+    },
 
 
-    //to display the grid over which the drag and drop is effective
+    //To display the grid over which the drag and drop is effective
     //droppable property prevents gridunits at the edge from being drop sites
     gridarray: function(){
         var gridarray = [];
@@ -24,38 +35,29 @@ export default Ember.Controller.extend(Ember.Evented, {
         return gridarray;
     }.property(),
 
-    //  Properties
-    viewSNAP        :   true,
-    viewLevels      : false,
-    viewBehaviour   : false,
-    viewPlans       : false,
-
-    //Method hides all the views allowing a single view to be set to true
-    hideallviews    : function(){
-        this.set('viewSNAP', false);
-        this.set('viewLevels', false);
-        this.set('viewBehaviour', false);
-        this.set('viewPlans', false);
-    },
-
-    // objective       : Ember.computed(function(){
-    //     var objective = this.store.findRecord('objective', 2);
-    // }),
-
-    //Looks up the objectives for the current unit being studied.
-    //(TODO be able to replace with link directly from a given objective)
-    unitObjectives: function(){
-        var unit = this.controllerFor('application').get('activeUnit');
-        return unit.get('objectives');
-    }.property(),
+    //Set the class's currentObjective as the 'objective'
+    objective: Ember.computed(function(){
+        return this.get('model').get('currentObjective');
+    }),
 
     //The seating plan number selected. (defaults to 1). Passed to each seatbox component.
     plan: 1,
+    // A simple array to set different seating plans -- TODO update this to
+    //     - named seating plans, and ultimately include seating plan generator
+    plans: Ember.computed(function(){
 
+    }),
 
 
     //  Actions
     actions: {
+        // TODO  this to update/set the group/class's currentObjective property
+        setObjective(objective){
+            this.set('objective', objective);
+            let group = this.get('model');
+            group.set('currentObjective', objective);
+            group.save();
+        },
 
         // sendScore: function(student, score){
         //     var objective = this.get('objective');
@@ -68,11 +70,6 @@ export default Ember.Controller.extend(Ember.Evented, {
         behaviourGood: function(){
             console.log('Action handled by the Seating Plan Controller');
         },
-
-        echo: function(){
-            alert('Echo!');
-        },
-
 
         //Control the views. TODO DRY up
         ShowSNAP: function(){

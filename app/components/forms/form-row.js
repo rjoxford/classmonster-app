@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-classNames: ["row", "form-row"]
+classNames: ["row", "form-group"]
 
 });

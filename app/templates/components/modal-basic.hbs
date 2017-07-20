@@ -2,11 +2,11 @@
 {{#ember-wormhole to="application"}}
 
     {{!-- Overlay, and if click overlay cancels modal --}}
-    {{#if collapsable}}
+    {{#unless collapsable}}
         <div class="invisible-overlay" {{action "cancel"}} ></div>
     {{else}}
         <div class="invisible-overlay"></div>
-    {{/if}}
+    {{/unless}}
 
     {{!-- Modal --}}
     <div class="modal-basic shadow">

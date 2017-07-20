@@ -1,6 +1,7 @@
 <button class="btn {{addClass}}" {{action "launchModal"}}>{{text}}</button>
 {{#if viewModal}}
-    {{#if collapsable}}
+    {{!-- TODO- add option for preventing collapse on click outside modal - ie notCollapsible boolean property --}}
+    {{#if collapsible}}
         {{#modal-basic submit=(action "submit") cancel=(action "cancel") }}
             {{yield}}
             {{#if showCancel}}<button type="button" class="btn btn-danger" {{action "cancel"}}>Cancel</button>{{/if}}

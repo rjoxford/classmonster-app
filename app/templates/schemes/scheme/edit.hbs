@@ -1,0 +1,53 @@
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-8">
+    {{!-- <div class="left-hand-60"> --}}
+        {{!-- Title --}}
+        <h1>{{model.name}}</h1>
+        {{!-- A component for finding an objective (/objectives?) --}}
+        {{objective-finder}}
+
+        {{!-- The set of filtered, non-assigned objectives --}}
+        <div class="scheme-objective-sector">
+            {{!-- Set of draggable, filtered objectives --}}
+            {{#each objectives as |objective|}}
+                {{scheme-editor/draggable-objective objective=objective}}
+            {{/each}}
+        </div>
+    </div>
+
+    {{!-- Units, showing the objectives in each. Objectives to be made draggable and changeable --}}
+    <div class="col-4">
+
+        {{!-- <div class="scheme-units-sector right-hand-40"> --}}
+
+        {{!-- Droppable set of units --}}
+        {{#each model.units as |unit|}}
+            {{#scheme-editor/unit-editor dropped="dropObjective" unit=unit}}
+                <h4>{{unit.name}}</h4>
+                    {{#each unit.objectives as |objective|}}
+                        {{scheme-editor/draggable-objective objective=objective originType="unit" origin=unit}}
+                    {{/each}}
+                <p></p>
+            {{/scheme-editor/unit-editor}}
+        {{/each}}
+
+        {{!-- Control to add a new unit --}}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    {{#button-with-modal addClass="btn-success width-100" text="Add Unit" submit=(action "addNewUnit" model) }}
+                        <h3>Name your new unit</h3>
+                        {{input value=newUnitName}}
+                    {{/button-with-modal}}
+                </div>
+                <div class="col-6">
+                    <button {{action "deleteUnit"}} type="button" class="btn btn-warning width-100">Remove Unit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

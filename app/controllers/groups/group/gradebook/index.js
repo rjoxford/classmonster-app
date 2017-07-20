@@ -4,38 +4,38 @@ export default Ember.Controller.extend({
 
 
     //Properties
-    viewOverview:   true,
-    viewUnits:      false,
-    viewStudents:   false,
+    viewByClassification:   true,
+    viewByUnits:      false,
+    viewByStudents:   false,
 
     resetL1Views:   function(){
-            this.set('viewOverview', false);
-            this.set('viewUnits', false);
-            this.set('viewStudents', false);
+            this.set('viewByClassification', false);
+            this.set('viewByUnits', false);
+            this.set('viewByStudents', false);
         },
 
     //Actions
     actions: {
-        
+
 
         //Level 1 controls
-        togViewOverview(){
+        togViewByClassification(){
             this.resetL1Views();
-            this.toggleProperty('viewOverview');
+            this.toggleProperty('viewByClassification');
         },
-        
-        togViewUnits(){
+
+        togViewByUnits(){
             this.resetL1Views();
-            this.toggleProperty('viewUnits');
+            this.toggleProperty('viewByUnits');
+        },
+
+
+        togViewByStudents(){
+            this.resetL1Views();
+            this.toggleProperty('viewByStudents');
         },
 
 
-        togViewStudents(){
-            this.resetL1Views();
-            this.toggleProperty('viewStudents');
-        },
 
-        
-    
     }
 });

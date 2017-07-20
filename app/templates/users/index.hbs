@@ -1,1 +1,7 @@
-<h3>This is where you can find out all the resources I've shared, and various other fun things!</h3>
+<h3>This route will now simply list the users below:</h3>
+
+{{#each model as |user|}}
+    <p {{action 'setCurrentUser' user}}>
+    {{user.username}}
+    </p>
+{{/each}}

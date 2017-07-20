@@ -6,7 +6,7 @@
 {{!-- SeatUI provides the interactivity for the seatcomponent --}}
 <div class="seatUI">
     {{#if viewSNAP}}
-        {{seat/seat-snap score=1 save=(action 'save') }}
+        {{seat/seat-snap score=score click=(action 'setSnapScore') }}
     {{/if}}
     {{#if viewBehaviour}}
         {{seat/seat-behaviour bscore=student.bscore }}

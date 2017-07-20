@@ -2,8 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+    ////////////////////////////            Authenitication         /////////////////////////////
     //Ember simple auth session
-    //session: Ember.inject.service(),
+    session: Ember.inject.service('session'),
+
+    //Set a currentUser
+    currentUser: {},
 
 
     //TODO turn into computed property

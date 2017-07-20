@@ -6,28 +6,61 @@
 {{!-- Controls for changing the students in the class TODO - reformat this --}}
 {{#if viewL1Controls}}
 <div class="row">
-    <div {{action "showImportStudents"}}>
+    {{!-- <div {{action "showImportStudents"}}>
         Import Students
         <span>Upload a spreadsheet</span>
 
     </div>
 
-    <div {{action "showTransfer"}}>
-        {{#button-link-large title="Transfer a student" picture="kids1.png"}}
-        <span>Add a student from another class</span>
-        {{/button-link-large}}
+    <div class="col-sm" {{action "showImportStudents"}}>
+        <div class="card">
+            <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+            <div class="card-footer">Upload a Spreadsheet</div>
+        </div>
+    </div> --}}
+
+    {{!-- Import Students from a Spreadsheet --}}
+    <div class="col-sm" {{action "showImportStudents"}}>
+        <div class="card">
+            <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+            <div class="card-block">
+                <h4 class="card-title">Import Students</h4>
+                <div class="card-text">Upload a Spreadsheet</div>
+            </div>
+        </div>
     </div>
 
-    <div {{action "showAddNewStudent"}}>
-        {{#button-link-large title="Add a new student" picture="kids1.png"}}
-            <span>Add a new student to this class</span>
-        {{/button-link-large}}
+    {{!-- Transfer students into this class from another class --}}
+    <div class="col-sm" {{action "showTransfer"}}>
+        <div class="card">
+            <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+            <div class="card-block">
+                <h4 class="card-title">Transfer a student</h4>
+                <div class="card-text">Add a student from another class</div>
+            </div>
+        </div>
     </div>
 
-    <div {{action "showRemoveStudent"}}>
-        {{#button-link-large title="Remove a student" picture="kids1.png"}}
-        <span>Remove a student from this class and place in holding</span>
-        {{/button-link-large}}
+    {{!-- Transfer students into this class from another class --}}
+    <div class="col-sm" {{action "showAddNewStudent"}}>
+        <div class="card">
+            <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+            <div class="card-block">
+                <h4 class="card-title">New Student</h4>
+                <div class="card-text">Add a new student to this class</div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Remove a student from the class - place in holding --}}
+    <div class="col-sm" {{action "showRemoveStudent"}}>
+        <div class="card">
+            <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+            <div class="card-block">
+                <h4 class="card-title">Remove a student</h4>
+                <div class="card-text">Remove a student from this class and place in holding</div>
+            </div>
+        </div>
     </div>
 </div>
 

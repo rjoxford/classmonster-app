@@ -1,0 +1,7 @@
+{{title}}
+{{#if suggested}}<button {{action "addTag"}} class="btn btn-outline-success btn-sm">y</button>{{/if}}
+{{#if applied}}
+    <button {{action "removeTag"}} class="btn btn-outline-danger btn-sm">x</button>
+{{else}}
+    <button {{action "addTag"}} class="btn btn-outline-success btn-sm">y</button>
+{{/if}}

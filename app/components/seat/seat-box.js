@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend(Ember.Evented, {
 
+
     store : Ember.inject.service(),
 
     //Properties
@@ -16,51 +17,53 @@ export default Ember.Component.extend(Ember.Evented, {
     pos_y             : null,
     onGrid            : "",
 
-    score : 1,
-    snapscore: Ember.computed('objective', function(){
-        var objective = this.get('objective');
-        if(!objective){
-            console.log('No objective found, exiting');
-            return;
-        };
-        console.log(objective.get('id'));
+    loadsnapscore(){
+        // Sets the score property of the seatbox from the loaded snapscore model
+        var _this = this;
         var student = this.get('student');
-        console.log(student.get('id'));
-        // Look for a record of a score for that objective
-        var store = this.get('store');
-        var snapscore = store.queryRecord('snapscore', {
-            'student' : student,
-            'objective' : objective
+        var objective = this.get('objective');
+        // Look for a record of a score for the objective
+        var snapscore = this.get('store').queryRecord('snapscore', {
+            student : student.get('id'),
+            objective : objective.get('id')
         });
-        return snapscore.then(function(snapscore){
+        snapscore.then(function(snapscore){
             if(snapscore){
                 // If the score exists then return the score
-                console.log('some kind of record has been found...');
-                console.log(snapscore);
-                return snapscore;
+                console.log('some kind of record has been found... Snapscore is: ');
+                console.log(snapscore.get('score'));
+                _this.set('score', snapscore.get('score'));
             } else {
                 // Else create a new score
-                var newSnapscore = store.createRecord('snapscore', {
-                    'score' : 0,
-                    'student' : student,
-                    'objective' : objective,
+                var newSnapscore = _this.get('store').createRecord('snapscore', {
+                    score : 0,
+                    student : student,
+                    objective : objective,
                 });
                 newSnapscore.save();
-                return newSnapscore;
+                _this.set('score', 0);
             };
+            // And set snapscore property to the returned or new model
+            //
         });
-    }),
+    },
+
 
     // Calls the position action on the seating plan controller.
-    callPosition      : function(){
+    callPosition(){
         var studentId = this.get('student.id');
         var draggableId = this.elementId;
         this.sendAction('position', studentId, draggableId);
     },
 
     //Observes plan and triggers the repositioning of seats
-    planObserver      : Ember.observer('plan', function(){
+    planObserver: Ember.observer('plan', function(){
         this.callPosition();
+    }),
+
+    objectiveObserver: Ember.observer('objective', function(){
+        console.log(this.get('objective').get('name'));
+        this.loadsnapscore();
     }),
 
     //Events
@@ -78,24 +81,48 @@ export default Ember.Component.extend(Ember.Evented, {
 
     didInsertElement: function(){
         this.callPosition();
+        this.loadsnapscore();
     },
+
 
 
     //Actions
     actions: {
 
-        save: function(){
-            this.get('student').save();
+        setSnapScore(){
+            // Set the correct score
+            var score = this.get('score');
+            if (score<3){
+                score = score + 1;
+            } else if (score===3){
+                score = 1;
+            };
+            this.set('score', score)
+            // Peek the objective
+            let objective = this.get('objective');
+            // Peek the student
+            let student = this.get('student');
+
+            // Retrieve the snapscore
+            var newsnapscore = this.get('store').queryRecord('snapscore', {
+                student: student.get('id'),
+                objective: objective.get('id')
+            });
+            // Set and save the new snapscore
+            newsnapscore.then(function(snapscore){
+                snapscore.set('score', score);
+                snapscore.save();
+            })
         },
 
-        setPositions: function(){
+        setPositions(){
             //Find the position of the gridunit
 
             //Set the position of this component to the position of the gridunit
             console.log('setpostions action triggered..?');
         },
 
-        echo: function(){
+        echo(){
             this.sendAction('echo');
         },
 

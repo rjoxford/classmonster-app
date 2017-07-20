@@ -1,0 +1,127 @@
+{{!-- Resource sharing form --}}
+<div class="container">
+
+    {{!-- TODO - Progress bar to go here? Series of pages to upload the resource. Or Accordion style?--}}
+     {{!-- The resource container --}}
+    <div class="container">
+        <h3>The Resource</h3>
+
+        {{!-- Name your resource --}}
+        {{#forms/form-row label="Name your Resource"}}
+            {{input class="form-control" placeholder="Title..." value=title}}
+        {{/forms/form-row}}
+
+        {{!-- Resource Type --}}
+        {{#forms/form-row label="What type of resource is this?"}}
+            {{form-button-single title='Document' }}
+            {{form-button-single title='Video'}}
+            {{form-button-single title='Web'}}
+            <button {{action 'setResourceType' "web"}}>Web</button>
+            <button {{action 'setResourceType' "video"}}>Video</button>
+            <button {{action 'setResourceType' "document"}}>Document</button>
+        {{/forms/form-row}}
+
+        {{!-- If Document --}}
+        {{#if resourceDocument}}
+            <h5>It's a document!</h5>
+        {{/if}}
+
+
+        {{!-- If Video --}}
+        {{#if resourceVideo}}
+            <h5>It's a video!</h5>
+        {{/if}}
+
+
+        {{!-- If Web --}}
+        {{#if resourceWeb}}
+            {{#forms/form-row label="Easy! Just paste the web address here!"}}
+                {{input class="form-control" placeholder="Paste address here..." value=url}}
+            {{/forms/form-row}}
+        {{/if}}
+
+        {{!-- Description --}}
+        {{#forms/form-row label="Please add a description of the resource"}}
+            {{textarea class="form-control" rows=4 placeholder="Its a wonderful resource..." value=description}}
+        {{/forms/form-row}}
+
+
+
+        {{!-- Tags --}}
+            {{!-- TODO - a database driven tag model, sorted by most popular tags --}}
+            {{!-- A small amount of most popular tags to be shown, with a button to show more --}}
+        {{#forms/form-row label="Add some tags to help others find your resource"}}
+            {{input class="form-control" placeholder="Start typing a few tags. Please add to help others find this resource" value=tagString}}
+            {{!-- Suggested Tags --}}
+            <div class="row col-12">
+                <div class="col-3">
+                    <label>Suggested Tags</label>
+                </div>
+                <div class="row col-9">
+                    {{#tags/tag-set class="input"}}
+                        {{#each tagsArray as |tag|}}
+                            {{#unless tag.tagApplied}}
+                                {{tags/tag-single title=tag.tagName applied=tag.tagApplied}}
+                            {{/unless}}
+                        {{/each}}
+                    {{/tags/tag-set}}
+                </div>
+            </div>
+            {{!-- Applied Tags --}}
+            <div class="row col-12">
+                <div class="col-3">
+                    <label>Applied Tags</label>
+                </div>
+                <div class="row col-9">
+                    {{#tags/tag-set class="input"}}
+                        {{#each tagsArray as |tag|}}
+                            {{#if tag.tagApplied}}
+                                {{tags/tag-single title=tag.tagName applied=tag.tagApplied}}
+                            {{/if}}
+                        {{/each}}
+                    {{/tags/tag-set}}
+                </div>
+            </div>
+        {{/forms/form-row}}
+    </div>
+
+    {{!-- Link this resource to other objectives --}}
+
+    {{!-- Creative Commons Licensing --}}
+        {{!-- TODO - CM believes in supporting the very best in free education for all. Your resource will be published with a ShareALike Creative Commons Licence --}}
+
+    {{!-- Credits for the author and contributors --}}
+    <div class="container">
+        <h3>Credits</h3>
+
+        {{!-- Not the original author?  --}}
+        {{#forms/form-row label="Did you create this resource?"}}
+            <div class="col-sm-9">
+                <button class="btn btn-primary" {{action 'setIsAuthor' true}}>Yes</button>
+                <button class="btn btn-primary" {{action 'setIsAuthor' false}}>No</button>
+                {{form-button-single title='Yes' }}
+                {{form-button-single title='No' action="didAuthor"}}
+            </div>
+        {{/forms/form-row}}
+
+        {{#if isAuthor}}
+            <h2>We can't thank you enough for sharing!</h2>
+        {{else}}
+            {{!-- TODO - design process for contacting orginal author and inviting them to the CM community --}}
+            {{#forms/form-row label="Please help us credit this resource to its author"}}
+                {{input class="form-control" placeholder="Type the username, name or email of the author"}}
+            {{/forms/form-row}}
+        {{/if}}
+
+
+
+        {{!-- Thank you! --}}
+        {{#button-with-modal title="title" text="Submit" addClass="btn-success"}}
+            <h3>Thanks!</h3>
+            <p>Class Monster would like to say a big thank you for submitting this resource.</p>
+            <p>Your contribution makes teaching better for students, and easier for teachers.</p>
+            <button class="btn btn-success" {{action 'saveResource'}}>Save!</button>
+        {{/button-with-modal}}
+
+    </div>
+</div>

@@ -10,7 +10,8 @@ export default DS.Model.extend({
     level: DS.attr('number'),
 
     //relationships
-    snapscores: DS.hasMany('snapscore', {async : true}),
-    questions: DS.hasMany('question', {async : true})
+    snapscores: DS.hasMany('snapscore'),
+    questions: DS.hasMany('question'),
+    resources: DS.hasMany('resource'),
 
 });

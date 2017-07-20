@@ -1,19 +1,29 @@
 <h1>Schemes</h1>
 <div class="container-fluid">
 
+{{#tab-set}}
+    {{tab-single title="School Schemes" deselector=deselector selected=true}}
+    {{tab-single title="Personal Schemes" deselector=deselector}}
+{{/tab-set}}
+
+    {{!-- My School Schemes --}}
     <div class="row justify-content-center">
-        {{!-- Schemes --}}
+
         {{#each model as |scheme|}}
             <div class="col-12 col-sm-6 col-md-3">
                 {{#link-to 'schemes.scheme' scheme}}
                 <div class="card">
-                    <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+                    <img class="card-img-top img-thumbnail" src="/assets/images/books/redbook.png" />
                     <div class="card-footer">{{scheme.name}}</div>
                 </div>
                 {{/link-to}}
             </div>
         {{/each}}
     </div>
+
+    {{!-- My Personal Schemes --}}
+
+
 
     {{!-- {{#modal-basic}}
     <span>What's the aim of the game?</span>
@@ -31,20 +41,9 @@
 
         {{!-- Remove a scheme --}}
         {{#button-with-modal addClass="btn-warning" text="Remove a Scheme" submit=(action "createNewScheme") }}
-            <h3>Name your new scheme</h3>
+            <h3>Remove a scheme</h3>
             {{input value=newSchemeName}}
         {{/button-with-modal}}
-        {{!-- <div class="col-3">
-            <div class="card">
-                <img class="card-img-top img-thumbnail" src="/assets/images/plus.png" />
-                <div class="card-footer">
-                    {{#button-with-modal text="Remove a Scheme" submit=(action "createNewScheme") }}
-                        <h3>Name your new scheme</h3>
-                        {{input value=newSchemeName}}
-                    {{/button-with-modal}}
-                </div>
-            </div>
-        </div> --}}
 
     </div>
 </div>

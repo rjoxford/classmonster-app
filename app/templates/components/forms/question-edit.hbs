@@ -1,101 +1,86 @@
-<form class="form-horizontal col-sm-offset-2 col-sm-8 row">
+<form class="container">
 
     {{!--        Length      --}}
-    <div class="form-group col-sm-12 row">
-        <h4 class="col-sm-3 control-h4">Length of Question</h4>
-        <div class="col-sm-9">
-            {{form-button-single title='Instant'}}
-            {{form-button-single title='Short'}}
-            {{form-button-single title='Medium'}}
-            {{form-button-single title='Long'}}
-        </div>
-    </div>
+    {{#forms/form-row label="Length of the Question"}}
+        {{form-button-single title='Instant'}}
+        {{form-button-single title='Short'}}
+        {{form-button-single title='Medium'}}
+        {{form-button-single title='Long'}}
+    {{/forms/form-row}}
 
     {{!--        Difficulty      --}}
-    <div class="form-group col-sm-12 row">
-        <h4 class="col-sm-3 control-h4">Challenge Level</h4>
-        <div class="col-sm-9">
-            {{form-button-single title="Structured" color="red"}}
-            {{form-button-single title="Standard" color="amber"}}
-            {{form-button-single title="Problem" color="green"}}
-        </div>
-    </div>
+    {{#forms/form-row label="Challenge Level"}}
+        {{form-button-single title="Structured" color="red"}}
+        {{form-button-single title="Standard" color="amber"}}
+        {{form-button-single title="Problem" color="green"}}
+    {{/forms/form-row}}
 
     {{!--        QuestionText      --}}
-    <div class="form-group col-sm-12 row">
-        <h4 class="control-h4 col-sm-3">Question</h4>
-        <div class="col-sm-9">
-            {{textarea class="form-control" placeholder='Your wonderful question here' rows=3 value=question.questionText}}
-        </div>
-    </div>
+    {{#forms/form-row label="The Question"}}
+        {{textarea class="form-control" placeholder='Your wonderful question here' rows=3 value=question.questionText}}
+    {{/forms/form-row}}
 
     {{!--        Picture      --}}
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3">Supporting picture or diagram</h4>
-        <div class="col-sm-9">
-            <div class="width100">
-                {{form-switch value=hasPicture}}
-            </div>
-            {{#if hasPicture}}
-            <div class="width100">
-                {{file-uploader class='form-control'}}
-            </div>
-            {{/if}}
+    {{#forms/form-row label="Add a supporting picture or diagram"}}
+        <div class="row col-12">
+            {{form-switch value=question.hasPicture}}
         </div>
-    </div>
+        {{#if question.hasPicture}}
+            <div class="card col-12">
+                <div class="card-header">
+                    Drag your resources here!
+                </div>
+                <button class="btn btn-secondary">Find your files</button>
+            </div>
+
+            {{!-- {{file-uploader class='form-control'}} --}}
+        {{/if}}
+    {{/forms/form-row}}
 
     {{!--        Advice      --}}
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3">Advice for completion</h4>
-        <div class="col-sm-9">
-            <div class="width100">
-                {{form-switch value=question.hasAdvice}}
-            </div>
-            {{#if question.hasAdvice}}
-            <div class="width100">
-                {{input class="form-control" value=question.advice placeholder='Hints, tips, or web addresses to suppport successful completion'}}
-            </div>
-            {{/if}}
+    {{#forms/form-row label="Advice for completion"}}
+        <div class="row col-12">
+            {{form-switch value=question.hasAdvice}}
         </div>
-    </div>
+        {{#if question.hasAdvice}}
+                {{input class="form-control" value=question.advice placeholder='Hints, tips, or web addresses to suppport successful completion'}}
+        {{/if}}
+    {{/forms/form-row}}
 
     {{!--        Correct Answer      --}}
-    <div class="form-group col-sm-12">
-        <h4 for="answer" class="control-h4 col-sm-3">Correct Answer</h4>
-        <div class="col-sm-9">
-            {{input class="form-control" value=question.answer placeholder='The correct answer'}}
-        </div>
-    </div>
+    {{#forms/form-row label="Correct Answer"}}
+        {{input class="form-control" value=question.answer placeholder='The correct answer'}}
+    {{/forms/form-row}}
 
     {{!--        Multiple Choice      --}}
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3">Add multiple choice answers?</h4>
-        <div class="col-sm-9">
-            <div class="width100">
-                {{form-switch value=question.hasMulti}}
-            </div>
-            {{#if question.hasMulti}}
-            <div class="width100">
-                <div class="col-md-8">
+    {{#forms/form-row label="Add multiple choice answers?"}}
+        {{form-switch value=question.hasMulti}}
+        {{#if question.hasMulti}}
+
+            <div class="row col-12">
+                <div class="col-9">
                     {{!-- Starts on incorrect2, with correct answer being answer1 --}}
                     {{input id='answer2' class="form-control" value=question.answer2 placeholder='Incorrect answer'}}
                 </div>
-                {{form-button-single title='+' selected=hasMulti3}}
-                {{#if hasMulti3}}
-                    <div class="col-md-8">
+                    {{form-button-single title='+' selected=hasMulti3}}
+            </div>
+            {{#if hasMulti3}}
+                <div class="row col-12">
+                    <div class="col-9">
                         {{input id='answer3' class="form-control" value=question.answer3 placeholder='Incorrect answer'}}
                     </div>
                     {{form-button-single title='+' selected=hasMulti4}}
-                    {{#if hasMulti4}}
-                        <div class="col-md-8">
+                </div>
+                {{#if hasMulti4}}
+                    <div class="row col-12">
+                        <div class="col-9">
                             {{input id='answer4' class="form-control" value=question.answer4 placeholder='Incorrect answer'}}
                         </div>
-                    {{/if}}
+                    </div>
                 {{/if}}
-            </div>
             {{/if}}
-        </div>
-    </div>
+        {{/if}}
+    {{/forms/form-row}}
 
     {{!--        Submission Controls      --}}
     <div class="col-sm-offset-3">

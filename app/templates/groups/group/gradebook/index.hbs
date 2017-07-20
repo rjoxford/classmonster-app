@@ -1,12 +1,12 @@
 <h1>{{model.name}} Class Gradebook</h1>
 
 <div class="controls-level1">
-    <button class="btn btn-primary" {{action "togViewOverview"}} >Overview</button>
-    <button class="btn btn-primary" {{action "togViewUnits" }}>Units</button>
-    <button class="btn btn-primary" {{action "togViewStudents" }}>Students</button>
+    <button class="btn btn-primary" {{action "togViewByClassification"}} >Overview</button>
+    <button class="btn btn-primary" {{action "togViewByUnits" }}>Units</button>
+    <button class="btn btn-primary" {{action "togViewByStudents" }}>Students</button>
 </div>
 
-{{#if viewOverview}}
+{{#if viewByClassification}}
 <table class="table table-hover">
     <thead>
         <tr>
@@ -41,7 +41,7 @@
 {{/if}}
 
 
-{{#if viewUnits}}
+{{#if viewByUnits}}
 <table class="table table-hover">
     <thead>
         <tr>
@@ -62,7 +62,7 @@
 </table>
 {{/if}}
 
-{{#if viewStudents}}
+{{#if viewByStudents}}
 <table class="table table-hover">
     <thead>
         <tr>

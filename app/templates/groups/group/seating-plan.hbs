@@ -21,22 +21,25 @@
     {{!-- Secondary level menu --}}
     <div id="seating-menu2">
         {{#if viewSNAP}}
-        <span>Objective: </span>
-        {{#x-select value=objective action="alert"}}
+        <span>Objective: {{objective.name}}</span>
+
+
+        {{!-- {{#x-select value=objective action="alert"}}
             {{#each model.currentUnit.objectives as |objective|}}
             {{#x-option value=objective}}{{objective.name}}{{/x-option}}
             {{/each}}
-        {{/x-select}}
+        {{/x-select}} --}}
+
+        {{#power-select options=model.currentUnit.objectives selected=objective onchange=(action 'setObjective') as |objective|}}
+            {{objective.name}}
+        {{/power-select}}
         {{/if}}
+
         {{#if viewPlans}}
             <span>Plan: </span>
-            {{#x-select value=plan}}
-                {{#x-option value=1}}1{{/x-option}}
-                {{#x-option value=2}}2{{/x-option}}
-                {{#x-option value=3}}3{{/x-option}}
-                {{#x-option value=4}}4{{/x-option}}
-                {{#x-option value=5}}5{{/x-option}}
-            {{/x-select}}
+            {{#power-select options=plans onchange=(action "setPlan") as |plan|}}
+                {{plan}}
+            {{/power-select}}
         {{/if}}
     </div>
 

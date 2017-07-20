@@ -1,13 +1,14 @@
 {{#bread-crumb link='objectives.objective' model=model}}{{model.name}}{{/bread-crumb}}
 
-<div class="card">
-    <div class="card-block">
+<div class="page-title">
+        {{#link-to 'objectives.objective' model}}
         <h1>{{model.name}}</h1>
-    </div>
-    <div class="card-block">
-        <button class="btn btn-success" type="button">Maths</button>
-        <button class="btn btn-warning" type="button">  8 / B  </button>
-        <button class="btn btn-success" type="button">Maths</button>
-    </div>
+        {{/link-to}}
+
+        <button class="btn btn-sm btn-primary" type="button">{{model.branch}}</button>
+        <button class="btn btn-sm btn-primary" type="button">{{model.area}}</button>
+        <button class="btn btn-sm btn-primary" type="button">{{model.topic}}</button>
+        <button class="btn btn-sm btn-primary" type="button">Level {{model.level}}</button>
 </div>
+
 {{outlet}}

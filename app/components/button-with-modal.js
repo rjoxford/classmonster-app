@@ -6,7 +6,7 @@ classNames: [ "button-with-modal" ],
 
 // onConfirm: this.get('onConfirm'),
 
-collapsable: true,
+collapsible: true,
 
   actions: {
     launchModal() {

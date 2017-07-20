@@ -1,9 +1,12 @@
-<div class="col-sm-offset-2 col-sm-8">
+
+<div class="">
     <h1>Currently Studying:</h1>
+
+    {{!-- Select Subject --}}
     {{#forms/form-row label="Subject"}}
         <img class="form-icon" src="/assets/icons/maths.svg">
         {{#button-with-modal text="Change" addClass="btn-default"}}
-            {{#owl-carousel}}
+            {{!-- {{#owl-carousel}} --}}
                 {{icon-subject icon="chemistry" title="Chemistry"}}
                 {{icon-subject icon="physics" title="Physics"}}
                 {{icon-subject icon="biology" title="Biology"}}
@@ -16,26 +19,62 @@
                 {{icon-subject icon="critical" title="Critical Thinking"}}
                 {{icon-subject icon="re" title="RE"}}
                 {{icon-subject icon="maths" title="Maths"}}
-            {{/owl-carousel}}
+            {{!-- {{/owl-carousel}} --}}
         {{/button-with-modal}}
     {{/forms/form-row}}
+
+    {{!-- Select the Scheme enrolled upon --}}
     {{#forms/form-row label="Scheme"}}
             <strong>{{model.currentScheme.name}}</strong>
             {{#button-with-modal text="Change" addClass="btn btn-default"}}
                 <button type="button" class="btn btn-primary">My School Schemes</button>
                 <button type="button" class="btn btn-primary">Public Schemes</button>
-                {{#each allSchemes as |scheme|}}
-                    <h2>{{scheme.name}}</h2>
-                {{/each}}
+                <div class="row">
+                    {{#each allSchemes as |scheme|}}
+                    <div class="card col-sm-4 col-md-3 col-lg-2">
+                        <div class="card-block">
+                            <h5>{{scheme.name}}</h5>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
             {{/button-with-modal}}
     {{/forms/form-row}}
 
+    {{!-- Select the Unit currently being studied --}}
     {{#forms/form-row label="Unit"}}
             <strong>{{model.currentUnit.name}}</strong>
-        {{#button-with-modal text="Change" addClass="btn btn-default" showCancel=true}}
-            {{#each model.currentScheme.units as |unit|}}
-                <h2>{{unit.name}}</h2>
-            {{/each}}
+        {{#button-with-modal text="Change" addClass="btn btn-default"}}
+            <div class="row fluid">
+                {{#each model.currentScheme.units as |unit|}}
+                    <div class="card col-sm-4 col-md-3 col-lg-2">
+                        <div class="card-block">
+                            <h5>{{unit.name}}</h5>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
         {{/button-with-modal}}
     {{/forms/form-row}}
+
+    {{!-- Objectives --}}
+
+        <h2 >Objectives</h2>
+        <table class="table width100">
+            <tbody>
+                <tr>
+                    <th>Objective</th>
+                    <th colspan="3">Average Score</th>
+                </tr>
+                {{#each model.currentUnit.objectives as |objective|}}
+                <tr>
+                    <td>{{#link-to 'objectives.objective' objective}}{{objective.name}}{{/link-to}}</td>
+                    <td><button class="btn btn-default">score!!</button></td>
+                    <td>{{#link-to 'objectives.objective.resources' objective}}<button class="btn btn-primary">Resources</button>{{/link-to}}</td>
+                    <td><button class="btn btn-success">Gradebook</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
 </div>

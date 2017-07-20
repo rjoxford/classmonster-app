@@ -1,0 +1,16 @@
+{{!-- Find a resource --}}
+<div class="card">
+    <h4 class="card-title">
+        Find a Resource
+    </h4>
+    <div class="card-block">
+        <div class="row justify-content-center">
+            <form class="form-inline">
+                {{input class="form-control" placeholder="Search by Keywords..." }}
+                {{#link-to 'objectives.objective.resources.find' }}<button class="btn btn-primary">Search</button>{{/link-to}}
+            </form>
+        </div>
+    </div>
+</div>
+
+{{outlet}}
