@@ -1,9 +1,8 @@
 <h1>{{model.name}}</h1>
 
 {{#tab-set}}
-    {{tab-single title="General" action=(action "togViewGeneral") deselector=deselector}}
     {{tab-single title="Course" selected=true action=(action "togViewCourse") deselector=deselector}}
-    {{tab-single title="Tools" action=(action "togViewAssessment") deselector=deselector}}
+    {{tab-single title="Assessment" action=(action "togViewAssessment") deselector=deselector}}
     {{tab-single title="Students" action=(action "togViewStudents") deselector=deselector}}
     {{tab-single title="Priorities" action=(action "togViewPriorities") deselector=deselector}}
 {{/tab-set}}
@@ -13,7 +12,7 @@
 {{/if}}
 
 {{#if viewCourse}}
-    {{partials/group-view-course model=model store=store}}
+    {{partials/group-view-course model=model}}
 {{/if}}
 
 {{#if viewAssessment}}

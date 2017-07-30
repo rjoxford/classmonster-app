@@ -10,7 +10,6 @@ classNames: [ "scheme-unit" ],
 classNameBindings : [ 'dragClass', 'class', 'droppableSetter', 'classId' ],
 
 
-
 drop(event){
     console.log('Dropped!');
     var data = event.dataTransfer.getData('text');

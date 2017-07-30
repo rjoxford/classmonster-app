@@ -10,40 +10,47 @@
     <div class="row justify-content-center">
 
         {{#each model as |scheme|}}
-            <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+                {{#if isDeletingSchemes}}
+                <div class="card">
+                    <img class="card-img-top img-thumbnail" src="/assets/images/books/redbook.png" />
+                    <div class="card-footer">
+                        <h4>{{scheme.name}}</h4>
+                            {{#button-with-confirmation submitConfirm=(action "deleteScheme" scheme) text="Delete" addClass="btn btn-danger"}}
+                                Warning: This scheme cannot be recovered once it is deleted.
+                            {{/button-with-confirmation}}
+                    </div>
+                </div>
+                {{else}}
                 {{#link-to 'schemes.scheme' scheme}}
                 <div class="card">
                     <img class="card-img-top img-thumbnail" src="/assets/images/books/redbook.png" />
-                    <div class="card-footer">{{scheme.name}}</div>
+                    <div class="card-footer">
+                        <h4>{{scheme.name}}</h4>
+                    </div>
                 </div>
                 {{/link-to}}
+                {{/if}}
             </div>
         {{/each}}
     </div>
 
     {{!-- My Personal Schemes --}}
 
-
-
-    {{!-- {{#modal-basic}}
-    <span>What's the aim of the game?</span>
-    {{/modal-basic}} --}}
-
-
     {{!-- Adding and Removing Schemes controls --}}
     <div class="row justify-content-center">
 
-        {{!-- Add a scheme --}}
-        {{#button-with-modal addClass="btn-success" text="Add a Scheme" submit=(action "createNewScheme") }}
-            <h3>Name your new scheme</h3>
-            {{input value=newSchemeName}}
-        {{/button-with-modal}}
+        {{#if isDeletingSchemes}}
+            <button {{action "togIsDeletingSchemes"}} class="btn btn-success">Done</button>
+        {{else}}
+            {{!-- Add a scheme --}}
+            {{#button-with-modal addClass="btn-success" text="Add a Scheme" submit=(action "createNewScheme") }}
+                <h3>Name your new scheme</h3>
+                {{input value=newSchemeName}}
+            {{/button-with-modal}}
+            {{!-- Remove a scheme --}}
+            <button {{action "togIsDeletingSchemes"}} class="btn btn-danger">Delete a Scheme</button>
 
-        {{!-- Remove a scheme --}}
-        {{#button-with-modal addClass="btn-warning" text="Remove a Scheme" submit=(action "createNewScheme") }}
-            <h3>Remove a scheme</h3>
-            {{input value=newSchemeName}}
-        {{/button-with-modal}}
-
+        {{/if}}
     </div>
 </div>

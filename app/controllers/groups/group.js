@@ -10,6 +10,22 @@ export default Ember.Controller.extend({
                     message: "Turkey"
                 },
 
+    scoredObjectives: Ember.computed( function(){
+        // Look up the class's current unit
+        // console.log(this.get('model'));
+
+        // Return the set of objectives in this unit
+        var unit = this.get('model.currentUnit');
+        console.log(unit);
+
+        // For each student, return the student id and their score
+
+        // Desired outcome: an array of objects. Each objective and the average score for it
+        // {objectiveId: (Ember Object),
+        // averageScore : number }
+        return "Sample";
+    }),
+
     actions: {
 
         edit: function(){
@@ -46,9 +62,10 @@ export default Ember.Controller.extend({
 
         togShowStudents: function(){
             this.toggleProperty('showStudents');
-        }
+        },
 
 
-        
+
+
     }
 });

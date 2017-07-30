@@ -7,13 +7,23 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-block">
-                <h4 class="card-title">Unit 4</h4>
-                <p class="card-text">{{unit.name}}</p>
+                <h4 class="card-title">{{unit.name}}</h4>
             </div>
             <div class="card-footer">
-                {{#each unit.objectives as |objective|}}
-                    {{#link-to 'objectives.objective' objective}}<p class="scheme-objective">{{objective.name}}</p>{{/link-to}}
-                {{/each}}
+                <table class="table table-hover table-sm">
+                    {{!-- <thead>
+                        <th>Objective Name</th>
+                        <th>Level</th>
+                    </thead> --}}
+                    <tbody>
+                        {{#each unit.objectives as |objective|}}
+                            <tr>
+                                <td>{{#link-to 'objectives.objective' objective}}{{objective.name}}{{/link-to}}</td>
+                                <td>{{objective.level}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -22,27 +32,3 @@
 
 
 {{outlet}}
-{{!--
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Objectives</th>
-            <th>Level</th>
-            <th>Grade</th>
-            {{#if isDeleting}}
-            <th>Remove</th>{{/if}}
-        </tr>
-    </thead>
-
-    <tbody>
-        {{#each model.objectives as |objective|}}
-        <tr>
-            <td>{{#link-to 'objectives.objective' objective}}{{objective.name}}{{/link-to}}</td>
-            <td>6</td>
-            <td></td>
-            {{#if isRemoving}}
-            <td><button class="btn btn-danger" {{action "removeObjective" }}>Remove</button></td>{{/if}}
-        </tr>
-        {{/each}}
-    </tbody>
-</table> --}}

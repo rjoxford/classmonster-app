@@ -1,12 +1,25 @@
 <div class="container">
     <div class="row justify-content-center">
 
-        {{!-- Feedback Sheets --}}
-        <div class="row">
-            {{#link-to 'groups.group.feedback-sheets' model}}
-            <div class="card col-12">
+        {{!-- Seating Plan --}}
+        <div class="col-sm">
+            {{#link-to 'groups.group.seating-plan' model}}
+            <div class="card">
                 <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" alt="">
-                <div class="card-block">
+                <div class="card-footer">
+                    <h4 class="card-title">Seating Plan</h4>
+                    <p>More details...</p>
+                </div>
+            </div>
+            {{/link-to}}
+        </div>
+
+        {{!-- Feedback Sheets --}}
+        <div class="col-sm">
+            {{#link-to 'groups.group.feedback-sheets' model}}
+            <div class="card">
+                <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" alt="">
+                <div class="card-footer">
                     <h4 class="card-title">Feedback Sheets</h4>
                     <p>More details...</p>
                 </div>
@@ -14,25 +27,14 @@
             {{/link-to}}
         </div>
 
-        {{!-- Seating Plan --}}
-        {{!-- <div class="col-md-4 col-lg-2">
-            {{#link-to 'groups.group.seating-plan' model}}
-            <div class="card">
-                <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" alt="">
-                <div class="card-block">
-                    <h4 class="card-title">Seating Plan</h4>
-                    <p>More details...</p>
-                </div>
-            </div>
-            {{/link-to}}
-        </div> --}}
+
 
         {{!-- Gradebook --}}
-        <div class="row">
+        <div class="col-sm">
             {{#link-to 'groups.group.gradebook' model}}
-            <div class="card col-12">
+            <div class="card">
                 <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" alt="">
-                <div class="card-block">
+                <div class="card-footer">
                     <h4 class="card-title">Gradebook</h4>
                     <p>More details...</p>
                 </div>
@@ -41,11 +43,11 @@
         </div>
 
         {{!-- Assessments --}}
-        <div class="row">
+        <div class="col-sm">
             {{#link-to 'groups.group.assessments' model}}
-            <div class="card col-12">
+            <div class="card">
                 <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" alt="">
-                <div class="card-block">
+                <div class="card-footer">
                     <h4 class="card-title">Assessment</h4>
                     <p>More details...</p>
                 </div>

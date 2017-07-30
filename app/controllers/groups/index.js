@@ -11,6 +11,7 @@ actions: {
     togIsDeleting(){
         this.toggleProperty('isDeleting');
     }
+        
 }
 
 });

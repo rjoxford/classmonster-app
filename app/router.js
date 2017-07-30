@@ -42,22 +42,23 @@ Router.map(function() {
       this.route('edit');
 
       this.route('group', {path: ':group_id' }, function(){
-          this.route('students');
-          this.route('seating-plan');
-          this.route('feedback-sheets', function() {
-              this.route('view');
-          });
-          this.route('gradebook', function() {
-              this.route('student', {path: 'student/:student_id' });
-              this.route('unit', {path: 'unit/:unit_id'}, function() {
-                  this.route('objective', {path: 'objective/:objective_id'}, function() {
-                    this.route('objective', function() {
-                      this.route('resources', function() {});
-                    });
+        this.route('students');
+        this.route('seating-plan');
+        this.route('feedback-sheets', function() {
+            this.route('view');
+        });
+        this.route('gradebook', function() {
+            this.route('student', {path: 'student/:student_id' });
+            this.route('unit', {path: 'unit/:unit_id'}, function() {
+                this.route('objective', {path: 'objective/:objective_id'}, function() {
+                  this.route('objective', function() {
+                    this.route('resources', function() {});
                   });
-              });
-          });
-          this.route('assessments');
+                });
+            });
+        });
+        this.route('assessments');
+        this.route('course');
       });
       this.route('students', function() {});
   });
@@ -105,6 +106,7 @@ Router.map(function() {
   this.route('subjects', function() {
       this.route('subject', { path: ':subject_id' } , function() {});
   });
+  this.route('aad');
 });
 
 export default Router;

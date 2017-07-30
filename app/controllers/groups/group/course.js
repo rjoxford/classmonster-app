@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+export default Ember.Controller.extend({
 
     store: Ember.inject.service(),
+
 
     //Required models
     allSchemes: Ember.computed(function(){
@@ -14,13 +15,12 @@ export default Ember.Component.extend({
 
 
 
-        setCurrentScheme(scheme){
-            var group = this.get('model');
-            group.set('currentScheme', this.get('selectedScheme'));
-            group.save();
+        setCurrentScheme: function(model){
+            model.set('currentScheme', this.get('selectedScheme'));
+            model.save();
         },
 
-        setCurrentUnit(model){
+        setCurrentUnit: function(model){
                 model.set('currentUnit', this.get('selectedUnit'));
                 model.save();
         },

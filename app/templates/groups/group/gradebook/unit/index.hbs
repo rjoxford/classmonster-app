@@ -5,7 +5,8 @@
         <tr>
             <th>ID</th>
             <th>Objective</th>
-            <th>RAG</th>
+            <th>Average Score</th>
+            {{!-- TODO Return a bar with proportions of RAG?--}}
         </tr>
     </thead>
     <tbody>
@@ -13,11 +14,16 @@
         <tr>
             <td>{{objective.id}}</td>
             <td>{{#link-to 'groups.group.gradebook.unit.objective' objective}}{{objective.name}}{{/link-to}}</td>
-            <td>{{colour-bar1 red=10 amber=40 green=50}}</td>
+            <td>{{scores/objective-average-score objective=objective group=group}}</td>
+            {{!-- <td>{{colour-bar1 red=10 amber=40 green=50}}</td> --}}
         </tr>
         {{/each}}
     </tbody>
 </table>
 <h3>Tools</h3>
-<button class="btn btn-primary">Create a Tracking Sheet</button>
-<button class="btn btn-primary">Edit in Seating Plan</button>
+<button class="btn btn-primary">Create Feedback Sheet</button>
+{{#link-to 'groups.group.seating-plan' }}<button class="btn btn-primary">Reassess</button>{{/link-to}}
+
+
+<h2>{{model.name}}</h2>
+<h3>{{group.name}}</h3>

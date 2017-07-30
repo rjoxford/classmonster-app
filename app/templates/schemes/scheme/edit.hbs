@@ -1,24 +1,24 @@
 <div class="container-fluid">
 <div class="row">
 
-    <div class="col-8">
+    <div class="col-7">
     {{!-- <div class="left-hand-60"> --}}
         {{!-- Title --}}
         <h1>{{model.name}}</h1>
         {{!-- A component for finding an objective (/objectives?) --}}
-        {{objective-finder}}
+        {{objective-finder draggableObjectives=true}}
 
         {{!-- The set of filtered, non-assigned objectives --}}
-        <div class="scheme-objective-sector">
+        {{!-- <div class="scheme-objective-sector"> --}}
             {{!-- Set of draggable, filtered objectives --}}
-            {{#each objectives as |objective|}}
-                {{scheme-editor/draggable-objective objective=objective}}
-            {{/each}}
-        </div>
+            {{!-- {{#each objectives as |objective|}}
+                {{scheme-editor/draggable-objective objective=objective originType="bank" origin="bank"}}
+            {{/each}} --}}
+        {{!-- </div> --}}
     </div>
 
     {{!-- Units, showing the objectives in each. Objectives to be made draggable and changeable --}}
-    <div class="col-4">
+    <div class="col-5">
 
         {{!-- <div class="scheme-units-sector right-hand-40"> --}}
 

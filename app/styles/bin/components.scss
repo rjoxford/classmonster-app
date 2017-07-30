@@ -28,6 +28,11 @@
     left: 0;
 }
 
+// .rag-color-2.1 {
+//     color: #FCB400;
+//     background-color: #FCB400;
+// }
+
 .modal-basic {
     @extend .centered-axis-xy;
     padding: 30px;
@@ -226,6 +231,7 @@
 
 .form-icon {
     width: 60px;
+    height: 60px;
     display: inline-block;
 }
 

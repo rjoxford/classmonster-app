@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend(Ember.Evented, {
 
+    // queryParams: [ 'objective' ],
+
 
     //  Properties
     viewSNAP        :   true,
@@ -58,10 +60,6 @@ export default Ember.Controller.extend(Ember.Evented, {
             group.set('currentObjective', objective);
             group.save();
         },
-
-        // sendScore: function(student, score){
-        //     var objective = this.get('objective');
-        // },
 
         alert: function(){
             alert('Alert you fool!');

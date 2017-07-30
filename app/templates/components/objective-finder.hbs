@@ -30,27 +30,25 @@
 
     {{!-- Filter by classification --}}
     {{#if viewFilterbyClassification}}
-    {{!-- Area --}}
-    <div class="col-8">
-        {{#power-select options=areas onchange=(action 'setFilterArea') selected=filterCriteriaArea placeholder="Select an Area"  as |area|}}
-            {{area}}
-        {{/power-select}}
-    </div>
-    {{!-- Branch --}}
-    <div class="col-8">
-        {{#power-select options=branches onchange=(action 'setFilterBranch') selected=filterCriteriaBranch placeholder="Select a Branch" as |branch|}}
-            {{branch}}
-        {{/power-select}}
-    </div>
-    {{!-- Topic --}}
-    <div class="col-8">
-        {{#power-select options=topics onchange=(action 'setFilterTopic') selected=filterCriteriaTopic placeholder="Select a Topic" as |area|}}
-            {{area}}
-        {{/power-select}}
-    </div>
-
+        {{!-- Area --}}
+        <div class="col-8">
+            {{#power-select options=areas onchange=(action 'setFilterArea') selected=filterCriteriaArea placeholder="Select an Area"  as |area|}}
+                {{area}}
+            {{/power-select}}
+        </div>
+        {{!-- Branch --}}
+        <div class="col-8">
+            {{#power-select options=branches onchange=(action 'setFilterBranch') selected=filterCriteriaBranch placeholder="Select a Branch" as |branch|}}
+                {{branch}}
+            {{/power-select}}
+        </div>
+        {{!-- Topic --}}
+        <div class="col-8">
+            {{#power-select options=topics onchange=(action 'setFilterTopic') selected=filterCriteriaTopic placeholder="Select a Topic" as |area|}}
+                {{area}}
+            {{/power-select}}
+        </div>
     {{/if}}
-
 
     {{!-- Filter by Grade/Level --}}
     {{#if viewFilterbyGrade}}
@@ -59,23 +57,20 @@
         {{/power-select}}
     {{/if}}
 
-
-
     <button class="btn btn-defualt btn-warning form-group" {{action 'resetFilters'}}>Reset filter</button>
-
 </div>
 
 {{!-- List of objectives --}}
 <div class="">
     {{#each filteredObjectives as |objective|}}
+    {{!-- TODO determine different outputs here. Do we want each objective to be links? To be draggable in SoW Editor etc --}}
+
         {{#if hasLinks}}
             {{#link-to 'objectives.objective' objective}}<p>{{objective.name}}</p>{{/link-to}}
+        {{else if draggableObjectives}}
+            {{scheme-editor/draggable-objective objective=objective originType="bank" origin="bank"}}
         {{else}}
             <p>{{objective.name}}</p>
         {{/if}}
-    {{/each}}
-
-    {{#each uniqs as |uniq|}}
-      <p>{{uniq}}</p>
     {{/each}}
 </div>

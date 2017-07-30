@@ -27,10 +27,13 @@ export default Ember.Controller.extend({
 
 
     //Required models
-    allSchemes: function(){
+    allSchemes: Ember.computed(function(){
         return this.store.findAll('scheme');
-    }.property(),
+    }),
 
+    scoredObjectives: Ember.computed(function(){
+    // Return the set of objectives in this unit
+    }),
 
 
     //Actions
@@ -57,6 +60,46 @@ export default Ember.Controller.extend({
             this.resetL1Views();
             this.toggleProperty('viewPriorities');
         },
+
+        test(){
+            // Look up the class's current unit
+            // console.log(this.get('model'));
+
+            // Return the set of objectives in this unit
+            var objectives = this.get('model.currentUnit.objectives');
+            var students = this.get('model.students');
+            var _this = this;
+            var myarray = [];
+
+            objectives.forEach( function(objective, index){
+                myarray.pushObject(objective);
+                console.log(objective.get('id') + " : " + objective.get('name'));
+                // Get the average score for the students in the class
+
+                var sumscore;
+                var sumcount;
+                // Find each student's score
+                students.forEach((student) => {
+                    var studentId = student.get('id');
+                    var objectiveId = objective.get('id');
+                    _this.store.queryRecord('snapscore', { 'student' : studentId, 'objective': objectiveId }).then(function(score){
+                        if(score){
+                            console.log("Student:  " + student.get('id') + " has a score of " + score.get('score') + "for objective " + objective.get('name'));
+                        };
+                    });
+                // then find the average of these
+                });
+
+            });
+
+
+            // For each student, return the student id and their score
+            // Find each student in the class, and get the scores for each objective
+
+            // Desired outcome: an array of objects. Each objective and the average score for it
+            // {objectiveId: (Ember Object),
+            // averageScore : number }
+        }
 
 
 
