@@ -13,9 +13,10 @@
             {{partial "application/logo"}}{{/link-to}}
         </div>
 
-        <div id="pathbar" class="breadcrumb">
-            {{#bread-crumb  link='application' first=true}}Home{{/bread-crumb}}
-        </div>
+
+            <div id="pathbar" class="breadcrumb">
+                {{#bread-crumb  link='index' first=true}}Home{{/bread-crumb}}
+            </div>
 
 
         <div class="logindiv-wrapper" {{action 'togIsRightBar'}}>
@@ -27,20 +28,27 @@
                 {{/if}}
             </div>
 
-            {{#if session.isAuthenticated}}
+            {{!-- TODO - Integrate the below with ESA --}}
+            {{!-- {{#if session.isAuthenticated}}
             <img class="logo-image" src="/assets/icons/letter-icons/r.png" />
             <span>Mr Oxford</span>
             <span>435 Points</span>
             {{else}}
             {{#link-to 'login'}}<button class="btn btn-default">Login</button>{{/link-to}}
             {{#link-to 'register'}}<button class="btn btn-default">Sign Up</button>{{/link-to}}
-            {{/if}}
+            {{/if}} --}}
 
-            <div class="logindiv{{if isRightBar "-active"}}">
-                <span>{{currentUser.username}}</span>
-                <span>435 Points</span>
-            </div>
-            <img class="icon-user" src="/assets/icons/letters/r.png" />
+            {{!-- If a user is currently logged in --}}
+            {{!-- TODO - this flow is not yet integrated with ESA --}}
+            {{#if user}}
+                <div class="logindiv{{if isRightBar "-active"}}">
+                        <span>{{user.username}}</span>
+                        <span>435 Points</span>
+                </div>
+                <img class="icon-user" src="/assets/icons/letters/r.png" />
+            {{else}}
+                {{#link-to 'login'}}<button class="btn btn-default">Login</button>{{/link-to}}
+            {{/if}}
         </div>
 
 
@@ -62,15 +70,5 @@
             {{outlet}}
         </div>
     </div>
-
-    {{#if classSelecting}}
-    {{partial "application/topbar-selectors/class-selector"}}
-    {{/if}}
-
-    {{#if unitSelecting}}
-    {{partial "application/topbar-selectors/unit-selector"}}
-    {{/if}}
-
-
 
 </div>

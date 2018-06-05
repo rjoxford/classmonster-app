@@ -10,6 +10,10 @@ classNames: [ "scheme-unit" ],
 classNameBindings : [ 'dragClass', 'class', 'droppableSetter', 'classId' ],
 
 
+isRenaming: false,
+isExpanded: false,
+
+
 drop(event){
     console.log('Dropped!');
     var data = event.dataTransfer.getData('text');
@@ -36,6 +40,16 @@ dragOver(event){
 
 // Actions
 actions: {
+
+    togIsRenaming(){
+        this.toggleProperty('isRenaming');
+        this.get('unit').save();
+    },
+
+    togIsExpanded(){
+        this.toggleProperty('isExpanded');
+    },
+
 
 }
 

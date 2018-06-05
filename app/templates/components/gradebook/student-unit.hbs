@@ -1,0 +1,20 @@
+    <td {{action 'expandUnit'}}>{{unit.name}}</td>
+    <td>{{color/rag-score-color score=2}}</td>
+    <td>{{color/level-color level=6}}</td>
+
+{{#if expanded}}
+
+    <td colspan="3">
+        <table class="table table-sm">
+            <tbody>
+                {{#each unit.objectives as |objective|}}
+                <tr>
+                    <th>{{objective.name}}</th>
+                    <th>{{color/rag-score-color score=2.4}}</th>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </td>
+
+{{/if}}

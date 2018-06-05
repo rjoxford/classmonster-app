@@ -10,8 +10,7 @@ export default DS.Model.extend({
     //attributes
     name: DS.attr('string'),
     onField: DS.attr('boolean'),
-    number: DS.attr('number'),
-    bscore: DS.attr('number'),
+    number: DS.attr('number')
 
 
 

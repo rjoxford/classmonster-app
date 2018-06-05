@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-
     //Properties
     viewByClassification:   true,
     viewByUnits:      false,
@@ -38,4 +37,5 @@ export default Ember.Controller.extend({
 
 
     }
+
 });

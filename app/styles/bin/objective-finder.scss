@@ -1,0 +1,9 @@
+.level-toggle {
+    background-color: $blue1;
+    min-width: 6%;
+}
+
+.level-toggle-selected {
+    @extend .level-toggle;
+    background-color: red;
+}

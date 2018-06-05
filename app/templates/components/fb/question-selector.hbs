@@ -1,0 +1,12 @@
+{{#modal-basic cancel=(action 'togIsSelectingQuestion')}}
+    {{#each questions as |question|}}
+        <div class="card">
+            <div class="card-body">
+                {{question-preview question=question}}
+            </div>
+            <div class="card-footer">
+                <button {{action 'setTargetQuestion' question}} class="btn btn-primary">Select</button>
+            </div>
+        </div>
+    {{/each}}
+{{/modal-basic}}

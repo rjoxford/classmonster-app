@@ -1,0 +1,21 @@
+<strong>{{model.name}}</strong>
+
+<table class="table">
+<thead>
+
+<tr>
+    <th>Unit</th>
+    <th>Average Score</th>
+    <th>Approximate Level</th>
+</tr>
+
+</thead>
+<tbody>
+
+{{#each model.group.currentScheme.units as |unit|}}
+    {{gradebook/student-unit student=model unit=unit}}
+{{/each}}
+</tbody>
+
+
+</table>

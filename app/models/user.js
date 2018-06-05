@@ -11,6 +11,6 @@ export default DS.Model.extend({
 
     //relationships
     groups: DS.hasMany('group'),
-
+    blogs: DS.hasMany('blog')
 
 });

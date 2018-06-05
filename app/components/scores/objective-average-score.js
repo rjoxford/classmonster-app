@@ -1,22 +1,28 @@
+// Returns the average score a class get for a given objective
+
 import Ember from 'ember';
 
 export default Ember.Component.extend({
 
     store: Ember.inject.service(),
 
-    averageScore: "",
+    averageScore: 0,
 
-    classNameBindings: ['colorClass'],
-
-    colorClass: Ember.computed('averageScore', function(){
-        return "rag-color-2.1";
+    displayScore: Ember.computed('averageScore', function(){
+        let score = this.get('averageScore');
+        if (score>0) {
+            return score;
+        } else {
+            return "-";
+        }
     }),
 
+
     didReceiveAttrs(){
-        var students = this.get('group.students');
-        var objective = this.get('objective');
-        var store = this.get('store');
-        var _this = this;
+        let students = this.get('group.students');
+        let objective = this.get('objective');
+        let store = this.get('store');
+        let _this = this;
 
         // Create an array of promises of each student's scores
         var promises = [];
@@ -29,26 +35,27 @@ export default Ember.Component.extend({
         // When promises resolve, find and return the average
         Ember.RSVP.allSettled(promises).then(function(scores){
             let scoreTotal = 0;
-            let scoreCount = scores.length;
-            scores.forEach((score)=>{
-                scoreTotal = scoreTotal + score.value.get('score');
-            });
-            if(scoreCount>0){
-                console.log(scoreTotal/scoreCount);
-                var average = Math.round((scoreTotal/scoreCount)*10)/10;
-                console.log(average);
-                _this.set('averageScore', average);
+            let scoreCount = 0;
+            if(scores.length>0){
+                scores.forEach((score)=>{
+                    // If the score exists(is 1-3), then consider for average
+                    if (score.value) {
+                        scoreTotal = scoreTotal + score.value.get('score');
+                        scoreCount = scoreCount + 1;
+                    }
+                });
+                // If any score have indeed been counted
+                if (scoreCount>0) {
+                    var average = Math.round((scoreTotal/scoreCount)*10)/10;
+                    _this.set('averageScore', average);
+                } else {
+                    //_this.set('averageScore', "-")
+                }
+
             } else {
-                _this.set('averageScore', "-");
+                //_this.set('averageScore', "-");
             }
         });
     },
 
 });
-
-//
-// store.queryRecord('snapscore', { 'student' : studentId, 'objective': objectiveId }).then(function(score){
-//     if(score){
-//         console.log("Student:  " + student.get('id') + " has a score of " + score.get('score') + "for objective " + objective.get('name'));
-//     };
-// });

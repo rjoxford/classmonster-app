@@ -1,1 +1,15 @@
 <h2>{{model.name}}</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>Student Name</th>
+        <th>Score</th>
+    </tr>
+    {{#each group.students as |student|}}
+        <tr>
+            <td>{{#link-to 'groups.group.gradebook.student' student}}{{student.name}}{{/link-to}}</td>
+            <td>{{scores/student-objective-score student=student objective=model}}</td>
+        </tr>
+    {{/each}}
+
+</table>

@@ -11,13 +11,17 @@ export default Ember.Controller.extend({
     viewAssessment: false,
     viewStudents: false,
     viewPriorities: false,
-    resetL1Views:   function(){
+    viewSettings: false,
+    resetL1Views(){
         this.set('viewGeneral', false);
         this.set('viewCourse', false);
         this.set('viewAssessment', false);
         this.set('viewStudents', false);
         this.set('viewPriorities', false);
+        this.set('viewSettings', false);
     },
+    viewColorPalette: false,
+    viewDeleteGroup: false,
 
     //Allows for quickly changing the course the students are enrolled on
     //and the unit studied within that course
@@ -38,6 +42,12 @@ export default Ember.Controller.extend({
 
     //Actions
     actions: {
+        setColor(color){
+            let group = this.get('model');
+            group.set('color', color);
+            group.save();
+            this.set('viewColorPalette', false);
+        },
 
         //TODO refactor this, pass in argument to single function DRYUP
         togViewGeneral: function(){
@@ -59,6 +69,16 @@ export default Ember.Controller.extend({
         togViewPriorities: function(){
             this.resetL1Views();
             this.toggleProperty('viewPriorities');
+        },
+        togViewSettings(){
+            this.resetL1Views();
+            this.toggleProperty('viewSettings');
+        },
+        togViewColorPalette(){
+            this.toggleProperty('viewColorPalette');
+        },
+        togViewDeleteGroup(){
+            this.toggleProperty('viewDeleteGroup');
         },
 
         test(){

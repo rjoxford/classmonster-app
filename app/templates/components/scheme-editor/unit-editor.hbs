@@ -1,1 +1,32 @@
-{{yield}}
+
+<div class="row">
+
+    <div class="col-10 text-left">
+        {{#if isRenaming}}
+            {{input value=unit.name action='togIsRenaming'}}
+        {{else}}
+            <h5 class="inline">{{unit.name}}</h5>
+        {{/if}}
+    </div>
+
+    <div class="col-2 text-right">
+        {{#if isRenaming}}
+            <i class="fas fa-check-square icon-click fa-lg" {{action "togIsRenaming"}}></i>
+        {{else}}
+            <i class="fas if isRenaming fa-edit icon-click fa-lg" {{action "togIsRenaming"}}></i>
+        {{/if}}
+        {{#if isExpanded}}
+            <i class="fas fa-compress icon-click fa-lg" {{action "togIsExpanded"}}></i>
+        {{else}}
+            <i class="fas fa-expand-arrows-alt icon-click fa-lg" {{action "togIsExpanded"}}></i>
+        {{/if}}
+    </div>
+
+</div>
+
+<h6>Objectives: {{unit.objectives.length}}</h6>
+{{#if isExpanded}}
+    {{#each unit.objectives as |objective|}}
+        {{scheme-editor/draggable-objective objective=objective originType="unit" origin=unit}}
+    {{/each}}
+{{/if}}

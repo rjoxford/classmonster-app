@@ -9,20 +9,34 @@ export default Ember.Component.extend({
         var store = this.get('store');
         return store.findAll('scheme');
     }),
+    selectedScheme: Ember.computed('model', function(){
+        return this.get('model.currentScheme');
+    }),
+
+    units: Ember.computed( 'selectedScheme', function(){
+        return this.get('selectedScheme.units');
+    }),
+
+    selectedUnit: Ember.computed(function(){
+        return this.get('model.currentUnit');
+    }),
 
     actions: {
 
 
 
         setCurrentScheme(scheme){
+            this.set('selectedScheme', scheme);
             var group = this.get('model');
-            group.set('currentScheme', this.get('selectedScheme'));
+            group.set('currentScheme', scheme);
             group.save();
         },
 
-        setCurrentUnit(model){
-                model.set('currentUnit', this.get('selectedUnit'));
-                model.save();
+        setCurrentUnit(unit){
+            this.set('selectedUnit', unit);
+            let group = this.get('model');
+            group.set('currentUnit', unit);
+            group.save();
         },
     }
 

@@ -37,6 +37,7 @@
     @extend .centered-axis-xy;
     padding: 30px;
     position: absolute;
+    overflow-y: visible;
     width: 60%;
     min-height: 40vh;
     // height: 50vh;
@@ -53,8 +54,8 @@
     }
 }
 .modal-contents {
-    @extend .centered-axis-xy;
-    position: relative;
+    // @extend .centered-axis-xy;
+    // position: relative;
 }
 
 // @media (min-width: 1400px) {

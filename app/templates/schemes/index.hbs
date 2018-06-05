@@ -43,11 +43,9 @@
         {{#if isDeletingSchemes}}
             <button {{action "togIsDeletingSchemes"}} class="btn btn-success">Done</button>
         {{else}}
-            {{!-- Add a scheme --}}
-            {{#button-with-modal addClass="btn-success" text="Add a Scheme" submit=(action "createNewScheme") }}
-                <h3>Name your new scheme</h3>
-                {{input value=newSchemeName}}
-            {{/button-with-modal}}
+        {{#link-to 'schemes.new'}}
+            <button class="btn btn-success">Create a new Scheme</button>
+        {{/link-to}}
             {{!-- Remove a scheme --}}
             <button {{action "togIsDeletingSchemes"}} class="btn btn-danger">Delete a Scheme</button>
 

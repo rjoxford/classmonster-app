@@ -1,0 +1,25 @@
+<h2>Assessments</h2>
+
+{{#if model.length}}
+
+    {{#each model as |assessment|}}
+        {{#link-to 'assessments.assessment' assessment.id}}
+        <div class="card">
+            <h5>{{assessment.title}}</h5>
+            <p>{{assessment.description}}</p>
+            {{#each model.assessmentQuestion as |assessmentQuestion|}}
+              <p>{{assessmentQuestion.question}}</p>
+            {{/each}}
+        </div>
+        {{/link-to}}
+    {{/each}}
+
+    {{else}}
+
+    <h4>We don't currently have any assessments. Why not write one?</h4>
+
+{{/if}}
+
+{{#link-to 'assessments.new'}}
+    <button class="btn btn-success">Write an assessment!</button>
+{{/link-to}}

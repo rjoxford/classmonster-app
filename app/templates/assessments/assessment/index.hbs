@@ -1,0 +1,26 @@
+<h1>{{model.title}}</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th rowspan="2">Question</th>
+            <th rowspan="2">Marks</th>
+            <th colspan="4">Objective</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Topic</th>
+            <th>Name</th>
+            <th>Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.assessmentQuestions as |assessmentQuestion|}}
+                {{assessment/assessment-question-row assessmentQuestion=assessmentQuestion area=true topic=true level=true}}
+        {{/each}}
+    </tbody>
+</table>
+
+{{#link-to 'assessments.assessment.edit' model.id}}<button class="btn">Edit</button>{{/link-to}}
+
+{{outlet}}

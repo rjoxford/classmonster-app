@@ -35,23 +35,51 @@
         {{/power-select}}
         {{/if}}
 
-        {{#if viewPlans}}
+        {{!-- {{#if viewPlans}}
             <span>Plan: </span>
             {{#power-select options=plans onchange=(action "setPlan") as |plan|}}
                 {{plan}}
             {{/power-select}}
-        {{/if}}
+        {{/if}} --}}
     </div>
 
+</div>
+
+{{!-- Col and Row Controls --}}
+<div class="row align-content-center">
+    <div class="">
+        <button class="btn btn-danger" {{action 'deleteCol'}}>-</button>
+        <div class="">
+            <h5>Columns {{gridCols}}</h5>
+        </div>
+        <button class="btn btn-success" {{action 'addCol'}}>+</button>
+    </div>
+
+    <div class="">
+        <button class="btn btn-danger" {{action 'deleteRow'}}>-</button>
+        <div class="">
+            <h5>Rows {{gridRows}}</h5>
+        </div>
+        <button class="btn btn-success" {{action 'addRow'}}>+</button>
+    </div>
 </div>
 
 {{!-- Seating UI Area --}}
 <div id="seating-area">
 
     {{!-- Seats position over a grid --}}
-    {{#each gridarray as |gridunit|}}
-    {{seat/grid-unit dropped="dropAction" idNumber=gridunit.id droppable=gridunit.droppable}}
+    {{#each gridArray as |gridrow|}}
+        <div class="row">
+            {{#each gridrow as |gridunit|}}
+                {{seat/grid-unit dropped="dropAction" idNumber=gridunit.gridunit.id droppable=gridunit.gridunit.droppable}}
+            {{/each}}
+        </div>
     {{/each}}
+
+    {{!-- Seats position over a grid --}}
+    {{!-- {{#each gridarray as |gridunit|}}
+    {{seat/grid-unit dropped="dropAction" idNumber=gridunit.id droppable=gridunit.droppable}}
+    {{/each}} --}}
 
     {{!-- Each student's seat. The parent component is the seatbox. Seatbox contains the student's
     name and a seatboxUI, containing components for the different functionalities. --}}

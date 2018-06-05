@@ -1,0 +1,20 @@
+<table class="timetable-week-table">
+    <thead class="thead-dark">
+        <tr>
+            <th class="timetable-time-col"></th>
+            {{#each daysArray as |day|}}
+                <th class="timetable-day-col">{{day}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each timesArray as |time|}}
+        <tr>
+            <th class="timetable-hour">{{time}}</th>
+            {{#each daysArray as |day|}}
+                {{timetable/timetable-gridunit day=day time=time action=(action 'addSession')}}
+            {{/each}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

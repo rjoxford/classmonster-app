@@ -1,0 +1,19 @@
+<h1>Selecting Question Route</h1>
+
+
+<h2>{{model.student.name}}</h2>
+
+<h1>{{testProp}}</h1>
+
+{{#each questions as |question|}}
+    <div class="card">
+        <div class="card-body">
+            {{question-preview question=question}}
+        </div>
+        <div class="card-footer">
+            <button {{action 'setQuestion' question}} class="btn btn-primary">Select</button>
+        </div>
+    </div>
+{{/each}}
+
+{{outlet}}

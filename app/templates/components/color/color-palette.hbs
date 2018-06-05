@@ -1,0 +1,5 @@
+{{#each colors as |color|}}
+    <div class="col-3 color-palette-item color-palette-{{color}}" {{action 'setColor' color}}>
+        {{color}}
+    </div>
+{{/each}}

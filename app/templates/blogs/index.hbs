@@ -1,0 +1,20 @@
+<h1>Check out our blogs!</h1>
+
+
+<h3>Or write your own!</h3>
+<p>Write your own blog here: </p>
+{{#link-to 'blogs.edit'}}<button class="btn btn-success">Go!</button>{{/link-to}}
+
+<h3>Popular Blogs</h3>
+{{#each model as |blog|}}
+    {{#link-to 'blogs.blog' blog}}
+    <div class="card">
+        <h4>{{blog.title}}</h4>
+        <p>{{{blog.content}}}</p>
+    </div>
+    {{/link-to}}
+
+{{/each}}
+
+
+{{outlet}}

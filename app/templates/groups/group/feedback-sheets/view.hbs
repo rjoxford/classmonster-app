@@ -1,6 +1,9 @@
-<h1>Feedback Sheets</h1>
+<h1 class="col-9">{{model.name}} Feedback Sheets</h1>
+<div class="row align-contents-centre">
+    <button {{action 'print'}} class="btn btn-primary">Print</button>
+</div>
 
-<h3>Class controller feedback object to be displayed below here:</h3>
-<p>{{feedback.group}}</p>
 
-{{pdf-test}}
+{{#each studentFeedbacks as |studentFeedback|}}
+    {{fb/feedback-sheet studentFeedback=studentFeedback}}
+{{/each}}

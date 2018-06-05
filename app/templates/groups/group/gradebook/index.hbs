@@ -1,12 +1,58 @@
-<h1>{{model.name}} Class Gradebook</h1>
+{{#tab-set}}
+    {{tab-single title="Overview" selected=true action=(action "togViewByClassification") deselector=deselector}}
+    {{tab-single title="Units" action=(action "togViewByUnits") deselector=deselector}}
+    {{tab-single title="Students" action=(action "togViewByStudents") deselector=deselector}}
+{{/tab-set}}
 
-<div class="controls-level1">
-    <button class="btn btn-primary" {{action "togViewByClassification"}} >Overview</button>
-    <button class="btn btn-primary" {{action "togViewByUnits" }}>Units</button>
-    <button class="btn btn-primary" {{action "togViewByStudents" }}>Students</button>
-</div>
+{{#if viewByUnits}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Unit</th>
+            <th>Levels</th>
+            <th>Progress</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.currentScheme.units as |unit|}}
+        <tr>
+            <td>{{#link-to 'groups.group.gradebook.unit' unit}}{{unit.name}}{{/link-to}}</td>
+            <td>5a, 6b, 6a</td>
+            <td>{{colour-bar1}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}
+
+
+{{#if viewByStudents}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Level</th>
+            <th>SNAP Level</th>
+            <th>Progress</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.students as |student|}}
+        <tr>
+            <td>{{#link-to 'groups.group.gradebook.student' student}}{{student.name}}{{/link-to}}</td>
+            <td>5a</td>
+            <td>6c</td>
+            <td>{{colour-bar1}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{/if}}
 
 {{#if viewByClassification}}
+
+<h3>Coming soon...</h3>
+<h3>Overall Class Levels and Statistics</h3>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -39,53 +85,3 @@
     </tbody>
 </table>
 {{/if}}
-
-
-{{#if viewByUnits}}
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Unit</th>
-            <th>Levels</th>
-            <th>Progress</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each model.currentScheme.units as |unit|}}
-        <tr>
-            <td>{{#link-to 'groups.group.gradebook.unit' unit}}{{unit.name}}{{/link-to}}</td>
-            <td>5a, 6b, 6a</td>
-            <td>{{colour-bar1}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-{{/if}}
-
-{{#if viewByStudents}}
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Student</th>
-            <th>Level</th>
-            <th>SNAP Level</th>
-            <th>Progress</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each model.students as |student|}}
-        <tr>
-            <td>{{#link-to 'groups.group.gradebook.student' student}}{{student.name}}{{/link-to}}</td>
-            <td>5a</td>
-            <td>6c</td>
-            <td>{{colour-bar1}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-{{/if}}
-
-
-{{#box-exp title="Visuals"}}
-<h4>View some graphs...</h4>
-{{/box-exp}}

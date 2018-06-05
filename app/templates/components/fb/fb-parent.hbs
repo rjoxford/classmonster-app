@@ -1,0 +1,29 @@
+{{!-- Student's Name 1 Col --}}
+<td>{{studentFeedback.student.name}}</td>
+
+{{!-- The chosen objective --}}
+<td {{action 'togIsSelectingObjective'}}>{{studentFeedback.objective.name}}</td>
+<td>{{scores/student-objective-score student=studentFeedback.student objective=studentFeedback.objective}}</td>
+<td><button class="btn btn-primary btn-sm" {{action 'togIsSelectingObjective'}}>Change</button></td>
+
+{{!-- The chosen examples --}}
+<td>{{studentFeedback.target.example.exampleText}}</td>
+<td>
+    <button class="btn btn-primary btn-sm">Change</button>
+</td>
+
+
+{{!-- The chosen question --}}
+<td>{{studentFeedback.question.questionText}}</td>
+<td>
+    <button {{action 'togIsSelectingQuestion' }} class="btn btn-primary btn-sm">Change</button>
+    {{#link-to 'groups.group.feedback-sheets.select-questions' studentFeedback}}<button class="btn btn-primary btn-sm">Via Route</button>{{/link-to}}
+</td>
+
+{{#if isSelectingObjective}}
+    {{fb/objective-selector togIsSelectingObjective=(action 'togIsSelectingObjective') studentFeedback=studentFeedback}}
+{{/if}}
+
+{{#if isSelectingQuestion}}
+    {{fb/question-selector togIsSelectingQuestion=(action 'togIsSelectingQuestion') studentFeedback=studentFeedback}}
+{{/if}}

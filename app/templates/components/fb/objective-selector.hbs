@@ -1,0 +1,14 @@
+{{#modal-basic cancel=(action 'togIsSelectingObjective')}}
+<h2>Select objective:</h2>
+
+<table class="table table-hover table-sm">
+    <tbody>
+        {{#each studentFeedback.objectiveCollection as |objective|}}
+            <tr {{action 'setTargetObjective' objective }}>
+                <td>{{objective.name}}</td>
+                <td>{{scores/student-objective-score student=studentFeedback.student objective=objective}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{/modal-basic}}

@@ -1,0 +1,54 @@
+{{!-- A basic feedback sheet, populated by the studentFeedback object --}}
+{{!-- TODO studentFeedback obj to be converted to a service, with greater use of routes --}}
+<div class="card">
+    <div class="card-title">
+        <h2>{{studentFeedback.student.name}}</h2>
+    </div>
+    <div class="card-block">
+        {{!-- A table of objectives and the score achieved for each --}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Objective</th>
+                    <th>Your Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Find the area of a triangle</td>
+                    <td>{{color/rag-score-color score=2}}</td>
+                </tr>
+                <tr>
+                    <td>Find the area of a triangle</td>
+                    <td>{{color/rag-score-color score=2}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        {{!-- TODO - currently only handles one target - need to have 2 targets --}}
+        {{!-- Target Objective --}}
+        <div class="row">
+            <div class="col-12 justify-content-start">
+                <h4>Your Target is:</h4>
+                <p>{{studentFeedback.objective.name}}</p>
+            </div>
+        </div>
+
+        {{!-- Examples for target objective --}}
+        <div class="row">
+            <div class="col-12 justify-content-start">
+                <h5>Take a look at this first:</h5>
+                <p>To be find the hypotenuse of a right angled triangle, square each of the shorter sides, and add together. Square root this number to get the length of the hypotenuse.</p>
+            </div>
+        </div>
+
+        {{!-- Questions for target objective --}}
+        <div class="row">
+            <div class="col-12 justify-content-start">
+                <h5>Have a go at this:</h5>
+                <p>{{studentFeedback.question.questionText}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

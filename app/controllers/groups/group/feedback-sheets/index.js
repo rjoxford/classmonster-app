@@ -2,78 +2,93 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+    testProp: "Hugo Boss",
 
-    modalObjectives: false,
-    modalFeedbacks: false,
-
-
-    studentArray: Ember.computed(function(){
-        var group = this.get('model.students');
-        return group;
-
+    // Set the selectedUnit from which to list all objectives
+    selectedUnit: Ember.computed('model', function(){
+        return this.get('model.currentUnit');
+    }),
+    //ObjectivesCollection to be handled as an array of objectives for future functionality of a non-unit collection of objectives - eg assessment objectives
+    objectiveCollection: Ember.computed('selectedUnit', function(){
+        return this.get('selectedUnit.objectives');
     }),
 
+    // Pull the feedback service
+    // feedback: Ember.inject.service('group-feedback'),
+    // studentFeedbacks: Ember.computed(function(){
+    //     let feedback = this.get('feedback');
+    //     return feedback.createStudentFeedbacks(this.get('model'));
+    //     // return feedback.studentFeedbacks;
+    // },
+    currentStudentFeedback: null,
+
+    studentFeedbacks: Ember.computed('selectedUnit', function(){
+        // Define the object prototype
+        const StudentFeedbackClass = Ember.Object.extend({
+            student: null,
+            objectiveCollection: this.get('objectiveCollection'),
+            target: null,
+            question: null,
+            setTargetObjective(objective){
+                this.set('objective', objective);
+            },
+            setTargetQuestion(question){
+                this.set('question', question);
+            },
+        });
+
+        var store = this.get('store');
+        // The array of objects to be loaded and ultimately returned
+        let studentFeedbacksArray = [];
+        // Exit if the model is not set --- TODO - Bug - Needs fixing and removing this hack
+        if (!this.get('model.students')){return}
+        let students = this.get('model.students');
+        students.forEach((student)=>{
+            // Create a studentFeedback object for the student
+                // and set a default target objective, examples and questions
+            // Set a default objective
+                // ie find the lowest levelled objective that is not a 3
+                // Find each score for the objectives in the unit
 
 
-    feedbackAt: 0,
-    feedbackCount: 0,
 
-    //all the feedback items associated with the selected objective
-    objectiveFeedbacks: Ember.computed('model.currentObjective', function(){
-        var feedbacks = this.get('model.currentObjective.feedbacks');
-        return feedbacks;
+            // Create the studentFeedback object for the student
+            let studentFeedbackObj = StudentFeedbackClass.create({
+                student: student
+            })
+            // Return the array of studentFeedback objects
+            studentFeedbacksArray.pushObject(studentFeedbackObj);
+        })
+        return studentFeedbacksArray;
+        // Set the studentFeedbacks property
+        // this.set('studentFeedbacks', studentFeedbacksArray);
     }),
 
-    selectedFeedback: Ember.computed('objectiveFeedbacks', 'feedbackAt', function(){
-        var feedbacks = this.get('objectiveFeedbacks');
-        //var length = feedbacks.length;
-        //this.set('feedbackCount', length);
-        var feedbackAt = this.get('feedbackAt');
-        return feedbacks.objectAt(feedbackAt);
-    }),
-
-    questions: Ember.computed(function(){
-            return this.store.findAll('question');
-    }),
 
     actions: {
 
-        //Shows the modal for selecting different feedbacks
-        togModalFeedbacks: function(){
-            this.toggleProperty('modalFeedbacks');
-        },
-        //Shows the modal for selecting different objectives
-        togModalObjectives: function(){
-            this.toggleProperty('modalObjectives');
-        },
         togViewUnits(){
             this.toggleProperty('viewUnits');
         },
 
-        nextFeedback(){
-            this.incrementProperty('feedbackAt');
-        },
-        previousFeedback(){
-            this.decrementProperty('feedbackAt');
+        setSelectedUnit(unit){
+            this.set('selectedUnit', unit);
+            this.set('viewUnits', false);
         },
 
-        setCurrentObjective(){
-            var group = this.get('model');
-            var selectedObjective = this.get('selectedObjective');
-            group.set('currentObjective', selectedObjective);
-            group.save();
+        setCurrentFeedback(studentFeedback){
+            this.set('currentStudentFeedback', studentFeedback);
         },
 
-        addFeedback: function(newFeedback){
-            var newF = this.store.createRecord('feedback', {
-                shortDescription: newFeedback,
-                objective: this.get('selectedObjective')
-            });
-            newF.save();
-            this.set('newFeedback', "");
+        selectQuestion(studentFeedback){
+            console.log('Student feedback from the index is: ')
+            console.log(studentFeedback);
+            this.set('currentStudentFeedback', studentFeedback);
+            console.log(this.get('currentStudentFeedback'));
+            this.transitionToRoute('groups.group.feedback-sheets.select-questions');
         },
+
 
     },
-
 
 });

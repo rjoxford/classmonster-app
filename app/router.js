@@ -45,10 +45,15 @@ Router.map(function() {
         this.route('students');
         this.route('seating-plan');
         this.route('feedback-sheets', function() {
-            this.route('view');
+          this.route('view');
+          this.route('select-objective');
+          this.route('select-questions');
+          this.route('select-examples');
         });
         this.route('gradebook', function() {
-            this.route('student', {path: 'student/:student_id' });
+            this.route('student', {path: 'student/:student_id' }, function() {
+              this.route('units');
+            });
             this.route('unit', {path: 'unit/:unit_id'}, function() {
                 this.route('objective', {path: 'objective/:objective_id'}, function() {
                   this.route('objective', function() {
@@ -57,7 +62,9 @@ Router.map(function() {
                 });
             });
         });
-        this.route('assessments');
+        this.route('assessments', function() {
+            this.route('assessment', {path: ':assessment_id'});
+        });
         this.route('course');
       });
       this.route('students', function() {});
@@ -65,21 +72,22 @@ Router.map(function() {
 
 
 
-  //Scheme route
-  //TODO move into a schoolbook route?
-  this.route('schemes', function() {
-      this.route('scheme', {path: ':scheme_id'}, function() {
-        this.route('unit', {path: 'units/:unit_id'});
-        this.route('edit');
-      });
+    //Scheme route
+    //TODO move into a schoolbook route?
+    this.route('schemes', function() {
+        this.route('scheme', {path: ':scheme_id'}, function() {
+            this.route('unit', {path: 'units/:unit_id'});
+            this.route('edit');
+        });
+            this.route('new');
   });
 
   this.route('questions', function() {
-  this.route('new');
+      this.route('new');
   });
   this.route('schoolbook');
 
-  //User routes
+  //Users routes
   this.route('users', function() {
     this.route('user', function() {
       this.route('profile');
@@ -87,26 +95,54 @@ Router.map(function() {
       this.route('questions');
       this.route('blog');
     });
-    this.route('register');
-    this.route('login');
     this.route('me');
   });
 
-  //Quick Question player routes
-  this.route('quick-questions');
-
   //TODO Delete/Refactor
-  this.route('students', function() {
-    this.route('student');
-  });
-  this.route('students', function() {
-    this.route('student', {path: ':student_id'});
-  });
+  // this.route('students', function() {
+  //   this.route('student');
+  // });
+  // this.route('students', function() {
+  //   this.route('student', {path: ':student_id'});
+  // });
 
   this.route('subjects', function() {
       this.route('subject', { path: ':subject_id' } , function() {});
   });
-  this.route('aad');
+
+  // Question Player
+  this.route('question-player', function() {
+    this.route('question');
+  });
+
+  // Welcome Page
+  this.route('welcome');
+
+  // Blogs and blogging
+  this.route('blogs', function() {
+    this.route('blog', {path: ':blog_id'});
+    this.route('edit');
+  });
+
+  // Assessment
+  this.route('assessments', function() {
+    this.route('new');
+    this.route('assessment', {path: ':assessment_id'}, function() {
+        this.route('edit');
+    });
+  });
+
+  // Planner
+  this.route('planner', function() {
+    this.route('calendar');
+    this.route('timetable', function() {
+      this.route('edit-session', {path: 'session_id'});
+    });
+    this.route('year');
+    this.route('month');
+    this.route('week');
+    this.route('term-times');
+  });
 });
 
 export default Router;

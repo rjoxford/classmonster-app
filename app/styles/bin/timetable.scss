@@ -1,0 +1,34 @@
+$col-width: 160px;
+$col-height: 80px;
+
+.timetable-session {
+    width: $col-width - 4;
+    height: $col-height - 4;
+    -activated {
+        background-color: $blue1;
+    }
+    -deactivated {
+        background-color: green;
+    }
+}
+
+.timetable-week-table {
+    //@extend .table;
+    @extend .table-bordered;
+}
+
+// Height and Width of table
+.timetable-time-col {
+    width: $col-width / 2;
+}
+.timetable-day-col {
+    width: $col-width;
+}
+.timetable-gridunit {
+    height: $col-height;
+}
+
+// Time row header offset onto line
+.timetable-hour {
+    transform: translateY($col-height / -2);
+}

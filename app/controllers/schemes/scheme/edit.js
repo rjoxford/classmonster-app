@@ -1,3 +1,35 @@
+function convertArrayOfObjectsToCSV(args) {
+        var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+        data = args.data || null;
+        if (data == null || !data.length) {
+            return null;
+        }
+
+        columnDelimiter = args.columnDelimiter || ',';
+        lineDelimiter = args.lineDelimiter || '\n';
+
+        keys = Object.keys(data[0]);
+
+        result = '';
+        result += keys.join(columnDelimiter);
+        result += lineDelimiter;
+
+        data.forEach(function(item) {
+            ctr = 0;
+            keys.forEach(function(key) {
+                if (ctr > 0) result += columnDelimiter;
+
+                result += item[key];
+                ctr++;
+            });
+            result += lineDelimiter;
+        });
+
+        return result;
+    }
+
+
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
@@ -5,6 +37,13 @@ export default Ember.Controller.extend({
     isAdding:       false,
     isDeleting:     false,
 
+    // testArray here is just for testing print code to download array as csv file. TODO - use this approach for downloading class lists, SoWs etc.
+    testArray: [{"forename": "Robin", "surname": "Oxford"},
+        {"forename": "Robin", "surname": "Oxford"},
+        {"forename": "Jack", "surname": "Jones"},
+        {"forename": "John", "surname": "Bishop"},
+        {"forename": "Lenny", "surname": "Henry"}
+    ],
 
 
     // The array of unassigned objectives, to be filtered, then dragged into units)
@@ -17,6 +56,29 @@ export default Ember.Controller.extend({
         //Hides or unhides the addingUnit form
         togIsAdding(){
                 this.toggleProperty('isAdding');
+        },
+
+        printArray(){
+            let testArray = this.get('testArray');
+            console.log(testArray);
+
+            var data, filename, link;
+            var csv = convertArrayOfObjectsToCSV({
+                data: testArray
+            });
+            if (csv == null) return;
+
+            filename = 'export.csv';
+
+            if (!csv.match(/^data:text\/csv/i)) {
+                csv = 'data:text/csv;charset=utf-8,' + csv;
+            }
+            data = encodeURI(csv);
+
+            link = document.createElement('a');
+            link.setAttribute('href', data);
+            link.setAttribute('download', filename);
+            link.click();
         },
 
         // Adds a new unit to the current model scheme

@@ -1,0 +1,38 @@
+<h1>Edit Assessment Route</h1>
+
+<h3>Title: {{input value=model.title}}</h3>
+
+<h5>Description</h5>
+{{input value=model.description}}
+
+<div class="row">
+
+    {{!-- The Assessment Editor Table --}}
+    <div class="col-md-4">
+
+    <table class="table">
+        <tr>
+            <th>Question</th>
+            <th>Marks</th>
+            <th>Objective</th>
+        </tr>
+        {{#each model.assessmentQuestions as |assessmentQuestion|}}
+                {{assessment/assessment-question-row assessmentQuestion=assessmentQuestion onDrop=(action "addObjective")}}
+        {{/each}}
+
+        <tr>
+            <td colspan="3" class="text-center">
+                <button class="btn btn-primary" {{action 'addQuestion'}}>Add Question</button>
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-success" {{action 'save'}}>Save</button>
+    </div>
+    <div class="col-md-8">
+        {{of/objective-finder draggableObjectives=true}}
+    </div>
+</div>
+
+
+{{!-- TODO - refactor into a component for new and edit --}}
+{{!-- {{assessment/assessment-editor assessment=assessment}} --}}

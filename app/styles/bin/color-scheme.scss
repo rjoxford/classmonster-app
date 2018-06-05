@@ -31,75 +31,178 @@ $green2: #7ADE78;
 $green3: #00e600;
 
 
+/*.......................................................................................................................
+Colors for icons/backsgrounds/buttons/timetable blocks etc for the particular group
+................................................        Group Colors          ...............................................*/
+.color-palette-item {
+
+}
+.color-palette-red {
+    background-color: $red1;
+}
+.color-palette-blue {
+    background-color: $blue2;
+}
+.color-palette-green {
+    background-color: $green1;
+}
+.color-palette-yellow {
+    background-color: $yellow;
+}
+
+// R
+// $red1: #ff9090;
+// O
+// Y
+// G
+// B
+// I
+// V
+
+
+// $green1: #a7e7a7;
 
 /*.......................................................................................................................
 
 ................................................        RAG Gradient Colors          ...............................................*/
+
+.color-level {
+    @extend .btn;
+    @extend .btn-sm;
+    color: white;
+}
+.color-level-3 {
+    @extend .color-level;
+    background-color: #00DDFF;
+}
+.color-level-4 {
+    background-color: #15BDF5;
+    @extend .color-level;
+}
+.color-level-5 {
+    background-color: #2B9DEB;
+    @extend .color-level;
+}
+.color-level-6 {
+    background-color: #417EE1;
+    @extend .color-level;
+}
+.color-level-7 {
+    background-color: #575ED8;
+    @extend .color-level;
+}
+.color-level-8 {
+    background-color: #6D3FCE;
+    @extend .color-level;
+}
+.color-level-9 {
+    background-color: #831FC4;
+    @extend .color-level;
+}
+.color-level-10 {
+    background-color: #9900BB;
+    @extend .color-level;
+}
+
+
+
+/*.......................................................................................................................
+
+................................................        RAG Gradient Colors          ...............................................*/
+
+.rag-color {
+    @extend .btn;
+}
+
 .rag-color-0 {
+    @extend .rag-color;
     background-color: $blue3;
 }
-.rag-color-1.0 {
+.rag-color-- {
+    @extend .rag-color;
+    background-color: $blue3;
+}
+.rag-color-10 {
+    @extend .rag-color;
     background-color: #FF0000;
 }
-.rag-color-1.1 {
+.rag-color-11 {
+    @extend .rag-color;
     background-color: #FF0E00;
 }
-.rag-color-1.2 {
+.rag-color-12 {
+    @extend .rag-color;
     background-color: #FF1D00;
 }
-.rag-color-1.3 {
+.rag-color-13 {
+    @extend .rag-color;
     background-color: #FF2B00;
 }
-.rag-color-1.4 {
+.rag-color-14 {
+    @extend .rag-color;
     background-color: #FF3A00;
 }
-.rag-color-1.5 {
+.rag-color-15 {
+    @extend .rag-color;
     background-color: #FF4900;
 }
-.rag-color-1.6 {
+.rag-color-16 {
+    @extend .rag-color;
     background-color: #FF5700;
 }
-.rag-color-1.7 {
+.rag-color-17 {
+    @extend .rag-color;
     background-color: #FF6600;
 }
-.rag-color-1.8 {
+.rag-color-18 {
+    @extend .rag-color;
     background-color: #FF7400;
 }
-.rag-color-1.9 {
+.rag-color-19 {
+    @extend .rag-color;
     background-color: #FF8300;
 }
-.rag-color-2.0 {
+.rag-color-20 {
+    @extend .rag-color;
     background-color: #FF9200;
 }
-.rag-color-2.1 {
-    color: #FCB400;
+.rag-color-21 {
+    @extend .rag-color;
     background-color: #FCB400;
-    height: 300px;
 }
-.rag-color-2.2 {
+.rag-color-22 {
+    @extend .rag-color;
     background-color: #FAD600;
 }
-.rag-color-2.3 {
+.rag-color-23 {
+    @extend .rag-color;
     background-color: #F7F700;
 }
-.rag-color-2.4 {
+.rag-color-24 {
+    @extend .rag-color;
     background-color: #D1F500;
 }
-.rag-color-2.5 {
+.rag-color-25 {
+    @extend .rag-color;
     background-color: #ADF200;
 }
-.rag-color-2.6 {
+.rag-color-26 {
+    @extend .rag-color;
     background-color: #89F000;
 }
-.rag-color-2.7 {
+.rag-color-27 {
+    @extend .rag-color;
     background-color: #65ED00;
 }
-.rag-color-2.8 {
+.rag-color-28 {
+    @extend .rag-color;
     background-color: #43EB00;
 }
-.rag-color-2.9 {
+.rag-color-29 {
+    @extend .rag-color;
     background-color: #21E800;
 }
-.rag-color-3.0 {
+.rag-color-30 {
+    @extend .rag-color;
     background-color: #00E600;
 }

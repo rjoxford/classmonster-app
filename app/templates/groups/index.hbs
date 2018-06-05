@@ -12,30 +12,19 @@
                 </div>
                 {{/link-to}}
             </div>
-
-            {{!-- {{#button-link-large title=group.name picture="kids1.png"}}
-            {{#link-to 'groups.group' group}}
-                <h5>{{group.students.length}} Students</h5>
-                        {{#if isDeleting}}
-                        {{#button-with-modal text="Delete" addClass="btn-danger"}}
-                            <h3>{{group.name}} will be permanently deleted.</h3>
-                            <h3>Are you sure you wish to continue?</h3>
-                            <button type="button" class="btn btn-danger" {{action "delete" group}}>Delete</button>
-                        {{/button-with-modal}}
-                    {{/if}}
-            {{/link-to}}
-            {{/button-link-large}} --}}
         {{/each}}
     </div>
 
     {{!-- Controls --}}
     <div class="row justify-content-center">
 
-        <button class="btn btn-primary">Add a Class</button>
+
+
 
         {{#if isDeleting}}
         <button class="btn btn-success" {{action "togIsDeleting"}}>Done</button>
         {{else}}
+        {{#link-to 'groups.new'}}<button class="btn btn-primary">Add a Class</button>{{/link-to}}
         <button class="btn btn-danger" {{action "togIsDeleting"}}>Remove</button>
         {{/if}}
     </div>

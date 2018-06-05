@@ -22,10 +22,11 @@
             {{yield}}
 
             {{!-- Confirm / Cancel buttons --}}
-            <div class="row">
+            {{!-- TODO check anywhere this poor idea was used! --}}
+            {{!-- <div class="row">
                 <button {{action "cancel"}} class="btn btn-danger" type="button">Cancel</button>
-                <button {{action "submit"}} class="btn btn-success" type="button">OK</button>
-            </div>
+                {{#if okButton}}<button {{action "submit"}} class="btn btn-success" type="button">{{okText}}</button>{{/if}}
+            </div> --}}
          </div>
     </div>
 {{/ember-wormhole}}

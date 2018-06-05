@@ -2,10 +2,13 @@
     <ul id="sprimarylist">
         <h3>Class Book</h3>
         {{#link-to 'groups'}}<li class="sidebar-button">My Classes</li>{{/link-to}}
-        {{#link-to 'groups.group' activeClass}}<li class="sidebar-button">{{activeClass.name}}</li>{{/link-to}}
-        {{#link-to 'schoolbook'}}<h3>School Book</h3>{{/link-to}}
+        {{!-- {{#link-to 'schoolbook'}}<h3>School Book</h3>{{/link-to}}  TODO delete--}}
         {{#link-to 'schemes'}}<li class="sidebar-button">Schemes</li>{{/link-to}}
         {{#link-to 'objectives'}}<li class="sidebar-button">Objectives</li>{{/link-to}}
+        {{#link-to 'planner'}}<li class="sidebar-button">Planner</li>{{/link-to}}
+        {{#link-to 'blogs'}}<li class="sidebar-button">Blogs</li>{{/link-to}}
+        {{#link-to 'question-player'}}<li class="sidebar-button">Question Player</li>{{/link-to}}
+        {{#link-to 'assessments'}}<li class="sidebar-button">Assessments</li>{{/link-to}}
     </ul>
 </div>
 

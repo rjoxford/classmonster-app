@@ -1,0 +1,8 @@
+<h3>New Assessment Route</h3>
+
+<h4>Title: {{input value=title}}</h4>
+
+<h4>Description: {{input value=description}}</h4>
+
+<button class="btn btn-primary" {{action 'save' title description}}>Save</button>
+{{#link-to 'assessments'}}<button class="btn btn-danger">Cancel</button>{{/link-to}}

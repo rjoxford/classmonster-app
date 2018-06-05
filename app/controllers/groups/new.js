@@ -12,6 +12,7 @@ export default Ember.Controller.extend({
             var group = this.store.createRecord('group', {
                 name: name
             });
+            //TODO, full page, clear alert
             alert("Save function called!");
             group.save().then(function(group){
                 _this.set('groupName', "");

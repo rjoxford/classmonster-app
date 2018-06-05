@@ -1,14 +1,34 @@
 @import 'bin/animate';
+
 // @import 'bin/bootstrap';
 @import 'bootstrap/bootstrap';
+
+// General styling
 @import 'bin/color-scheme';
+@import 'bin/general';
+
+// Components
 @import 'bin/components';
 @import 'bin/navbars';
-@import 'bin/owl-carousel';
-@import 'bin/seating-plan';
-@import 'bin/general';
-@import 'bin/questionplayer';
 
+// Tables
+@import "bin/tables";
+
+
+    // Resources
+    @import 'bin/owl-carousel';
+    @import 'bin/seating-plan';
+    @import 'bin/questionplayer';
+    @import 'bin/timetable';
+    @import 'bin/objective-finder';
+
+
+
+// Icons
+@import "bin/icons";
+
+// Bootstrap Overrides
 @import 'bin/bootstrap-overides';
 
+// downloaded components
 @import "ember-power-select";

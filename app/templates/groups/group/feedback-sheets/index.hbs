@@ -1,107 +1,78 @@
 <div class="col-md-12">
-    <h1>{{model.name}}: Feedback</h1>
+
+<h1>{{model.name}}</h1>
 
 <div class="row">
-    <h3>
-        {{model.currentUnit.name}}
+    <h3 class="col-6">
+        Feedback for: {{selectedUnit.name}}
     </h3>
+    <div class="col-6">
+        <button class="btn btn-primary" {{action "togViewUnits" }}>Change</button>
+    </div>
 </div>
 
 
-    <div class="controls-level1">
-        <button class="btn btn-primary" {{action "togViewUnits" }}>Change</button>
-        <button class="btn btn-primary" {{action "togViewStudents" }}>Custom</button>
-    </div>
+
 
     {{#if viewUnits}}
-        {{#modal-basic}}
+        {{#modal-basic cancel=(action 'togViewUnits')}}
             <h3>Select a unit</h3>
             {{#each model.currentScheme.units as |unit|}}
-                <h4>{{unit.name}}</h4>
+                <h4 {{action 'setSelectedUnit' unit}}>{{unit.name}}</h4>
             {{/each}}
-            <button class="btn btn-danger" type="button" {{action "togViewUnits"}}>Cancel</button>
         {{/modal-basic}}
     {{/if}}
 
     <table class="table">
         <thead>
             <tr>
-                <th>Student Id</th>
-                <th>Name</th>
-                <th colspan="2">Target</th>
-                <th>Score</th>
-                <th>Feedback</th>
-                <th></th>
+                <th>Student</th>
+                <th colspan="3">Target Objective</th>
+                <th colspan="2">Example</th>
+                <th colspan="2">Question</th>
             </tr>
         </thead>
         <tbody>
-            {{#each model.students as |student|}}
-            <tr>
-                <td rowspan="2">{{student.id}}</td>
-                <td rowspan="2">{{student.name}}</td>
-                <td>I can use pythagoras to find the hypotenuse</td>
-                <td><button class="btn btn-primary btn-xs" {{action "togModalObjectives" }}>Change</button></td>
-                <td>{{rag-score-single score=2}}</td>
-                <td>217</td>
-                <td>
-                    <button class="btn btn-primary btn-xs" {{action "togModalFeedbacks" }}>Change</button>
-                </td>
-            </tr>
-            <tr>
-                <td><div>I can use pythagoras to find the shorter side</div></td>
-                <td><button class="btn btn-primary btn-xs" {{action "togModalObjectives" }}>Change</button></td>
-                <td>{{rag-score-single score=1}}</td>
-                <td>213</td>
-                <td>
-                    <button class="btn btn-primary btn-xs" {{action "togModalFeedbacks"}}>Change</button>
-                </td>
-            </tr>
+            {{!-- Pass each studentFeedback object into a component to handle selection of the feedback, example and question models --}}
+            {{#each studentFeedbacks as |studentFeedback|}}
+                {{fb/fb-parent studentFeedback=studentFeedback unit=model.currentUnit
+                    selectQuestion=(action 'selectQuestion' studentFeedback)
+                    setCurrentFeedback=(action 'setCurrentFeedback' studentFeedback)
+                }}
             {{/each}}
         </tbody>
     </table>
 
-    {{#link-to 'groups.group.feedback-sheets.view'}}<button class="btn btn-primary">View Feedback Sheets</button>{{/link-to}}
+
+    {{#link-to 'groups.group.feedback-sheets.view'}}<button class="btn btn-success">View Feedback Sheets</button>{{/link-to}}
 
 </div>
 
-{{#if modalObjectives}}
-{{#modal-basic modal=modalObjectives}}
-    <h1>Objectives!</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Objective</th>
-                <th>Level</th>
-                <th colspan="2">Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each model.currentUnit.objectives as |objective|}}
-            <tr>
-                <td>{{objective.name}}</td>
-                <td>{{objective.level}}</td>
-                <td>{{rag-score-single score=2}}</td>
-                <td><button class="btn btn-primary btn-xs" {{action "selectObjective" }}>Select</button></td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-    <h4>{{objective.name}}</h4>
-{{/modal-basic}}
-{{/if}}
-
-
-{{#if modalFeedbacks}}
-{{#modal-basic modal=modalFeedbacks}}
-<h3>Test this modal</h3>
-    {{#each questions as |question|}}
-      {{question-preview question=question}}
-
-    {{/each}}
-
-    <button class="btn btn-success" {{action "togModal" }}>Select</button>
-{{/modal-basic}}
-{{/if}}
-
 
 {{outlet}}
+
+{{!-- {{#if modalObjectives}}
+{{#modal-basic modal=modalObjectives}}
+<h1>Objectives!</h1>
+<table class="table">
+<thead>
+<tr>
+<th>Objective</th>
+<th>Level</th>
+<th colspan="2">Score</th>
+</tr>
+</thead>
+<tbody>
+{{#each model.currentUnit.objectives as |objective|}}
+<tr>
+<td>{{objective.name}}</td>
+<td>{{objective.level}}</td>
+<td>{{rag-score-single score=2}}</td>
+<td><button class="btn btn-primary btn-xs" {{action "selectObjective" }}>Select</button></td>
+</tr>
+{{/each}}
+</tbody>
+</table>
+<h4>{{objective.name}}</h4>
+{{/modal-basic}}
+{{/if}} --}}

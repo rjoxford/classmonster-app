@@ -1,0 +1,13 @@
+<h2>Title: {{input value=newBlog.title}}</h2>
+
+{{tinymce-editor options=mceOptions value=newBlog.content}}
+
+{{{value}}}
+
+<button class="btn btn-success" {{action 'save'}}>Save</button>
+
+{{newBlog.title}}
+{{newBlog.content}}
+
+
+{{outlet}}

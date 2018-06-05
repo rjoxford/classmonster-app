@@ -5,6 +5,7 @@
     {{tab-single title="Assessment" action=(action "togViewAssessment") deselector=deselector}}
     {{tab-single title="Students" action=(action "togViewStudents") deselector=deselector}}
     {{tab-single title="Priorities" action=(action "togViewPriorities") deselector=deselector}}
+    {{tab-single title="Settings" action=(action "togViewSettings") deselector=deselector}}
 {{/tab-set}}
 
 {{#if viewGeneral}}
@@ -25,4 +26,38 @@
 
 {{#if viewPriorities}}
     {{partials/group-view-priorities}}
+{{/if}}
+
+{{#if viewSettings}}
+
+    <h3>Settings</h3>
+    {{#forms/form-row label="Colour"}}
+        <div class="">
+            <button class="btn btn-lg color-palette-{{model.color}}">{{model.color}}</button>
+            <button class="btn btn-primary" {{action 'togViewColorPalette'}}>Change</button>
+
+            {{!-- Modal to choose color --}}
+            {{#if viewColorPalette}}
+            {{#modal-basic cancel=(action 'togViewColorPalette')}}
+                {{color/color-palette setColor=(action 'setColor')}}
+            {{/modal-basic}}
+            {{/if}}
+        </div>
+    {{/forms/form-row}}
+
+    {{#forms/form-row label="Delete Group"}}
+        <button class="btn btn-warning" {{action 'togViewDeleteGroup'}}>Delete</button>
+        {{#if viewDeleteGroup}}
+            {{#modal-basic cancel=(action 'togViewDeleteGroup')}}
+                <h3>Warning!</h3>
+                <h5>Deleting a group cannot be undone.</h5>
+                <h5>Are you sure you wish to continue?</h5>
+                <div class="row">
+                    <button class="btn btn-success" {{action 'togViewDeleteGroup'}}>Cancel</button>
+                    <button class="btn btn-danger">Permanently Delete</button>
+                </div>
+            {{/modal-basic}}
+        {{/if}}
+    {{/forms/form-row}}
+
 {{/if}}

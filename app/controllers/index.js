@@ -2,10 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-    //Properties
-    groups: function(){
-            return this.store.findAll('group');
-        }.property(),
-        
+
+        // currentUser: Ember.inject.service('current-user'),
+        // user: Ember.computed.alias('currentUser.user'),
+
 
 });

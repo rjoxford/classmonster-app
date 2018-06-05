@@ -1,17 +1,21 @@
+<h1>User name here: {{user.forename}}</h1>
+
 {{!-- Classes --}}
 <div class="card">
     <div class="card-block">
         <h3>My Classes</h3>
         {{!-- If any groups are registered to the user show --}}
-        {{#if groups.length}}
+        {{!-- {{#if user.groups.length}} --}}
             {{!-- Show details and links for the groups --}}
             <div class="row">
-                {{#each groups as |group|}}
+                {{#each model as |group|}}
                     <div class="col-3">
                         {{#link-to 'groups.group' group}}
                         <div class="card">
                             <img class="card-img-top img-thumbnail" src="/assets/images/lesson1.png" />
-                            <div class="card-footer">{{group.name}}</div>
+                            <div class="card-footer">
+                                <h5 class="card-title">{{group.name}}</h5>
+                            </div>
                         </div>
                         {{/link-to}}
                     </div>
@@ -19,10 +23,10 @@
             </div>
             {{#link-to 'groups'}}<button class="btn btn-default">More</button>{{/link-to}}
         {{!-- If no groups are registered, show options to create a group --}}
-        {{else}}
-            <p>You have no classes!</p>
+        {{!-- {{else}} --}}
+            {{!-- <p>You have no classes!</p>
             {{#link-to 'groups'}}<button type="button" class="btn btn-success">Create a Class</button>{{/link-to}}
-        {{/if}}
+        {{/if}} --}}
     </div>
 </div>
 

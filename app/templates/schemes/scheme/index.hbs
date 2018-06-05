@@ -9,7 +9,7 @@
             <div class="card-block">
                 <h4 class="card-title">{{unit.name}}</h4>
             </div>
-            <div class="card-footer">
+            <div class="card-block">
                 <table class="table table-hover table-sm">
                     {{!-- <thead>
                         <th>Objective Name</th>
@@ -19,7 +19,7 @@
                         {{#each unit.objectives as |objective|}}
                             <tr>
                                 <td>{{#link-to 'objectives.objective' objective}}{{objective.name}}{{/link-to}}</td>
-                                <td>{{objective.level}}</td>
+                                <td>{{color/level-color level=objective.level}}</td>
                             </tr>
                         {{/each}}
                     </tbody>

@@ -1,0 +1,6 @@
+<td>{{assessmentQuestion.questionNumber}}</td>
+<td>{{assessmentQuestion.marks}}</td>
+{{#if area}}<td>{{assessmentQuestion.objective.area}}</td>{{/if}}
+{{#if topic}}<td>{{assessmentQuestion.objective.topic}}</td>{{/if}}
+<td>{{assessmentQuestion.objective.name}}</td>
+{{#if level}}<td>{{color/level-color level=assessmentQuestion.objective.level}}</td>{{/if}}

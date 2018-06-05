@@ -79,7 +79,7 @@ export default Ember.Component.extend(Ember.Evented, {
         //return event.dataTransfer.setData('text', event.target.id);
     },
 
-    didInsertElement: function(){
+    didInsertElement(){
         this.callPosition();
         this.loadsnapscore();
     },

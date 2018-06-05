@@ -16,7 +16,6 @@ export default Ember.Controller.extend({
 
         // Return the set of objectives in this unit
         var unit = this.get('model.currentUnit');
-        console.log(unit);
 
         // For each student, return the student id and their score
 
