@@ -1,8 +1,12 @@
-<h1>Questions Route</h1>
+<h3>We have {{model.length}} Questions</h3>
 
+{{#link-to 'questions.new'}}<button class="btn btn-success">Create a new Question</button>{{/link-to}}
 
-{{#link-to 'questions.new'}}<button>Create a new Question</button>{{/link-to}}
-
+<h1>Questions listed below:</h1>
 {{#each model as |question|}}
-<h3>{{question.answer}}</h3>
+<div class="card">
+    <div class="card-body">
+        {{question-preview question=question}}
+    </div>
+</div>
 {{/each}}

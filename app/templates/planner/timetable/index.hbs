@@ -1,4 +1,100 @@
-<h1>Timetable Index Route</h1>
 
-{{#link-to 'planner.timetable.edit'}}<button class="btn btn-primary">Edit</button>{{/link-to}}
+<h2>Weekly Timetable</h2>
+
+{{!--  The Timetable Grid --}}
+<table class="timetable-week-table">
+    <thead class="thead-dark">
+        <tr>
+            <th class="timetable-time-col"></th>
+            {{#each daysArray as |day|}}
+                <th class="timetable-day-col">{{day}}</th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each timesArray as |time|}}
+        <tr>
+            <th class="timetable-hour">{{time}}</th>
+            {{#each daysArray as |day|}}
+                {{planner/timetable-gridunit day=day time=time onDrop=(action 'dropSession') onClick=(action 'addSession')}}
+            {{/each}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- Timetable Sessions --}}
+{{#each model as |session|}}
+        {{planner/timetable-session session=session position=(action 'positionSession') edit=(action 'editSession' session) color=session.group.color}}
+{{/each}}
+
+{{!-- Controls for adding a session to timetable --}}
+{{#if viewNewSessionModal}}
+    {{!-- Inside a modal --}}
+    {{#modal-basic cancel=(action "cancelAddSession")}}
+
+        {{!-- Day and Time controls at top of modal --}}
+        {{#forms/form-row label="Day"}}
+            <p>{{selectedDay}}</p>
+        {{/forms/form-row}}
+        {{#forms/form-row label="Time"}}
+            {{selectedTime}}
+        {{/forms/form-row}}
+
+        {{!-- Group Selection --}}
+        <div class="row">
+            {{!-- {{#owl-carousel}} --}}
+            {{#each groups as |group|}}
+                <div class="col-sm" {{action 'setSelectedGroup' group}}>
+                    <div class="card">
+                        <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+                        <div class="card-footer">{{group.name}}</div>
+                    </div>
+                </div>
+            {{/each}}
+            {{!-- {{/owl-carousel}} --}}
+        </div>
+
+        <div class="row justify-content-centre">
+            <button class="btn btn-danger" {{action 'cancelAddSession'}}>Cancel</button>
+            <button class="btn btn-success" {{action 'saveSession'}}>Save</button>
+        </div>
+    {{/modal-basic}}
+{{/if}}
+
+{{#if viewEditSessionModal}}
+    {{!-- Inside a modal --}}
+    {{#modal-basic cancel=(action "cancelEditSession")}}
+
+        {{!-- Day and Time controls at top of modal --}}
+        {{#forms/form-row label="Day"}}
+            <p>{{selectedSession.day}}</p>
+        {{/forms/form-row}}
+        {{#forms/form-row label="Time"}}
+            <p>{{selectedSession.time}}</p>
+
+        {{/forms/form-row}}
+
+        {{!-- Group Selection --}}
+        <div class="row">
+            {{!-- {{#owl-carousel}} --}}
+            {{#each groups as |group|}}
+                <div class="col-sm">
+                    <div class="card">
+                        <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
+                        <div class="card-footer">{{group.name}}</div>
+                    </div>
+                </div>
+            {{!-- <button class="btn btn-primary" {{action 'setSelectedGroup' group.name}}>{{group.name}}</button> --}}
+            {{/each}}
+            {{!-- {{/owl-carousel}} --}}
+        </div>
+
+        <div class="row justify-content-centre">
+            <button class="btn btn-danger" {{action 'cancelEditSession'}}>Cancel</button>
+            <button class="btn btn-success" {{action 'saveSession'}}>Save</button>
+        </div>
+    {{/modal-basic}}
+{{/if}}
+
 {{outlet}}

@@ -1,3 +1,8 @@
 <h2>Create a new question:</h2>
 
-{{forms/question-edit question=question submit=(action "submit" model) cancel=(action "cancel" model)}}
+<h1>{{model.name}}</h1>
+
+{{forms/question-edit question=question saveQuestion=(action 'saveQuestion') cancel=(action 'cancel')}}
+{{!-- {{forms/question-edit question=question cancel=(action "cancel" question)}} --}}
+
+{{!-- <button class="btn btn-success" {{action 'submit'}}>Submit Question</button> --}}

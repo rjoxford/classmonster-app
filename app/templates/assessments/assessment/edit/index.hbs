@@ -1,0 +1,100 @@
+<h1>{{model.title}}</h1>
+
+{{forms/form-row}}
+
+{{!-- Title --}}
+{{#forms/form-row label="Title"}}
+    {{input class="form-control" value=model.title}}
+{{/forms/form-row}}
+{{#forms/form-row label="Description"}}
+    {{input class="form-control" value=model.description}}
+{{/forms/form-row}}
+
+
+{{!-- The Assessment Editor Table --}}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th colspan="5">Objective</th>
+            <th colspan="3">Question</th>
+        </tr>
+        <tr>
+            <th>Area</th>
+            <th>Topic</th>
+            <th>Name</th>
+            <th>Level</th>
+            <th></th>
+            <th>No.</th>
+            <th>Question Text</th>
+            <th>Marks</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{!-- Using assessmentQuestions array from controller for sorting by Question number --}}
+        {{#each assessmentQuestions as |assessmentQuestion|}}
+        <tr>
+            {{!--                 The Objective         --}}
+            {{!-- Objective Area --}}
+            {{!-- <td>{{assessmentQuestion.objective.area}}</td> --}}
+            <td>{{color/area-color area=assessmentQuestion.objective.area}}</td>
+            {{!-- Objective Topic --}}
+            <td>{{assessmentQuestion.objective.topic}}</td>
+            {{!-- Objective Name --}}
+            <td><strong>{{assessmentQuestion.objective.name}}</strong></td>
+            {{!-- Objective Level --}}
+            <td>{{color/level-color level=assessmentQuestion.objective.level}}</td>
+            {{!-- Change Objective --}}
+            <td>
+                {{#link-to 'assessments.assessment.edit.objective' assessmentQuestion}}
+                    {{#if assessmentQuestion.objective}}
+                        <button class="btn btn-sm btn-warning">Change</button>
+                    {{else}}
+                        <button class="btn btn-sm btn-success">Add</button>
+                    {{/if}}
+                {{/link-to}}
+            </td>
+
+            {{!--                 The Question         --}}
+            {{!-- Question Number --}}
+            <td>{{assessmentQuestion.questionNumber}}</td>
+            {{!-- Question Text --}}
+            <td><strong>{{assessmentQuestion.question.questionText}}</strong></td>
+            {{!-- Choose a question button --}}
+            {{!-- {{/unless}} --}}
+            <td>{{assessmentQuestion.marks}}</td>
+            <td>
+                {{#link-to 'assessments.assessment.edit.question' assessmentQuestion}}
+                    {{#if assessmentQuestion.question}}
+                        <button class="btn btn-sm btn-warning">Change</button>
+                    {{else}}
+                        <button class="btn btn-sm btn-success">Add</button>
+                    {{/if}}
+                {{/link-to}}
+            </td>
+            <td><button class="btn btn-danger btn-sm" {{action "deleteAssessmentQuestion" assessmentQuestion}}>Delete</button></td>
+        </tr>
+        {{/each}}
+
+        <tr>
+            <td colspan="10" class="text-center">
+                <button class="btn btn-primary" {{action 'addQuestion'}}>Add Question</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="btn btn-success" {{action 'save'}}>Save</button>
+
+{{#if viewDelete}}
+    {{#modal-basic}}
+        <h3>Are you sure you want to delete this assessment question?</h3>
+        <button class="btn btn-warning" {{action "togViewDelete"}}>Cancel</button>
+        <button class="btn btn-danger" {{action "confirmDeleteAssessmentQuestion"}}>Delete</button>
+    {{/modal-basic}}
+{{/if}}
+
+{{!-- TODO - refactor into a component for new and edit --}}
+{{!-- {{assessment/assessment-editor assessment=assessment}} --}}
+{{outlet}}

@@ -12,7 +12,7 @@
         <tr>
             <th class="timetable-hour">{{time}}</th>
             {{#each daysArray as |day|}}
-                {{timetable/timetable-gridunit day=day time=time action=(action 'addSession')}}
+                {{planner/timetable-gridunit day=day time=time}}
             {{/each}}
         </tr>
         {{/each}}

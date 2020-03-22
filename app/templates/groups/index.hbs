@@ -4,29 +4,9 @@
     {{!-- Groups --}}
     <div class="row">
         {{#each model as |group|}}
-            <div class="col-sm">
-                {{#link-to 'groups.group' group}}
-                <div class="card">
-                    <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
-                    <div class="card-footer">{{group.name}}</div>
-                </div>
-                {{/link-to}}
-            </div>
+            {{icons/group-icon group=group}}
         {{/each}}
     </div>
-
-    {{!-- Controls --}}
-    <div class="row justify-content-center">
-
-
-
-
-        {{#if isDeleting}}
-        <button class="btn btn-success" {{action "togIsDeleting"}}>Done</button>
-        {{else}}
-        {{#link-to 'groups.new'}}<button class="btn btn-primary">Add a Class</button>{{/link-to}}
-        <button class="btn btn-danger" {{action "togIsDeleting"}}>Remove</button>
-        {{/if}}
-    </div>
-
 </div>
+
+{{#link-to 'groups.new'}}<button class="btn btn-primary">Add a Class</button>{{/link-to}}

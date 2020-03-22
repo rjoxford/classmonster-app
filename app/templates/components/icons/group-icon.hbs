@@ -1,0 +1,13 @@
+{{#if link}}
+    {{#link-to 'groups.group' group}}
+        <img class="card-img-top img-thumbnail" src="/assets/images/monsters/{{group.color}}-group-1.png" />
+        <div class="card-footer">
+            <h5 class="card-title">{{group.name}}</h5>
+        </div>
+    {{/link-to}}
+{{else}}
+    <img class="card-img-top img-thumbnail" src="/assets/images/monsters/{{group.color}}-group-1.png" />
+    <div class="card-footer">
+        <h5 class="card-title">{{group.name}}</h5>
+    </div>
+{{/if}}

@@ -12,7 +12,7 @@ resetValues: function(){
 
 actions: {
 
-    submitquestion(){
+    saveQuestion(){
         //Find the inputs
         var length = this.get('length');
         var difficulty = this.get('difficulty');

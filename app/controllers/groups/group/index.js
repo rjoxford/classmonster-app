@@ -42,6 +42,18 @@ export default Ember.Controller.extend({
 
     //Actions
     actions: {
+
+        deleteGroup(){
+            let _this = this
+            this.get('model').destroyRecord().then(function(){
+                _this.toggleProperty('viewDeleteGroup');
+                _this.resetL1Views();
+                _this.toggleProperty('viewCourse');
+                alert("Class Deleted");
+                _this.transitionToRoute('groups');
+            })
+        },
+
         setColor(color){
             let group = this.get('model');
             group.set('color', color);

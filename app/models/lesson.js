@@ -4,6 +4,9 @@ export default DS.Model.extend({
 
     //attributes
     name: DS.attr('string'),
+    date: DS.attr('string'),
+    startTime: DS.attr('string'),
+    duration: DS.attr('number'),
 
 
     //relationships

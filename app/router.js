@@ -63,7 +63,8 @@ Router.map(function() {
             });
         });
         this.route('assessments', function() {
-            this.route('assessment', {path: ':assessment_id'});
+          this.route('assessment', {path: ':assessment-group-record_id'});
+          this.route('set');
         });
         this.route('course');
       });
@@ -128,7 +129,10 @@ Router.map(function() {
   this.route('assessments', function() {
     this.route('new');
     this.route('assessment', {path: ':assessment_id'}, function() {
-        this.route('edit');
+        this.route('edit', function() {
+          this.route('objective', {path: 'aq/:assessment-question_id/objective'});
+          this.route('question', {path: 'aq/:assessment-question_id/question'});
+        });
     });
   });
 
@@ -136,7 +140,7 @@ Router.map(function() {
   this.route('planner', function() {
     this.route('calendar');
     this.route('timetable', function() {
-      this.route('edit-session', {path: 'session_id'});
+      this.route('edit-session', {path: 'edit-session/:session_id'});
     });
     this.route('year');
     this.route('month');

@@ -74,16 +74,46 @@
 </div>
 
 {{!-- List of objectives --}}
-<div class="">
-    {{#each filteredObjectives as |objective|}}
-    {{!-- TODO determine different outputs here. Do we want each objective to be links? To be draggable in SoW Editor etc --}}
+{{#if displayList}}
+    <div class="">
+        {{#each filteredObjectives as |objective|}}
+        {{!-- TODO determine different outputs here. Do we want each objective to be links? To be draggable in SoW Editor etc --}}
 
-        {{#if hasLinks}}
-            {{#link-to 'objectives.objective' objective}}<p>{{objective.name}}</p>{{/link-to}}
-        {{else if draggableObjectives}}
-            {{scheme-editor/draggable-objective objective=objective originType="bank" origin="bank"}}
-        {{else}}
-            <p>{{objective.name}}</p>
-        {{/if}}
-    {{/each}}
+            {{#if hasLinks}}
+                {{#link-to 'objectives.objective' objective}}<p>{{objective.name}}</p>{{/link-to}}
+            {{else if draggableObjectives}}
+                {{scheme-editor/draggable-objective objective=objective originType="bank" origin="bank"}}
+            {{else}}
+                <p>{{objective.name}}</p>
+            {{/if}}
+        {{/each}}
+    </div>
+{{/if}}
+
+{{!-- Full table of objectives --}}
+{{#if displayTable}}
+<div class="table table-hover">
+    <thead>
+        <tr>
+            <th>Area</th>
+            <th>Topic</th>
+            <th>Name</th>
+            <th>Level</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each filteredObjectives as |objective|}}
+
+        <tr>
+            <td>{{color/area-color area=objective.area}}</td>
+            {{!-- <td>{{objective.area}}</td> --}}
+            <td>{{objective.topic}}</td>
+            <td><strong>{{objective.name}}</strong></td>
+            <td>{{color/level-color level=objective.level}}</td>
+            <td><button {{action "selectObjective" objective}} class="btn btn-success">Select</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
 </div>
+{{/if}}

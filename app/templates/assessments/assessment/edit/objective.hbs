@@ -1,0 +1,10 @@
+<h1>Choose the objective to assess: </h1>
+
+{{#if selectedObjective}}
+    <h1>{{selectedObjective.name}}</h1>
+    {{#modal-basic}}
+        {{selectedObjective.name}}
+    {{/modal-basic}}
+{{/if}}
+
+{{of/objective-finder displayTable=true onSelectObjective=(action 'selectObjective')}}

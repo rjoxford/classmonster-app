@@ -1,0 +1,34 @@
+<h3>All Assessments</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Set</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each model.assessments as |assessment|}}
+        <tr>
+            <td>Past Paper</td>
+            <td>{{#link-to 'groups.group.assessments.assessment' assessment.id}}{{assessment.title}}{{/link-to}}</td>
+            <td>{{assessment.description}}</td>
+            <td>
+                <button class="btn btn-primary" {{action 'setAssessment' assessment}}>Set</button>
+            </td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td>Past Paper</td>
+            <td>Nov 2017</td>
+            <td>Another past paper practice from WJEC</td>
+            <td>12.4.18</td>
+            <td>80%</td>
+        </tr>
+    </tbody>
+</table>
+
+{{outlet}}
+
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><title></title></head><body><h2>Your Personal Improvement Plan</h2><p>Find here your personal improvement plan</p><p>Work hard!</p><h4>The St Teilo's Maths Department</h4></body></html>

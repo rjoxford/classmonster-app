@@ -12,8 +12,8 @@ actions: {
     confirm(){
         console.log('confirmed in edit-component. Call Route action from here');
     },
-    submit(){
-        this.get('submit')();
+    saveQuestion(){
+        this.get('saveQuestion')();
     },
     cancelPreview(){
         this.set('viewPreview', false);

@@ -4,8 +4,9 @@
     <thead>
         <tr>
             <th rowspan="2">Question</th>
-            <th rowspan="2">Marks</th>
             <th colspan="4">Objective</th>
+            <th rowspan="2">Marks</th>
+            <th colspan="2" rowspan="2">Question</th>
         </tr>
         <tr>
             <th>Area</th>
@@ -15,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        {{#each model.assessmentQuestions as |assessmentQuestion|}}
+        {{#each assessmentQuestions as |assessmentQuestion|}}
                 {{assessment/assessment-question-row assessmentQuestion=assessmentQuestion area=true topic=true level=true}}
         {{/each}}
     </tbody>

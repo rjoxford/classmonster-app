@@ -7,7 +7,12 @@ export default DS.Model.extend({
     //
     name: DS.attr('string'),
 
-    color: DS.attr('string'),
+    // Set a random color!
+    color: DS.attr('string', {defaultValue: function(){
+        // Return a random color by default
+        let colors = [ 'red', 'yellow', 'green', 'blue']
+        return colors[Math.floor(Math.random() * colors.length)];
+    }}),
 
     //
     //relationships

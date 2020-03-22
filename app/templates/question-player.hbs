@@ -1,3 +1,7 @@
+{{objectives}}
+
+<button class="btn btn-default" {{action 'test'}}>Test</button>
+
 {{!-- Launches the Quick Question Player --}}
 {{!-- TODO - Should this be a single component or a set of routes? Probably routes... --}}
 
@@ -5,17 +9,27 @@
 {{#if selectedUnit}}<button {{action 'setViewGroups'}} class="btn btn-primary">{{selectedUnit.name}}</button>{{/if}}
 {{#if settings}}<button {{action 'togViewSettings'}} class="btn btn-default">Settings</button>{{/if}}
 
+{{!-- First choose a group --}}
+{{#if viewGroups}}
+<h2>Choose your class</h2>
+    <div class="row">
+        {{#each groups as |group|}}
+            {{icons/group-icon group=group click=(action 'setSelectedGroup' group)}}
+        {{/each}}
+    </div>
+{{/if}}
 
+{{!-- Then decide how to find the objectives to question --}}
 {{#if viewFindObjsBy}}
     <h2>How would you like to select your questions?</h2>
     <div class="row">
         {{!-- Find objectives appropriate for the class --}}
-        <div {{action 'setViewGroups'}} class="col-6">
+        <div {{action 'setViewUnits'}} class="col-6">
             <div class="card">
-                <img class="card-img-top " src="/assets/images/kids1.png" alt="">
+                <img class="card-img-top " src="/assets/images/books/redbook.svg" alt="">
                 <div class="card-footer">
-                    <h4 class="card-title">Class Objectives</h4>
-                    <p>Find a class, and view questions for objectives from their SoW</p>
+                    <h4 class="card-title">Scheme of Work</h4>
+                    <p>Find questions for objectives from your SoW</p>
                 </div>
             </div>
         </div>
@@ -23,9 +37,9 @@
         {{!-- Find and Select from all objectives --}}
         <div class="col-6">
             <div class="card">
-                <img class="card-img-top " src="/assets/images/kids1.png" alt="">
+                <img class="card-img-top " src="/assets/images/magnifyingglass.png" alt="">
                 <div class="card-footer">
-                    <h4 class="card-title">Find by Objective</h4>
+                    <h4 class="card-title">Find Objectives</h4>
                     <p>Find questions for any objectives from our collection</p>
                 </div>
             </div>
@@ -33,18 +47,9 @@
     </div>
 {{/if}}
 
-{{#if viewGroups}}
-<h2>Please choose the class you would like to question</h2>
-    <div class="row">
-        {{#each groups as |group|}}
-            <div {{action 'setSelectedGroup' group}} class="col-sm">
-                <div class="card">
-                    <img class="card-img-top img-thumbnail" src="/assets/images/kids1.png" />
-                    <div class="card-footer">{{group.name}}</div>
-                </div>
-            </div>
-        {{/each}}
-    </div>
+{{!-- If manually finding the individual objectives --}}
+{{#if viewObjectiveFinder}}
+    {{of/objective-finder displayTable=true}}
 {{/if}}
 
 {{#if viewSettings}}
@@ -121,6 +126,8 @@
         {{/each}}
     </div>
 {{/if}}
+
+
 
 {{#if viewPlayer}}
     {{qq/qq-player}}

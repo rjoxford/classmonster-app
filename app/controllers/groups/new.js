@@ -6,17 +6,16 @@ export default Ember.Controller.extend({
 
     actions: {
 
-        save: function(){
-            var _this = this;
-            var name = this.get('groupName');
+        createGroup(){
+            let _this = this;
             var group = this.store.createRecord('group', {
-                name: name
+                name: this.get('groupName')
             });
             //TODO, full page, clear alert
-            alert("Save function called!");
+            alert("New group created");
             group.save().then(function(group){
                 _this.set('groupName', "");
-                _this.transitionToRoute('groups.group.students', group);
+                _this.transitionToRoute('groups.group', group);
             });
         },
 

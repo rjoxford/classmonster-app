@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
 
 actions: {
 
-    submit(model){
+    saveQuestion(model){
         // var question = this.get('model');
         var _this = this;
         model.save().then(function(){

@@ -1,0 +1,30 @@
+<h3>Select a question to assess:</h3>
+
+<h2>{{model.objective.name}} with ID: {{model.objective.id}}</h2>
+
+<h1>Questions</h1>
+{{#if model.objective.questions.length}}
+
+<table class="table">
+<tbody>
+    {{#each model.objective.questions as |question|}}
+    <tr>
+        <td>
+            <div class="question-preview-modal-wrapper">
+                {{question-preview question=question}}
+            </div>
+        </td>
+        <td>
+            <button class="btn btn-lg btn-success" {{action 'selectQuestion' question}}>Select</button>
+        </td>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+
+{{else}}
+<h5>Oh no! There are no questions for this objective!</h5>
+<h6>Help the world by writing a few with us!</h6>
+
+{{/if}}
+{{#link-to 'objectives.objective.questions.new' model.objective}}<button class="btn btn-success">Write a Question</button>{{/link-to}}

@@ -3,15 +3,12 @@ import DS from 'ember-data';
 export default DS.Model.extend({
 
     //attributes
-    questionNumber: DS.attr('string'),
-    question: DS.attr('string'),
-    marks: DS.attr('number'),
+    score: DS.attr('number', {defaultValue:0}),
 
     //relationships
-    student: DS.belongsTo('student'),
+    assessmentStudentRecord: DS.belongsTo('assessment-student-record'),
     assessment: DS.belongsTo('assessment', {inverse:null}),
-    assessmentQuestion: DS.belongsTo('assessmentQuestion', {inverse:null}),
-    objective: DS.belongsTo('objective', {inverse: null})
+    assessmentQuestion: DS.belongsTo('assessment-question', {inverse:null})
 
 
 });

@@ -1,0 +1,12 @@
+<td colspan="2">{{student.name}}</td>
+{{#if studentQuestionRecords.length}}
+    {{!-- If a record exists then display each student question record --}}
+    {{#each studentQuestionRecords as |questionRecord|}}
+    <td>{{input size=2 min="0" max=5 type="number"}}</td>
+    {{/each}}
+{{else}}
+    <td colspan={{questions.length}}>No data. <button class="btn btn-success" {{action 'createStudentAssessmentRecord'}}>Add results</button></td>
+{{/if}}
+
+
+<button class="btn btn-sm" {{action 'test'}}>T</button>

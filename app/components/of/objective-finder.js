@@ -17,6 +17,9 @@ export default Ember.Component.extend({
         // return this.get('store').query('objective', { branch: "Algebra" });
     }),
 
+    // // Allows the setting of a selected objective
+    // selectedObjective: null,
+
     filteredObjectives: Ember.computed( function(){
         return this.get('allObjectives');
     }),
@@ -56,7 +59,16 @@ export default Ember.Component.extend({
     viewFilterbyGrade: false,
     viewFilterbyClassification: false,
 
+    selectedObjective: Ember.computed(function(){
+        return this.get('selectedObjective');
+    }),
+
     actions: {
+        // Sets the selected objective
+        selectObjective(objective){
+            this.get('onSelectObjective')(objective);
+        },
+
         searchObjectives(){
             let searchCriteria = this.get('searchCriteria');
             var regex = new RegExp(searchCriteria, "i");

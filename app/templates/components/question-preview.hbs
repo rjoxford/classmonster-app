@@ -16,10 +16,10 @@
     <div class="question-tags">
 
         <div class="questiontag-difficulty">
-            <button class="btn btn-primary">Easy!</button>
+            <button class="btn btn-primary">{{question.difficulty}}</button>
         </div>
         <div class="questiontag-length">
-            <button class="btn btn-primary">Short</button>
+            <button class="btn btn-primary">{{question.length}}</button>
         </div>
 
         {{#if question.hasMulti}}

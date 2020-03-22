@@ -4,6 +4,7 @@ export default DS.Model.extend({
 
     //attributes
     notes: DS.attr('string'),
+    date: DS.attr('date', {defaultTo: function(){}}),
 
 
     //relationships
@@ -12,5 +13,8 @@ export default DS.Model.extend({
     assessment: DS.belongsTo('assessment', {inverse:null}),
 
     assessmentStudentRecords: DS.hasMany('assessment-student-records')
+
+
+    //////////////////////////////////// WHEN to create a student score record for each student?
 
 });

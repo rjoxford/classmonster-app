@@ -1,111 +1,9 @@
 <h2>New Question Route</h2>
 
-<form class="form-horizontal col-sm-offset-2 col-sm-8" {{action 'submitquestion' on='submit' }}>
+{{forms/question-edit question=model saveQuestion=(action 'saveQuestion')}}
+{{!-- {{forms/question-edit question=question cancel=(action "cancel" question)}} --}}
 
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3 control-h4">Length of Question</h4>
-        <div class="col-sm-9">
-            {{form-button-single title='Instant'}}
-            {{form-button-single title='Short'}}
-            {{form-button-single title='Medium'}}
-            {{form-button-single title='Long'}}
-        </div>
-    </div>
-
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3 control-h4">Difficulty Level</h4>
-        <div class="col-sm-9">
-            {{form-button-single title='Easy'}}
-            {{form-button-single title='Medium'}}
-            {{form-button-single title='Challenging'}}
-        </div>
-    </div>
-
-    <div class="form-group col-sm-12">
-        <h4 class="control-h4 col-sm-3">Question</h4>
-        <div class="col-sm-9">
-            {{textarea class="form-control" placeholder='Your wonderful question here' rows=3 value=questionText}}
-        </div>
-    </div>
-
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3">Supporting picture or diagram</h4>
-        <div class="col-sm-9">
-            <div class="width100">
-                {{form-switch value=hasPicture}}
-            </div>
-            {{#if hasPicture}}
-            <div class="width100">
-                {{file-uploader class='form-control'}}
-            </div>
-            {{/if}}
-        </div>
-    </div>
-
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3">Advice for completion</h4>
-        <div class="col-sm-9">
-            <div class="width100">
-                {{form-switch value=hasAdvice}}
-            </div>
-            {{#if hasAdvice}}
-            <div class="width100">
-                {{input class="form-control" value=advice placeholder='Hints, tips, or web addresses to suppport successful completion'}}
-            </div>
-            {{/if}}
-        </div>
-    </div>
-
-    <div class="form-group col-sm-12">
-        <h4 for="answer" class="control-h4 col-sm-3">Correct Answer</h4>
-        <div class="col-sm-9">
-            {{input class="form-control" value=answer placeholder='The correct answer'}}
-        </div>
-    </div>
-
-
-    <div class="form-group col-sm-12">
-        <h4 class="col-sm-3">Add multiple choice answers?</h4>
-        <div class="col-sm-9">
-            <div class="width100">
-                {{form-switch value=hasMultiChoice}}
-            </div>
-            {{#if hasMultiChoice}}
-            <div class="width100">
-                <div class="col-md-8">
-                    {{!-- Starts on incorrect2, with correct answer being answer1 --}}
-                    {{input id='answer2' class="form-control" value=answer2 placeholder='Incorrect answer'}}
-                </div>
-                {{form-button-single title='+' selected=hasMulti3}}
-                {{#if hasMulti3}}
-                    <div class="col-md-8">
-                        {{input id='answer3' class="form-control" value=answer3 placeholder='Incorrect answer'}}
-                    </div>
-                    {{form-button-single title='+' selected=hasMulti4}}
-                    {{#if hasMulti4}}
-                        <div class="col-md-8">
-                            {{input id='answer4' class="form-control" value=answer4 placeholder='Incorrect answer'}}
-                        </div>
-                    {{/if}}
-                {{/if}}
-            </div>
-            {{/if}}
-        </div>
-    </div>
-
-    <div class="col-sm-offset-3">
-        <button type="submit" class="btn btn-default">Submit</button>
-        <button type="clear" class="btn btn-warning">Clear</button>
-        <button type="cancel" class="btn btn-danger">Cancel</button>
-    </div>
-
-    {{#if errorMessage}}
-    <p>{{errorMessage}}</p>
-    {{/if}}
-
-</form>
-
-{{#if question}}
+{{!-- {{#if question}}
 <div class="col-sm-offset-2 col-sm-8">
     <div class="questionPreview width100">
         <h3>Preview</h3>
@@ -144,6 +42,6 @@
 
     </div>
 </div>
-{{/if}}
+{{/if}} --}}
 
 {{outlet}}

@@ -1,69 +1,37 @@
-<h1>{{model.name}} Assessments</h1>
-
-<h3>Set Assessments</h3>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Type</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Date Sat</th>
-            <th>Average Score</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each model.group.assessmentRecords as |assessment|}}
-        <tr>
-            <td>Past Paper</td>
-            <td>{{#link-to 'groups.group.assessments.assessment' assessment.id}}{{assessment.assessment.title}}{{/link-to}}</td>
-            <td>{{assessment.description}}</td>
-            <td>12.12.17</td>
-            <td>35%</td>
-        </tr>
-        {{/each}}
-        <tr>
-            <td>Past Paper</td>
-            <td>Nov 2017</td>
-            <td>Another past paper practice from WJEC</td>
-            <td>12.4.18</td>
-            <td>80%</td>
-        </tr>
-    </tbody>
-</table>
-
-<h3>All Assessments</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Type</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Set</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each model.assessments as |assessment|}}
-        <tr>
-            <td>Past Paper</td>
-            <td>{{#link-to 'groups.group.assessments.assessment' assessment.id}}{{assessment.title}}{{/link-to}}</td>
-            <td>{{assessment.description}}</td>
-            <td>
-                <button class="btn btn-primary" {{action 'setAssessment' assessment}}>Set</button>
-            </td>
-        </tr>
-        {{/each}}
-        <tr>
-            <td>Past Paper</td>
-            <td>Nov 2017</td>
-            <td>Another past paper practice from WJEC</td>
-            <td>12.4.18</td>
-            <td>80%</td>
-        </tr>
-    </tbody>
-</table>
+<h1>Assessments {{model.assessmentRecords.length}}</h1>
 
 
-<h3>To Do</h3>
-<p class="panel-title">SoW Unit Assessments</p>
-<p class="panel-title">General Assessments</p>
-<p class="panel-title">Create an Assessment</p>
+{{#if model.assessmentRecords.length}}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date Sat</th>
+                <th>Average Score</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{!-- Where assessment is the group's assessment record --}}
+            {{#each model.assessmentRecords as |assessment|}}
+            <tr>
+                <td>Past Paper</td>
+                <td>{{#link-to 'groups.group.assessments.assessment' assessment.id}}{{assessment.assessment.title}}{{/link-to}}</td>
+                <td>{{assessment.description}}</td>
+                <td>12.12.17</td>
+                <td>35%</td>
+                <td><button class="btn btn-danger" {{action "deleteAssessmentRecord" assessment}}>Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+{{else}}
+    <h5>No assessments have been set for {{model.group.name}}. Click below to start setting some!</h5>
+    <h3>TODO - Or try refreshing... Model not loading correctly on link-to.</h3>
+
+{{/if}}
+
+{{#link-to 'groups.group.assessments.set' model.group class="btn btn-success"}}Set an Assessment{{/link-to}}

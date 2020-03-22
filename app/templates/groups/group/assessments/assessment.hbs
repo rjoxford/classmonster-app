@@ -1,36 +1,46 @@
-<h1>Group's Assessment Page</h1>
-<h1>Assessment: {{model.title}}</h1>
+{{!-- <h1>{{model.name}} Assessment Page</h1> --}}
+<h1>Assessment: {{model.assessment.title}}</h1>
+
+<h2>{{groupName}}</h2>
+
+{{#each myStudents as |student|}}
+  <p>{{student.name}}</p>
+{{/each}}
+
 
 
 <table class="table table-hover table-striped">
     <thead>
         <tr>
-            <th rowspan="3">Student</th>
+            <th rowspan="4">Student</th>
             <th>Objective</th>
-            {{#each model.assessmentQuestions as |question|}}
+            {{#each model.assessment.assessmentQuestions as |question|}}
                 <th class="text-orientation-upright">{{question.objective.name}}</th>
             {{/each}}
         </tr>
         <tr>
             <th>Level</th>
-            {{#each model.assessmentQuestions as |question|}}
-                <th>{{question.objective.level}}</th>
+            {{#each model.assessment.assessmentQuestions as |question|}}
+                <th>{{color/level-color level=question.objective.level}}</th>
+            {{/each}}
+        </tr>
+        <tr>
+            <th>Question</th>
+            {{#each model.assessment.assessmentQuestions as |question|}}
+            <td>{{question.question.questionText}}</td>
             {{/each}}
         </tr>
         <tr>
             <th>Marks</th>
-            {{#each model.assessmentQuestions as |question|}}
+            {{#each model.assessment.assessmentQuestions as |question|}}
             <td>{{question.marks}}</td>
             {{/each}}
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td colspan="2">Rick Dagless</td>
-            {{#each model.assessmentQuestions as |question|}}
-            <td>100%</td>
-            {{/each}}
-        </tr>
+        {{#each model.group.students as |student|}}
+            {{assessment/student-assessment-row store=store student=student assessmentGroupRecord=model assessment=model.assessment}}
+        {{/each}}
     </tbody>
 </table>
 

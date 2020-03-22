@@ -1,6 +1,22 @@
+{{!-- Question Number --}}
 <td>{{assessmentQuestion.questionNumber}}</td>
-<td>{{assessmentQuestion.marks}}</td>
+
+
+{{!--                 The Objective         --}}
+{{!-- Objective Area --}}
 {{#if area}}<td>{{assessmentQuestion.objective.area}}</td>{{/if}}
+{{!-- Objective Topic --}}
 {{#if topic}}<td>{{assessmentQuestion.objective.topic}}</td>{{/if}}
+{{!-- Objective Name --}}
 <td>{{assessmentQuestion.objective.name}}</td>
+{{!-- Objective Level --}}
 {{#if level}}<td>{{color/level-color level=assessmentQuestion.objective.level}}</td>{{/if}}
+
+
+{{!--                 The Question         --}}
+{{!-- Question Text --}}
+
+{{!-- {{#unless assessmentQuestion.question}}
+
+{{/unless}} --}}
+<td>{{assessmentQuestion.marks}}</td>
